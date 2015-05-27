@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>
+<title>Random voting twitch.tv/etozhemad!</title>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script>
+    $(document).ready(function(){
+            $("#latestData").load("http://z.za.ru/random/content.html?"+Math.random());
+    });
+
+</script>
+
+<style>
+   td{
+   width : 50%;
+   }
+   table {
+    width: 100%; /* Ўирина таблицы */
+    border-collapse: collapse; /* ”бираем двойные линии между ¤чейками */
+   }
+   td, th {
+    padding: 3px; /* ѕол¤ вокруг содержимого таблицы */
+    border: 1px solid #000; /* ѕараметры рамки */
+   }
+   th {
+    background: #afd792; /* ÷вет фона */
+    color: #333;  /* ÷вет текста */
+   }
+   tbody tr:hover {
+    background: #f3bd48; /* ÷вет фона при наведении */
+    color: #fff; /* ÷вет текста при наведении */
+   }
+   iframe {
+    position: absolute; /* Абсолютное позиционирование */
+	top : 15px;
+    right: 15px; /* Положение от правого края */
+    line-height: 0px;
+   }
+   
+  
+  
+  input{
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
+</style>
+
+<script>	
+function cplottopickwinner() {      
+ var trs = document.getElementById("latestData").getElementsByTagName("tr");
+ var rand = Math.floor( Math.random() * trs.length );
+ document.getElementById('winners').appendChild(trs[rand]);
+ //$("#latestData").load("http://z.za.ru/random/content.html?"+Math.random());
+}
+</script>
+  
+</head>
+
+<body>
+
+<input type="button" value="GO!" onclick="cplottopickwinner(document.search)">
+<br>
+<b> Winners: </b>
+<table style="width:calc(100% - 450px)">
+
+    <tbody id="winners">
+    </tbody>
+    
+</table>
+<br>
+<b> Votes: </b>
+
+    <table id = "latestData" style="width:calc(100% - 450px)">
+
+    </table>
+
+
+<br>
+<br>
+<br>
+<iframe src="http://www.twitch.tv/etozhemad/chat?popout=" style="width:420px; height:95%; position:fixed;">
+</body>
+</html>
