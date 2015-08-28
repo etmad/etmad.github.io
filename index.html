@@ -1,48 +1,249 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
+<!DOCTYPE html>
+<!-- saved from url=(0024)http://localhost/random/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+<title>Random voting twitch.tv/etozhemad!</title>
 
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf8">
-	<TITLE></TITLE>
-	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.4.1  (Win32)">
-	<META NAME="CREATED" CONTENT="20150511;16380621">
-	<META NAME="CHANGED" CONTENT="20150519;18342640">
-</HEAD>
-<BODY LANG="ru-RU" DIR="LTR">
+<script>
+</script>
+
 <style>
-html {
-margin: 0 auto;
-width: 1280;
-height: 100%;
-clip: auto;
-position: relative;
-overflow-y: hidden;
-}
+   td{
+   width : 50%;
+   }
+   table {
+    width: 100%; /* Ширина таблицы */
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+   }
+   td, th {
+    padding: 3px; /* Поля вокруг содержимого таблицы */
+    border: 1px solid #000; /* Параметры рамки */
+   }
+   th {
+    background: #afd792; /* Цвет фона */
+    color: #333;  /* Цвет текста */
+   }
+   tbody tr:hover {
+    background: #f3bd48; /* Цвет фона при наведении */
+    color: #fff; /* Цвет текста при наведении */
+   }
+   iframe {
+    position: absolute; /* Ђбсолютное позиционирование */
+	top : 15px;
+    right: 15px; /* Џоложение от правого краЯ */
+    line-height: 0px;
+   }
+   
+  
+  
+  input{
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
 </style>
-<div style="width:calc(100% - 510px);">
-<P><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">Всем
-привет. Далее будет идти информация о том, что планируется на
-стримах. Информация будет обновляться каждый день перед самим
-стримом.</FONT></FONT></P>
-<P><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">Это
-не значит, что в стриме будет обязательно то, что я запланировал.
-Планы иногда меняются на ходу, бывают и внешние причины. </FONT></FONT>
-</P>
-<P><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">Пожалуйста,
-прежде чем спамить в чат: &laquo;а че сегодня будет??&raquo; &laquo;а
-че, сегодня только *<I>название игры</I>*?&raquo; прочтите инфу ниже.</FONT></FONT></P>
-<P><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">Страница
-постоянно обновляется!</FONT></FONT></P>
-<P><FONT FACE="Courier New, monospace"><FONT SIZE=2 STYLE="font-size: 11pt">Возможны
-ночные и прочие внезапные стримы.</FONT></FONT></P>
-<iframe style="width:100%; height:calc( 100vh - 150px )" src="https://docs.google.com/spreadsheets/d/1vo4nIzmo63Ito-ZE5vuhMOP1f7tJm0R-Lyp5Gna74mI/pubhtml">
-</iframe>
-</div>
-<div style="position: absolute; right: 5px;top:5px;width:500px">
-<iframe src="https://www.google.com/calendar/embed?title=%D0%A0%D0%B0%D1%81%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%81%D1%82%D1%80%D0%B8%D0%BC%D0%BE%D0%B2&amp;height=600&amp;wkst=2&amp;hl=ru&amp;bgcolor=%23FFFFFF&amp;src=1on0005i9jckokk4aeoa3mbgt4%40group.calendar.google.com&amp;color=%23333333&amp;ctz=Europe%2FMoscow" style=" border-width:0 " width="500" height="400" frameborder="0" scrolling="no"></iframe>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-<a class="twitter-timeline" href="https://twitter.com/madgostream" data-widget-id="603616011208794112">Твиты от @madgostream</a>
-</div>
 
-</BODY>
-</HTML>
+<script>	
+function cplottopickwinner() {      
+ var trs = document.getElementById("latestData").getElementsByTagName("tr");
+ var rand = Math.floor( Math.random() * trs.length );
+ document.getElementById('winners').appendChild(trs[rand]);
+ //$("#latestData").load("content.html?"+Math.random());
+}
+</script>
+  
+</head>
+
+<body>
+
+<input type="button" value="GO!" onclick="cplottopickwinner(document.search)">
+<br>
+<b> Winners: </b>
+<table style="width:calc(100% - 450px)">
+
+    <tbody id="winners">
+    </tbody>
+    
+</table>
+<br>
+<b> Votes: </b>
+
+    <table id="latestData" style="width:calc(100% - 450px)"><tbody><tr id="madgeeks"><td>madgeeks</td><td>Evoland 2</td></tr>
+<tr id="dude_lebovvski"><td>dude_lebovvski</td><td>dead space на самом сложном</td></tr>
+<tr id="dancerpasha"><td>dancerpasha</td><td>пасьянс дефолтный на пк</td></tr>
+<tr id="bestcomment"><td>bestcomment</td><td>Fable</td></tr>
+<tr id="ejaculate_nostradamusa"><td>ejaculate_nostradamusa</td><td>Satellite Reign</td></tr>
+<tr id="garripoh"><td>garripoh</td><td>zombie shooter 2</td></tr>
+<tr id="govnoed666"><td>govnoed666</td><td>mafia2</td></tr>
+<tr id="zoren_striker"><td>zoren_striker</td><td>South Park: The Stick of Truth</td></tr>
+<tr id="georgstin"><td>georgstin</td><td>Fable Anniversary</td></tr>
+<tr id="lyubeznyi_"><td>lyubeznyi_</td><td>Bionic Commando (2009)</td></tr>
+<tr id="n3xtor7"><td>n3xtor7</td><td>l.a. noire</td></tr>
+<tr id="defilinni"><td>defilinni</td><td>TheWheelman</td></tr>
+<tr id="hochurabotat"><td>hochurabotat</td><td>long live the queen</td></tr>
+<tr id="areylind"><td>areylind</td><td>LegendOfGrimrock2</td></tr>
+<tr id="altroverse"><td>altroverse</td><td>fable</td></tr>
+<tr id="ardaman70ru"><td>ardaman70ru</td><td>batman arkham knight</td></tr>
+<tr id="sitai_koto"><td>sitai_koto</td><td>Dead Space</td></tr>
+<tr id="gooffyguber"><td>gooffyguber</td><td>cities:skyline</td></tr>
+<tr id="dimadisco"><td>dimadisco</td><td>Game Dev Tycoon</td></tr>
+<tr id="hygarden"><td>hygarden</td><td>Hand of Fate</td></tr>
+<tr id="yaroslav_kot"><td>yaroslav_kot</td><td>METAL GEAR RISING: REVENGEANCE</td></tr>
+<tr id="myth0108ia"><td>myth0108ia</td><td>Child of Light</td></tr>
+<tr id="mikkron"><td>mikkron</td><td>superhot beta</td></tr>
+<tr id="fua88"><td>fua88</td><td>heroes and generals</td></tr>
+<tr id="large_serum"><td>large_serum</td><td>Marlow Briggs and the Mask of Death</td></tr>
+<tr id="rainjkeee"><td>rainjkeee</td><td>NFS: Most Wanted (2005)</td></tr>
+<tr id="frankieniagara"><td>frankieniagara</td><td>Metal Gear Solid V: Ground Zeroes</td></tr>
+<tr id="j4lz"><td>j4lz</td><td>Mafia 2</td></tr>
+<tr id="cooper_ssz"><td>cooper_ssz</td><td>escaptist</td></tr>
+<tr id="noumen0n"><td>noumen0n</td><td>бесконечное лето</td></tr>
+<tr id="kambat_batyanya"><td>kambat_batyanya</td><td>Skyrim</td></tr>
+<tr id="sanjix7"><td>sanjix7</td><td>Big Rigs: Over the Road Racing</td></tr>
+<tr id="joyem20"><td>joyem20</td><td>Risk of rain</td></tr>
+<tr id="mpakk217"><td>mpakk217</td><td>Severance: Blade of Darkness</td></tr>
+<tr id="limreet"><td>limreet</td><td>the movies stunts &amp; effects</td></tr>
+<tr id="louis_defunes1914"><td>louis_defunes1914</td><td>samp-rp с подписонами</td></tr>
+<tr id="stasfis"><td>stasfis</td><td>xcom</td></tr>
+<tr id="glaz_iz_glazgo"><td>glaz_iz_glazgo</td><td>Hotline Miami</td></tr>
+<tr id="linch64p"><td>linch64p</td><td>Chaser</td></tr>
+<tr id="madmax0701"><td>madmax0701</td><td>Teeworlds</td></tr>
+<tr id="qwertystar007"><td>qwertystar007</td><td>Duck game</td></tr>
+<tr id="mikekosinov"><td>mikekosinov</td><td>Dota2</td></tr>
+<tr id="yadovityygus"><td>yadovityygus</td><td>deponia</td></tr>
+<tr id="jonathan_jackson"><td>jonathan_jackson</td><td>Kill the bad guy</td></tr>
+<tr id="oniksofers"><td>oniksofers</td><td>Layers_of_Fear</td></tr>
+<tr id="maxkosminov"><td>maxkosminov</td><td>Until Dawn</td></tr>
+<tr id="supershurik"><td>supershurik</td><td>Running with Rifles</td></tr>
+<tr id="kami_not_paper"><td>kami_not_paper</td><td>Metal Gear Rising - Revengeance</td></tr>
+<tr id="pizham"><td>pizham</td><td>Painkiller</td></tr>
+<tr id="ivpainer"><td>ivpainer</td><td>BROTHERS - A TALE OF TWO SONS%</td></tr>
+<tr id="ozone671games"><td>ozone671games</td><td>Teslagrad</td></tr>
+<tr id="starlightisverybright"><td>starlightisverybright</td><td>Fable TLC</td></tr>
+<tr id="ataman00"><td>ataman00</td><td>Far Cry 4</td></tr>
+<tr id="michaelandreanov"><td>michaelandreanov</td><td>Dishonored</td></tr>
+<tr id="seblab3018"><td>seblab3018</td><td>Soldier of Fortune</td></tr>
+<tr id="mihanik87"><td>mihanik87</td><td>Prop Hunt</td></tr>
+<tr id="pota4ok"><td>pota4ok</td><td>Dying Light</td></tr>
+<tr id="y0lych"><td>y0lych</td><td>Party Hard</td></tr>
+<tr id="alternativehood"><td>alternativehood</td><td>long live the queen</td></tr>
+<tr id="yota_"><td>yota_</td><td>wasteland etmHehe etmHehe</td></tr>
+<tr id="fluffymuzzy"><td>fluffymuzzy</td><td>Fallout Tactics: Brotherhood of Steel</td></tr>
+<tr id="stafi1o"><td>stafi1o</td><td>Hitman Blood Money</td></tr>
+<tr id="pacificocean1234"><td>pacificocean1234</td><td>H1Z1 Battle royale</td></tr>
+<tr id="yurkased"><td>yurkased</td><td>Operation Flashpoint: Resistance</td></tr>
+<tr id="kelolov"><td>kelolov</td><td>SuperHot(Beta)</td></tr>
+<tr id="fun_from_magadan"><td>fun_from_magadan</td><td>Fable</td></tr>
+<tr id="areyouready_88"><td>areyouready_88</td><td>Don't Starve</td></tr>
+<tr id="viktoryanukovych"><td>viktoryanukovych</td><td>Grim Fandango</td></tr>
+<tr id="karanak_ru"><td>karanak_ru</td><td>Unreal 2</td></tr>
+<tr id="drzigfrid"><td>drzigfrid</td><td>Bulletstorm</td></tr>
+<tr id="ecmhands"><td>ecmhands</td><td>blood rayne</td></tr>
+<tr id="margaretthatcher1488"><td>margaretthatcher1488</td><td> Half-Life2: Episode Two</td></tr>
+<tr id="fullsizee"><td>fullsizee</td><td>Alan Wake</td></tr>
+<tr id="aaartiom"><td>aaartiom</td><td>3d sex villa 2</td></tr>
+<tr id="zheleznij_kylak"><td>zheleznij_kylak</td><td>goat simulator</td></tr>
+<tr id="chevapratdumrong"><td>chevapratdumrong</td><td>LISA the Joyful</td></tr>
+<tr id="scrappy___coco"><td>scrappy___coco</td><td>L.A.Noire</td></tr>
+<tr id="raydan007"><td>raydan007</td><td>DmC</td></tr>
+<tr id="tonyawesome"><td>tonyawesome</td><td>SilentHill2</td></tr>
+<tr id="kuraikyomu"><td>kuraikyomu</td><td>c&amp;c red alert2</td></tr>
+<tr id="brick_btv"><td>brick_btv</td><td>Obscure</td></tr>
+<tr id="freakmethod"><td>freakmethod</td><td></td></tr>
+<tr id="boris__britwa"><td>boris__britwa</td><td>Silent storm</td></tr>
+<tr id="comestrys"><td>comestrys</td><td>бесконечное лето</td></tr>
+<tr id="nocturnalworm"><td>nocturnalworm</td><td>hotoful boyfriend</td></tr>
+<tr id="kolyanjf"><td>kolyanjf</td><td>Everlasitng Summer</td></tr>
+<tr id="patapony13"><td>patapony13</td><td>deponia</td></tr>
+<tr id="ttrooper_cat"><td>ttrooper_cat</td><td>jorney</td></tr>
+<tr id="joestorges"><td>joestorges</td><td>l.a. noire</td></tr>
+<tr id="skeptr"><td>skeptr</td><td>Br&#252;tal Legend</td></tr>
+<tr id="asphyx1ation"><td>asphyx1ation</td><td>The Binding of Isaac: Rebirth</td></tr>
+<tr id="wuzaor"><td>wuzaor</td><td>Fable</td></tr>
+<tr id="nekropatolog"><td>nekropatolog</td><td>Shadowgrounds</td></tr>
+<tr id="prorok_sun_boy"><td>prorok_sun_boy</td><td>transistor</td></tr>
+<tr id="bomjsdrobovikom"><td>bomjsdrobovikom</td><td>The forest</td></tr>
+<tr id="dipsayd"><td>dipsayd</td><td>Metal Gear Rising: Revengeance</td></tr>
+<tr id="miami_nights1984"><td>miami_nights1984</td><td>Driver San Francisco</td></tr>
+<tr id="sgsh"><td>sgsh</td><td>super meat boy</td></tr>
+<tr id="gogetta_avalon"><td>gogetta_avalon</td><td>Metroid Zero Mission</td></tr>
+<tr id="boonchik"><td>boonchik</td><td>Overture</td></tr>
+<tr id="diabfall"><td>diabfall</td><td>Disney's Hercules Action Game (epsx) типа Аладдина</td></tr>
+<tr id="faryx123"><td>faryx123</td><td>Elite Dangerous</td></tr>
+<tr id="andreyvolozhaninov"><td>andreyvolozhaninov</td><td>bioshock infinite</td></tr>
+<tr id="kapetansvistok"><td>kapetansvistok</td><td>bioshock infinite</td></tr>
+<tr id="dredru"><td>dredru</td><td>Fahrenheit</td></tr>
+<tr id="feniksmmg"><td>feniksmmg</td><td>Destiny</td></tr>
+<tr id="ghost_faust"><td>ghost_faust</td><td>Severance: Blade of Darkness</td></tr>
+<tr id="zirtran"><td>zirtran</td><td>The Darkness 2</td></tr>
+<tr id="danis31"><td>danis31</td><td>the darkest dungeon</td></tr>
+<tr id="locksher"><td>locksher</td><td>Blues and bullets</td></tr>
+<tr id="human_cannonball"><td>human_cannonball</td><td>Condemned: criminal origins</td></tr>
+<tr id="frosssty_sock"><td>frosssty_sock</td><td>Darkest Dungeon</td></tr>
+<tr id="rbologov"><td>rbologov</td><td>Darkness II</td></tr>
+<tr id="jester1589"><td>jester1589</td><td>Cradle</td></tr>
+<tr id="khalyavin"><td>khalyavin</td><td>battleblock theater</td></tr>
+<tr id="cheiser_"><td>cheiser_</td><td>копатель</td></tr>
+<tr id="brightonbea4"><td>brightonbea4</td><td>IL-2 Sturmovik: 1946</td></tr>
+<tr id="vova_ne_noi"><td>vova_ne_noi</td><td>world of tanks</td></tr>
+<tr id="revage141"><td>revage141</td><td>test</td></tr>
+<tr id="miceycrostar"><td>miceycrostar</td><td> Terraria</td></tr>
+<tr id="boris2393"><td>boris2393</td><td>stronghold crusader</td></tr>
+<tr id="leeroooooooy"><td>leeroooooooy</td><td> Bioshok Infinite</td></tr>
+<tr id="4len_na_gube"><td>4len_na_gube</td><td>F.E.A.R</td></tr>
+<tr id="domrachev_d"><td>domrachev_d</td><td>brutal legend</td></tr>
+<tr id="bitpoke"><td>bitpoke</td><td>FEZ</td></tr>
+<tr id="vandekker"><td>vandekker</td><td>Full Throttle</td></tr>
+<tr id="boryaeltsyn"><td>boryaeltsyn</td><td>Full Throttle</td></tr>
+<tr id="warpoe"><td>warpoe</td><td>plush</td></tr>
+<tr id="vadimousique"><td>vadimousique</td><td>Harry Potter and the Chamber of Secrets</td></tr>
+<tr id="badziy"><td>badziy</td><td>SubRosa</td></tr>
+<tr id="papacockroach"><td>papacockroach</td><td>DWARF FORTRESS</td></tr>
+<tr id="black_george"><td>black_george</td><td>Resident Evil 5</td></tr>
+<tr id="sanchezmanchez"><td>sanchezmanchez</td><td>sonic adventure dx</td></tr>
+<tr id="jamqurai"><td>jamqurai</td><td>Driver San Francisco</td></tr>
+<tr id="miss_merryweather"><td>miss_merryweather</td><td>косынка</td></tr>
+<tr id="road_to_1_mmr"><td>road_to_1_mmr</td><td>X Men Origins Wolverine</td></tr>
+<tr id="piratkotyara"><td>piratkotyara</td><td>Space Station 13</td></tr>
+<tr id="dyuzhev"><td>dyuzhev</td><td>каратель</td></tr>
+<tr id="makamakafon"><td>makamakafon</td><td>Magic:The Gathering</td></tr>
+<tr id="warenik74"><td>warenik74</td><td>)</td></tr>
+<tr id="aandrewv"><td>aandrewv</td><td>Bastion</td></tr>
+<tr id="arrille_of_seyda_neen"><td>arrille_of_seyda_neen</td><td>Devil May Cry</td></tr>
+<tr id="oduvankenobi"><td>oduvankenobi</td><td>transistor</td></tr>
+<tr id="vladislavmerkulov"><td>vladislavmerkulov</td><td>бесконечное лето</td></tr>
+<tr id="bad_monkey1"><td>bad_monkey1</td><td>Rogue Warrior</td></tr>
+<tr id="aleister88"><td>aleister88</td><td>Санитары подземелий</td></tr>
+<tr id="igorlevchuk93"><td>igorlevchuk93</td><td>sleeping dogs</td></tr>
+<tr id="lamppost100"><td>lamppost100</td><td>In Verbis Virtus</td></tr>
+<tr id="dearfoe"><td>dearfoe</td><td>superhot</td></tr>
+<tr id="kirillotron"><td>kirillotron</td><td>Psychonauts</td></tr>
+<tr id="adolf_lemming"><td>adolf_lemming</td><td>BrutalLegend</td></tr>
+<tr id="eztokeko"><td>eztokeko</td><td>Dead Rising 3</td></tr>
+<tr id="damirizmaylov"><td>damirizmaylov</td><td>Total Overdose</td></tr>
+<tr id="etozhebot"><td>etozhebot</td><td>test</td></tr>
+<tr id="suneater420"><td>suneater420</td><td>Хитман: Тишина Убийца 2</td></tr>
+<tr id="komlev88"><td>komlev88</td><td>ADOM</td></tr>
+<tr id="khvorykh"><td>khvorykh</td><td>Sang-Froid - Tales of Werewolves</td></tr>
+<tr id="hufgirl"><td>hufgirl</td><td>Alan Wake</td></tr>
+<tr id="streamoe"><td>streamoe</td><td>Dispatcher (игра от блэксильвер уфы) etmLol</td></tr>
+<tr id="kot_ha_macce"><td>kot_ha_macce</td><td>knock-knock</td></tr>
+<tr id="trif1"><td>trif1</td><td>bioshock infinite</td></tr>
+<tr id="andrewkartashow"><td>andrewkartashow</td><td>Team Fortress 2</td></tr>
+<tr id="a_burchenko"><td>a_burchenko</td><td>Axiom Verge</td></tr>
+<tr id="fart_prince"><td>fart_prince</td><td>Car Mechanic Simulator</td></tr>
+<tr id="grigory_skovoroda"><td>grigory_skovoroda</td><td>Full Throttle</td></tr>
+<tr id="elim24"><td>elim24</td><td>super meat boy</td></tr>
+<tr id="odin_ok"><td>odin_ok</td><td>Obscure</td></tr>
+<tr id="dreikron"><td>dreikron</td><td>LEGO RACERS 2</td></tr>
+<tr id="psalmfortheelkslastlodge"><td>psalmfortheelkslastlodge</td><td>Call of Juarez</td></tr>
+<tr id="vasya112"><td>vasya112</td><td>Midtown Madness 2</td></tr>
+<tr id="frensisforever"><td>frensisforever</td><td>South Park: The Stick of Truth</td></tr>
+<tr id="iga0077"><td>iga0077</td><td>deponia</td></tr>
+</tbody></table>
+
+
+<br>
+<br>
+<br>
+&lt;/body&gt;
+&lt;/html&gt;</iframe></body></html>
