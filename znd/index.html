@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<head>
+<title>Random voting twitch.tv/etozhezanuda!</title>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<style>
+   td{
+   width : 50%;
+   }
+   table {
+    width: 100%; /* Ўирина таблицы */
+    border-collapse: collapse; /* ”бираем двойные линии между €чейками */
+   }
+   td, th {
+    padding: 3px; /* ѕол€ вокруг содержимого таблицы */
+    border: 1px solid #000; /* ѕараметры рамки */
+   }
+   th {
+    background: #afd792; /* ÷вет фона */
+    color: #333;  /* ÷вет текста */
+   }
+   tbody tr:hover {
+    background: #f3bd48; /* ÷вет фона при наведении */
+    color: #fff; /* ÷вет текста при наведении */
+   }
+   iframe {
+    position: absolute; /* Абсолютное позиционирование */
+	top : 15px;
+    right: 15px; /* Положение от правого края */
+    line-height: 0px;
+   }
+   
+  
+  
+  input{
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  }
+</style>
+
+<script>	
+function cplottopickwinner() {      
+ var trs = document.getElementById("latestData").getElementsByTagName("tr");
+ var rand = Math.floor( Math.random() * trs.length );
+ document.getElementById('winners').appendChild(trs[rand]);
+}
+</script>
+  
+</head>
+
+<body>
+
+<input type="button" value="GO!" onclick="cplottopickwinner(document.search)">
+<br>
+<b> Winners: </b>
+<table style="width:calc(100% - 450px)">
+
+    <tbody id="winners">
+    </tbody>
+    
+</table>
+<br>
+<b> Votes: </b>
+
+    <table id = "latestData" style="width:calc(100% - 450px)">
+
+<tr id="hobh0bhob"><td>hobh0bhob</td><td>fallout3</td></tr>
+<tr id=""><td></td><td>Borderlands2</td></tr>
+<tr id="etozhebot"><td>etozhebot</td><td>Girls Like Robots</td></tr>
+<tr id="Cool_Guy_Vlad"><td>Cool_Guy_Vlad</td><td>Silent Hill 3</td></tr>
+<tr id="MastterAr"><td>MastterAr</td><td>Dragon Age: Origins</td></tr>
+<tr id="Kimondi"><td>Kimondi</td><td>Garry Potter</td></tr>
+<tr id="Alpencolt"><td>Alpencolt</td><td>PappersPlease</td></tr>
+<tr id="Dontgiveadamnabouttime"><td>Dontgiveadamnabouttime</td><td>Spore</td></tr>
+<tr id="Sectorochek"><td>Sectorochek</td><td></td></tr>
+<tr id="MrSnowen"><td>MrSnowen</td><td>Skyrim</td></tr>
+<tr id="OgyReZ"><td>OgyReZ</td><td>the room</td></tr>
+<tr id="Starosta3000"><td>Starosta3000</td><td>fallout 3</td></tr>
+<tr id="PavelDatsyukSib"><td>PavelDatsyukSib</td><td>Layers of fear</td></tr>
+<tr id="etozhezanuda"><td>etozhezanuda</td><td>sims 1</td></tr>
+<tr id="HeardScientist"><td>HeardScientist</td><td> to the moon</td></tr>
+<tr id="Jerusalem1488_ru"><td>Jerusalem1488_ru</td><td> The punisher</td></tr>
+<tr id="Kerrigon"><td>Kerrigon</td><td>—Б—В–∞—А–Ї–∞—Д—В</td></tr>
+    </table>
+
+
+<br>
+<br>
+<br>
+<iframe src="http://www.twitch.tv/etozhezanuda/chat?popout=" style="width:420px; height:95%; position:fixed;">
+</body>
+</html>
