@@ -5415,7 +5415,7 @@ module.exports = function(data) {
         'sournothardcore': { mod: true, tagType: 'brown', tagName: '<span style="color:#FFE600 !important;">Saucy</span>', color: data.color + ';text-shadow: 0 0 10px #FFD700' },
         // People
         'mac027': { mod: true, tagType: 'admin', tagName: 'Hacks' },
-        'grigory_skovoroda': { mod: true, tagType: 'orange', tagName: '<span style="color:pink;">Skovoroda</span>' },
+        'grigory_skovoroda': { mod: true, tagType: 'admin', tagName: '<span style="color:pink; !important">S</span>' },
         'vaughnwhiskey': { mod: true, tagType: 'admin', tagName: 'Bacon' },
         'socaldesigner': { mod: true, tagType: 'broadcaster', tagName: 'Legend' },
         'perfectorzy': { mod: true, tagType: 'moderator', tagName: 'Jabroni Ave' },
