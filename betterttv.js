@@ -1507,7 +1507,7 @@ exports.assignBadges = function(badges, data) {
         bttvBadges.unshift({
             type: userData.tagType,
             name: userData.tagName,
-            description: 'Grandfathered BetterTTV Swag Tag'
+            description: 'Skovoroda'
         });
     }
 
@@ -5415,7 +5415,7 @@ module.exports = function(data) {
         'sournothardcore': { mod: true, tagType: 'brown', tagName: '<span style="color:#FFE600 !important;">Saucy</span>', color: data.color + ';text-shadow: 0 0 10px #FFD700' },
         // People
         'mac027': { mod: true, tagType: 'admin', tagName: 'Hacks' },
-        'grigory_skovoroda': { mod: true, tagType: 'admin', tagName: '<span style="color:pink; !important">S</span>' },
+        'grigory_skovoroda': { mod: true, tagType: 'admin', tagName: '&#8203;' },
         'vaughnwhiskey': { mod: true, tagType: 'admin', tagName: 'Bacon' },
         'socaldesigner': { mod: true, tagType: 'broadcaster', tagName: 'Legend' },
         'perfectorzy': { mod: true, tagType: 'moderator', tagName: 'Jabroni Ave' },
