@@ -352,7 +352,7 @@ module.exports = function() {
 
         if (!emote.channel) {
             emote.channel = 'BetterTTV Emotes';
-            emote.badge = 'https://twitchy.ru/tags/developer.png';
+            emote.badge = 'http://twitchy.ru/tags/developer.png';
         }
 
         usableEmotes.push(emote);
@@ -2077,7 +2077,7 @@ var takeover = module.exports = function() {
             // Easter Egg Kappa
             var words = val.toLowerCase().split(' ');
             if (words.indexOf('twitch') > -1 && words.indexOf('amazon') > -1 && words.indexOf('google') > -1) {
-                helpers.serverMessage('<img src="https://twitchy.ru/special/twitchtrollsgoogle.gif"/>');
+                helpers.serverMessage('<img src="http://twitchy.ru/special/twitchtrollsgoogle.gif"/>');
             }
 
             if (!bttvCommand) {
@@ -2280,20 +2280,20 @@ var emoticonBTTV = exports.emoticonBTTV = function(emote) {
 
 var jtvEmoticonize = exports.jtvEmoticonize = function(id) {
     var jtvEmotes = [
-        'https://twitchy.ru/emotes/jtv/happy.gif',
-        'https://twitchy.ru/emotes/jtv/sad.gif',
-        'https://twitchy.ru/emotes/mw.png',
-        'https://twitchy.ru/emotes/jtv/angry.gif',
-        'https://twitchy.ru/emotes/jtv/bored.gif',
-        'https://twitchy.ru/emotes/jtv/drunk.gif',
-        'https://twitchy.ru/emotes/jtv/cool.gif',
-        'https://twitchy.ru/emotes/jtv/surprised.gif',
-        'https://twitchy.ru/emotes/jtv/horny.gif',
-        'https://twitchy.ru/emotes/jtv/skeptical.gif',
-        'https://twitchy.ru/emotes/jtv/wink.gif',
-        'https://twitchy.ru/emotes/jtv/raspberry.gif',
-        'https://twitchy.ru/emotes/jtv/winkberry.gif',
-        'https://twitchy.ru/emotes/jtv/pirate.gif'
+        'http://twitchy.ru/emotes/jtv/happy.gif',
+        'http://twitchy.ru/emotes/jtv/sad.gif',
+        'http://twitchy.ru/emotes/mw.png',
+        'http://twitchy.ru/emotes/jtv/angry.gif',
+        'http://twitchy.ru/emotes/jtv/bored.gif',
+        'http://twitchy.ru/emotes/jtv/drunk.gif',
+        'http://twitchy.ru/emotes/jtv/cool.gif',
+        'http://twitchy.ru/emotes/jtv/surprised.gif',
+        'http://twitchy.ru/emotes/jtv/horny.gif',
+        'http://twitchy.ru/emotes/jtv/skeptical.gif',
+        'http://twitchy.ru/emotes/jtv/wink.gif',
+        'http://twitchy.ru/emotes/jtv/raspberry.gif',
+        'http://twitchy.ru/emotes/jtv/winkberry.gif',
+        'http://twitchy.ru/emotes/jtv/pirate.gif'
     ];
 
     return jtvEmotes[id - 1];
@@ -2505,7 +2505,7 @@ bttv.getChatController = function() {
 bttv.notify = function(message, title, url, image, tag, permanent) {
     title = title || 'Notice';
     url = url || '';
-    image = image || 'https://twitchy.ru/style/logos/bttv_logo.png';
+    image = image || 'http://twitchy.ru/style/logos/bttv_logo.png';
     message = message || '';
     tag = tag || 'bttv_' + message;
     tag = 'bttv_' + tag.toLowerCase().replace(/[^\w_]/g, '');
@@ -2865,7 +2865,7 @@ module.exports = function() {
         if (!tsTink) {
             debug.log('loading audio feedback sound');
 
-            tsTink = new Audio('https://twitchy.ru/style/sounds/ts-tink.ogg'); // btw ogg does not work in ie
+            tsTink = new Audio('http://twitchy.ru/style/sounds/ts-tink.ogg'); // btw ogg does not work in ie
         }
 
         tsTink.load(); // needed to play sound more then once
@@ -2935,8 +2935,8 @@ module.exports = function() {
     var $watermark = $('<img />');
     // Old Site Header Logo Branding
     if ($('#header_logo').length) {
-        $('#header_logo').html('<img alt="TwitchTV" src="https://twitchy.ru/style/logos/black_twitch_logo.png">');
-        $watermark.attr('src', 'https://twitchy.ru/style/logos/logo_icon.png');
+        $('#header_logo').html('<img alt="TwitchTV" src="http://twitchy.ru/style/logos/black_twitch_logo.png">');
+        $watermark.attr('src', 'http://twitchy.ru/style/logos/logo_icon.png');
         $watermark.css({
             'z-index': 9000,
             'margin-left': '-82px',
@@ -2950,7 +2950,7 @@ module.exports = function() {
 
     // New Site Logo Branding
     if ($('#large_nav #logo').length) {
-        $watermark.attr('src', 'https://twitchy.ru/style/logos/logo_icon.png');
+        $watermark.attr('src', 'http://twitchy.ru/style/logos/logo_icon.png');
         $watermark.css({
             'z-index': 9000,
             'margin-left': '-76px',
@@ -2972,7 +2972,7 @@ module.exports = function() {
 
     // Import Global BTTV CSS Changes
     var globalCSSInject = document.createElement('link');
-    globalCSSInject.setAttribute('href', 'https://twitchy.ru/style/stylesheets/betterttv.css?' + bttv.info.versionString());
+    globalCSSInject.setAttribute('href', 'http://twitchy.ru/style/stylesheets/betterttv.css?' + bttv.info.versionString());
     globalCSSInject.setAttribute('type', 'text/css');
     globalCSSInject.setAttribute('rel', 'stylesheet');
     $('body').append(globalCSSInject);
@@ -3509,7 +3509,7 @@ module.exports = function() {
             $('#darkTwitch').remove();
             $('#splitChat').remove();
             var darkCSS = document.createElement('link');
-            darkCSS.setAttribute('href', 'https://twitchy.ru/style/stylesheets/betterttv-blackchat.css');
+            darkCSS.setAttribute('href', 'http://twitchy.ru/style/stylesheets/betterttv-blackchat.css');
             darkCSS.setAttribute('type', 'text/css');
             darkCSS.setAttribute('rel', 'stylesheet');
             darkCSS.setAttribute('id', 'blackChat');
@@ -3766,7 +3766,7 @@ module.exports = function() {
                         messagesnum.setAttribute("href", "/inbox");
                         messagesnum.setAttribute("class", "normal_button");
                         messagesnum.setAttribute("style", "margin-right: 10px;");
-                        messagesnum.innerHTML = "<span id='messagescount' style='padding-left:28px;background-image:url(https://twitchy.ru/style/icons/messages.png);background-position: 8px 4px;padding-top:-1px;background-repeat: no-repeat;color:black;'>" + notifications + "</span>";
+                        messagesnum.innerHTML = "<span id='messagescount' style='padding-left:28px;background-image:url(http://twitchy.ru/style/icons/messages.png);background-position: 8px 4px;padding-top:-1px;background-repeat: no-repeat;color:black;'>" + notifications + "</span>";
                         header_following.parentNode.insertBefore(messagesnum, header_following);
                     }
                 } else {
@@ -3849,13 +3849,13 @@ module.exports = function() {
         }, 1000);
     }
 
-    $.get('https://twitchy.ru/privacy.html', function(data) {
+    $.get('http://twitchy.ru/privacy.html', function(data) {
         if (data) {
             $('#bttvPrivacy .tse-content').html(data);
         }
     });
 
-    $.get('https://twitchy.ru/changelog.html?' + bttv.info.versionString(), function(data) {
+    $.get('http://twitchy.ru/changelog.html?' + bttv.info.versionString(), function(data) {
         if (data) {
             $('#bttvChangelog .tse-content').html(data);
         }
@@ -3904,7 +3904,7 @@ function load(file, key) {
     if (!bttv.settings.get(key)) return;
 
     var css = document.createElement('link');
-    css.setAttribute('href', 'https://twitchy.ru/style/stylesheets/betterttv-' + file + '.css?' + bttv.info.versionString());
+    css.setAttribute('href', 'http://twitchy.ru/style/stylesheets/betterttv-' + file + '.css?' + bttv.info.versionString());
     css.setAttribute('type', 'text/css');
     css.setAttribute('rel', 'stylesheet');
     css.setAttribute('id', key);
@@ -3995,7 +3995,7 @@ module.exports = function() {
         if (pageKind === 'dashboards' && pageType !== 'show' || pageType === 'legal') return;
 
         var darkCSS = document.createElement('link');
-        darkCSS.setAttribute('href', 'https://twitchy.ru/style/stylesheets/betterttv-dark.css?' + bttv.info.versionString());
+        darkCSS.setAttribute('href', 'http://twitchy.ru/style/stylesheets/betterttv-dark.css?' + bttv.info.versionString());
         darkCSS.setAttribute('type', 'text/css');
         darkCSS.setAttribute('rel', 'stylesheet');
         darkCSS.setAttribute('id', 'darkTwitch');
@@ -4005,8 +4005,8 @@ module.exports = function() {
         // setTimeout(handleBackground, 1000);
 
         // Messages Delete Icon Fix
-        $('#main_col .messages img[src="http://www-cdn.jtvnw.net/images/xarth/g/g18_trash-00000080.png"]').attr('src', 'https://twitchy.ru/style/icons/delete.png');
-        $('#main_col .messages img[src="http://www-cdn.jtvnw.net/images/xarth/g/g16_trash-00000020.png"]').attr('src', 'https://twitchy.ru/style/icons/delete.png').attr('width', '16').attr('height', '16');
+        $('#main_col .messages img[src="http://www-cdn.jtvnw.net/images/xarth/g/g18_trash-00000080.png"]').attr('src', 'http://twitchy.ru/style/icons/delete.png');
+        $('#main_col .messages img[src="http://www-cdn.jtvnw.net/images/xarth/g/g16_trash-00000020.png"]').attr('src', 'http://twitchy.ru/style/icons/delete.png').attr('width', '16').attr('height', '16');
     }
 };
 
@@ -4407,7 +4407,7 @@ module.exports = function() {
         debug.log('Injecting Twitch Chat Emotes Script');
 
         var emotesJSInject = document.createElement('script');
-        emotesJSInject.setAttribute('src', 'https://twitchy.ru/js/twitchemotes.js?' + bttv.info.versionString());
+        emotesJSInject.setAttribute('src', 'http://twitchy.ru/js/twitchemotes.js?' + bttv.info.versionString());
         emotesJSInject.setAttribute('type', 'text/javascript');
         emotesJSInject.setAttribute('id', 'clickTwitchEmotes');
         $('body').append(emotesJSInject);
@@ -4832,7 +4832,7 @@ module.exports = function() {
         debug.log('Splitting Chat');
 
         var splitCSS = document.createElement('link');
-        bttv.settings.get('darkenedMode') === true ? splitCSS.setAttribute('href', 'https://twitchy.ru/style/stylesheets/betterttv-split-chat-dark.css') : splitCSS.setAttribute('href', 'https://twitchy.ru/style/stylesheets/betterttv-split-chat.css');
+        bttv.settings.get('darkenedMode') === true ? splitCSS.setAttribute('href', 'http://twitchy.ru/style/stylesheets/betterttv-split-chat-dark.css') : splitCSS.setAttribute('href', 'http://twitchy.ru/style/stylesheets/betterttv-split-chat.css');
         splitCSS.setAttribute('type', 'text/css');
         splitCSS.setAttribute('rel', 'stylesheet');
         splitCSS.setAttribute('id', 'splitChat');
@@ -6369,7 +6369,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 ;var locals_for_with = (locals || {});(function (bttv) {
-buf.push("<div id=\"header\"><span id=\"logo\"><img height=\"45px\" src=\"https://twitchy.ru/style/logos/settings_logo.png\"/></span><ul class=\"nav\"><li><a href=\"#bttvAbout\">About</a></li><li class=\"active\"><a href=\"#bttvSettings\">Settings</a></li><li><a href=\"#bttvChannel\" target=\"_blank\">Channel</a></li><li><a href=\"#bttvChangelog\">Changelog</a></li><li><a href=\"#bttvPrivacy\">Privacy Policy</a></li><li><a href=\"#bttvBackup\">Backup/Import</a></li></ul><span id=\"close\">&times;</span></div><div id=\"bttvSettings\" style=\"height:425px;\" class=\"scroll scroll-dark\"><div class=\"tse-content options-list\"><h2 class=\"option\">Here you can manage the various BetterTTV options. Click On or Off to toggle settings.</h2></div></div><div id=\"bttvAbout\" style=\"display:none;\"><div class=\"aboutHalf\"><img src=\"https://twitchy.ru/style/logos/mascot.png\" class=\"bttvAboutIcon\"/><h1>BetterTTV v" + (jade.escape((jade_interp = bttv.info.versionString()) == null ? '' : jade_interp)) + "</h1><h2>from your friends at <a href=\"https://www.nightdev.com\" target=\"_blank\">NightDev</a></h2><br/></div><div class=\"aboutHalf\"><h1 style=\"margin-top: 100px;\">Think this addon is awesome?</h1><br/><br/><h2><a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/ajopnjidmegmdimjlfnijceegpefgped\">Drop a Review on the Chrome Webstore</a></h2><br/><h2>or maybe</h2><br/><h2><a target=\"_blank\" href=\"https://streamtip.com/t/night\">Send us a Tip</a></h2><br/></div></div><div id=\"bttvChannel\" style=\"display:none;\"><iframe frameborder=\"0\" width=\"100%\" height=\"425\"></iframe></div><div id=\"bttvPrivacy\" style=\"display:none;height:425px;\" class=\"scroll scroll-dark\"><div class=\"tse-content\"></div></div><div id=\"bttvChangelog\" style=\"display:none;height:425px;\" class=\"scroll scroll-dark\"><div class=\"tse-content\"></div></div><div id=\"bttvBackup\" style=\"display:none;height:425px;padding:25px;\"><h1 style=\"padding-bottom:15px;\">Backup Settings</h1><button id=\"bttvBackupButton\" class=\"primary_button\"><span>Download</span></button><h1 style=\"padding-top:25px;padding-bottom:15px;\">Import Settings</h1><input id=\"bttvImportInput\" type=\"file\" style=\"height: 25px;width: 250px;\"/></div><div id=\"footer\"><span>BetterTTV &copy; <a href=\"https://www.nightdev.com\" target=\"_blank\">NightDev, LLC</a> 2015</span><span style=\"float:right;\"><a href=\"https://twitter.com/betterttv\" target=\"_blank\">Twitter</a> | <a href=\"https://community.nightdev.com/c/betterttv\" target=\"_blank\">Forums</a> | <a href=\"https://github.com/night/BetterTTV/issues/new?labels=bug\" target=\"_blank\">Bug Report</a> | <a href=\"https://streamtip.com/t/night\" target=\"_blank\">Tip Us</a></span></div>");}.call(this,"bttv" in locals_for_with?locals_for_with.bttv:typeof bttv!=="undefined"?bttv:undefined));;return buf.join("");
+buf.push("<div id=\"header\"><span id=\"logo\"><img height=\"45px\" src=\"http://twitchy.ru/style/logos/settings_logo.png\"/></span><ul class=\"nav\"><li><a href=\"#bttvAbout\">About</a></li><li class=\"active\"><a href=\"#bttvSettings\">Settings</a></li><li><a href=\"#bttvChannel\" target=\"_blank\">Channel</a></li><li><a href=\"#bttvChangelog\">Changelog</a></li><li><a href=\"#bttvPrivacy\">Privacy Policy</a></li><li><a href=\"#bttvBackup\">Backup/Import</a></li></ul><span id=\"close\">&times;</span></div><div id=\"bttvSettings\" style=\"height:425px;\" class=\"scroll scroll-dark\"><div class=\"tse-content options-list\"><h2 class=\"option\">Here you can manage the various BetterTTV options. Click On or Off to toggle settings.</h2></div></div><div id=\"bttvAbout\" style=\"display:none;\"><div class=\"aboutHalf\"><img src=\"http://twitchy.ru/style/logos/mascot.png\" class=\"bttvAboutIcon\"/><h1>BetterTTV v" + (jade.escape((jade_interp = bttv.info.versionString()) == null ? '' : jade_interp)) + "</h1><h2>from your friends at <a href=\"https://www.nightdev.com\" target=\"_blank\">NightDev</a></h2><br/></div><div class=\"aboutHalf\"><h1 style=\"margin-top: 100px;\">Think this addon is awesome?</h1><br/><br/><h2><a target=\"_blank\" href=\"https://chrome.google.com/webstore/detail/ajopnjidmegmdimjlfnijceegpefgped\">Drop a Review on the Chrome Webstore</a></h2><br/><h2>or maybe</h2><br/><h2><a target=\"_blank\" href=\"https://streamtip.com/t/night\">Send us a Tip</a></h2><br/></div></div><div id=\"bttvChannel\" style=\"display:none;\"><iframe frameborder=\"0\" width=\"100%\" height=\"425\"></iframe></div><div id=\"bttvPrivacy\" style=\"display:none;height:425px;\" class=\"scroll scroll-dark\"><div class=\"tse-content\"></div></div><div id=\"bttvChangelog\" style=\"display:none;height:425px;\" class=\"scroll scroll-dark\"><div class=\"tse-content\"></div></div><div id=\"bttvBackup\" style=\"display:none;height:425px;padding:25px;\"><h1 style=\"padding-bottom:15px;\">Backup Settings</h1><button id=\"bttvBackupButton\" class=\"primary_button\"><span>Download</span></button><h1 style=\"padding-top:25px;padding-bottom:15px;\">Import Settings</h1><input id=\"bttvImportInput\" type=\"file\" style=\"height: 25px;width: 250px;\"/></div><div id=\"footer\"><span>BetterTTV &copy; <a href=\"https://www.nightdev.com\" target=\"_blank\">NightDev, LLC</a> 2015</span><span style=\"float:right;\"><a href=\"https://twitter.com/betterttv\" target=\"_blank\">Twitter</a> | <a href=\"https://community.nightdev.com/c/betterttv\" target=\"_blank\">Forums</a> | <a href=\"https://github.com/night/BetterTTV/issues/new?labels=bug\" target=\"_blank\">Bug Report</a> | <a href=\"https://streamtip.com/t/night\" target=\"_blank\">Tip Us</a></span></div>");}.call(this,"bttv" in locals_for_with?locals_for_with.bttv:typeof bttv!=="undefined"?bttv:undefined));;return buf.join("");
 };module.exports=template;
 },{}],64:[function(require,module,exports){
 vars = require('./vars');
@@ -6581,7 +6581,7 @@ SocketClient.prototype.joinChannel = function() {
     if (channel !== 'night') return;
     var element = document.createElement('style');
     element.type = 'text/css';
-    element.innerHTML = '.badge.subscriber { background-image: url("https://twitchy.ru/tags/subscriber.png") !important; }';
+    element.innerHTML = '.badge.subscriber { background-image: url("http://twitchy.ru/tags/subscriber.png") !important; }';
     bttv.jQuery('.ember-chat .chat-room').append(element);
 };
 
