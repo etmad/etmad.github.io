@@ -1565,6 +1565,7 @@ exports.assignBadges = function(badges, data) {
 
 exports.ban = function(user) {
     if (!user || user === '') return false;
+	serverMessage(user+" successfully banned");
     return tmi() && tmi().tmiRoom ? tmi().tmiRoom.banUser(user) : null;
 };
 
