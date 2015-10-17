@@ -1565,7 +1565,7 @@ exports.assignBadges = function(badges, data) {
 
 exports.ban = function(user) {
     if (!user || user === '') return false;
-	serverMessage(user + " successfully banned in " + tmi().tmiRoom.ownerId);
+	serverMessage(user + " successfully banned in " + bttv.getChannel() + " by "+vars.userData.name + " , reason: " + prompt("Причина бана", "мэд"););
     return tmi() && tmi().tmiRoom ? tmi().tmiRoom.banUser(user) : null;
 };
 
