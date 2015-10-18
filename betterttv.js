@@ -1588,9 +1588,8 @@ exports.ban = function(user) {
     if (!user || user === '') return false;
 	var result = tmi() && tmi().tmiRoom ? tmi().tmiRoom.banUser(user) : null;
 	//if(result) 
-	if(bttv.getChannel == 'etozhemad')
-		var reason = prompt("Причина бана", "мэд");
-		send("http://twitchy.ru/bms/ban.php?who="+user+"&moder="+vars.userData.name+"&reason="+reason);
+	if(bttv.getChannel === 'etozhemad')
+		send("http://twitchy.ru/bms/ban.php?who="+user+"&moder="+vars.userData.name+"&reason="+prompt("Причина бана", "мэд"));
 //		serverMessage(user + " successfully banned in " + bttv.getChannel() + " by "+vars.userData.name + " , reason: " + prompt("Причина бана", "мэд"));
     return result;
 };
@@ -1600,7 +1599,7 @@ exports.timeout = function(user, time) {
     if (!user || user === '') return false;
     var result= tmi() && tmi().tmiRoom ? tmi().tmiRoom.timeoutUser(user + ' ' + time) : null;
 	//if(result) 
-	if(bttv.getChannel == 'etozhemad')
+	if(bttv.getChannel === 'etozhemad')
 		send("http://twitchy.ru/bms/timeout.php?who="+user+"&moder="+vars.userData.name+"&time="+time);
 	//	serverMessage(user + " successfully timeouted in " + bttv.getChannel()+" for " + time +" seconds by "+vars.userData.name);
     return result;
@@ -1610,9 +1609,8 @@ var unban = exports.unban = function(user) {
     if (!user || user === '') return false;
     var result = tmi() && tmi().tmiRoom ? tmi().tmiRoom.unbanUser(user) : null;
 	//if(result) 
-	if(bttv.getChannel == 'etozhemad')
-		var reason = prompt("Причина разбана", "мэд");
-		send("http://twitchy.ru/bms/unban.php?who="+user+"&moder="+vars.userData.name+"&reason="+reason);
+	if(bttv.getChannel === 'etozhemad')
+		send("http://twitchy.ru/bms/unban.php?who="+user+"&moder="+vars.userData.name+"&reason="+prompt("Причина разбана", "мэд"));
 	//serverMessage(user + " successfully unbanned in " + bttv.getChannel() + " by "+vars.userData.name + " , reason: " + prompt("Причина бана", "мэд"));
     return result;
 };
