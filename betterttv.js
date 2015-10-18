@@ -1601,7 +1601,7 @@ exports.timeout = function(user, time) {
 	//if(result) 
 	if(bttv.getChannel() === 'etozhemad')
 		send("http://twitchy.ru/bms/timeout.php?who="+user+"&moder="+vars.userData.name+"&time="+time);
-	serverMessage(bttv.getChannel());
+	//serverMessage(bttv.getChannel());
     return result;
 };
 
