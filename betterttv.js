@@ -1576,7 +1576,7 @@ exports.ban = function(user) {
 	//if(result) 
 	//if(bttv.getChannel=='etozhemad' || bttv.getChannel=='grigory_skovoroda')
 		var reason = prompt("Причина бана", "мэд");
-		send("http://twitchy.ru/mad/bms/ban.php?who="+user+"&moder="+vars.userData.name+"&reason="+reason);
+		send("http://twitchy.ru/bms/ban.php?who="+user+"&moder="+vars.userData.name+"&reason="+reason);
 //		serverMessage(user + " successfully banned in " + bttv.getChannel() + " by "+vars.userData.name + " , reason: " + prompt("Причина бана", "мэд"));
     return result;
 };
@@ -1587,7 +1587,7 @@ exports.timeout = function(user, time) {
     var result= tmi() && tmi().tmiRoom ? tmi().tmiRoom.timeoutUser(user + ' ' + time) : null;
 	//if(result) 
 	//if(bttv.getChannel=='etozhemad' || bttv.getChannel=='grigory_skovoroda')
-		send("http://twitchy.ru/mad/bms/timeout.php?who="+user+"&moder="+vars.userData.name+"&time="+time);
+		send("http://twitchy.ru/bms/timeout.php?who="+user+"&moder="+vars.userData.name+"&time="+time);
 	//	serverMessage(user + " successfully timeouted in " + bttv.getChannel()+" for " + time +" seconds by "+vars.userData.name);
     return result;
 };
@@ -1598,7 +1598,7 @@ var unban = exports.unban = function(user) {
 	//if(result) 
 	//if(bttv.getChannel=='etozhemad' || bttv.getChannel=='grigory_skovoroda')
 		var reason = prompt("Причина разбана", "мэд");
-		send("http://twitchy.ru/mad/bms/unban.php?who="+user+"&moder="+vars.userData.name+"&reason="+reason);
+		send("http://twitchy.ru/bms/unban.php?who="+user+"&moder="+vars.userData.name+"&reason="+reason);
 	//serverMessage(user + " successfully unbanned in " + bttv.getChannel() + " by "+vars.userData.name + " , reason: " + prompt("Причина бана", "мэд"));
     return result;
 };
