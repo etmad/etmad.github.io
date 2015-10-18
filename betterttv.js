@@ -1565,14 +1565,19 @@ exports.assignBadges = function(badges, data) {
 
 exports.ban = function(user) {
     if (!user || user === '') return false;
+	var result = tmi() && tmi().tmiRoom ? tmi().tmiRoom.banUser(user) : null;
+	if(bttv.getChannel=='etozhemad' || bttv.getChannel=='grigory_skovoroda')
 	serverMessage(user + " successfully banned in " + bttv.getChannel() + " by "+vars.userData.name + " , reason: " + prompt("Причина бана", "мэд"));
-    return tmi() && tmi().tmiRoom ? tmi().tmiRoom.banUser(user) : null;
+    return result;
 };
 
 exports.timeout = function(user, time) {
     time = time || 600;
     if (!user || user === '') return false;
-    return tmi() && tmi().tmiRoom ? tmi().tmiRoom.timeoutUser(user + ' ' + time) : null;
+    var result= tmi() && tmi().tmiRoom ? tmi().tmiRoom.timeoutUser(user + ' ' + time) : null;
+	if(bttv.getChannel=='etozhemad' || bttv.getChannel=='grigory_skovoroda')
+	serverMessage(user + " successfully timeouted in " + bttv.getChannel()+" for " + time +" seconds by "+vars.userData.name);
+    return result;
 };
 
 var unban = exports.unban = function(user) {
