@@ -5,6 +5,7 @@
 function update() {
 	console.log("WTF");
 	$("#latestData").load("content.html?"+Math.random());
+	$("#fake").load("content.html?"+Math.random());
 }
 
 </script>
@@ -22,6 +23,8 @@ function update() {
   <marquee behavior="scroll" direction="left" bgcolor="#ffcc00" id="latestData">
   
   </marquee>
+  
+  <p id="fake"></p>
 
  </body>
 </html>
