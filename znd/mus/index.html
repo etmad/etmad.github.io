@@ -17,7 +17,7 @@ function update() {
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <title>Тег MARQUEE</title>
  </head>
- <body onload="window.setInterval(update,5000)">
+ <body onload="$.ajaxSetup({cache: false});window.setInterval(update,5000)">
 
   <marquee behavior="scroll" direction="left" bgcolor="#ffcc00" id="latestData">
   
