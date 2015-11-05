@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script>
+function update() {
+	console.log("WTF");
+	$("#latestData").load("content.html");
+    var t = setTimeout(update, 1000);
+}
+
+</script>
+
+
+<html>
+ 
+ 
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Тег MARQUEE</title>
+ </head>
+ <body onload="window.setInterval(update,1000)">
+
+  <marquee behavior="alternate" direction="left" bgcolor="#ffcc00" id="latestData">
+  
+  </marquee>
+
+ </body>
+</html>
