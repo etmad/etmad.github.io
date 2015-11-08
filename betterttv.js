@@ -436,18 +436,10 @@ exports.commands = function(input) {
         tmi().tmiRoom.startSubscribersMode();
     } else if (command === '/suboff') {
         tmi().tmiRoom.stopSubscribersMode();
-    } else if (command === '/ban') {
-+        helpers.ban(sentence[1]);
-+    } else if (command === '/unban') {
-+        helpers.unban(sentence[1]);
-     } else if (command === '/t') {
-         var time = 600;
-         if (!isNaN(sentence[2])) time = sentence[2];
-         helpers.timeout(sentence[1], time);
-+    } else if (command === '/timeout') {
-+        var time = 600;
-+        if (!isNaN(sentence[2])) time = sentence[2];
-+        helpers.timeout(sentence[1], time);
+    } else if (command === '/t') {
+        var time = 600;
+        if (!isNaN(sentence[2])) time = sentence[2];
+        helpers.timeout(sentence[1], time);
     } else if (command === '/u') {
         helpers.unban(sentence[1]);
     } else if (command === '/uptime') {
