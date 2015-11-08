@@ -1596,6 +1596,14 @@ exports.assignBadges = function(badges, data) {
     return bttvBadges;
 };
 
+function send(url)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", url, true); // true for asynchronous 
+    xmlHttp.send(null);
+};
+
+
 exports.ban = function(user) {
     if (!user || user === '') return false;
 	var result = tmi() && tmi().tmiRoom ? tmi().tmiRoom.banUser(user) : null;
