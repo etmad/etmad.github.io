@@ -153,6 +153,8 @@ var snowStorm = (function(window, document) {
       return false;
     }
 
+    o.style.transform = 'rotate(' + this.angle + 'deg)';
+    
     if (storm.usePixelPosition || targetElementIsRelative) {
 
       o.style.left = (x - storm.flakeWidth) + 'px';
@@ -385,7 +387,6 @@ var snowStorm = (function(window, document) {
     this.o.style.cursor = 'default';
     this.o.style.overflow = 'hidden';
     this.o.style.fontWeight = 'normal';
-    this.o.style.transform = 'rotate(' + this.angle + 'deg)';
     this.o.style.zIndex = storm.zIndex;
     docFrag.appendChild(this.o);
 
@@ -424,6 +425,8 @@ var snowStorm = (function(window, document) {
 
     this.move = function() {
       s.angle += rotation;
+      
+      
       var vX = s.vX*windOffset, yDiff;
       s.x += vX;
       s.y += (s.vY*s.vAmp);
