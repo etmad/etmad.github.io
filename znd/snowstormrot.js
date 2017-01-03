@@ -153,7 +153,6 @@ var snowStorm = (function(window, document) {
       return false;
     }
 
-    o.style.transform = 'rotate(' + this.angle + 'deg)';
     
     if (storm.usePixelPosition || targetElementIsRelative) {
 
@@ -183,7 +182,9 @@ var snowStorm = (function(window, document) {
       }
 
     }
-
+    
+   o.style.transform = 'rotate(' + this.angle + 'deg)';
+    
   };
 
   this.events = (function() {
@@ -379,7 +380,7 @@ var snowStorm = (function(window, document) {
     this.o.style.position = (fixedForEverything?'fixed':'absolute');
     if (storm.useGPU && features.transform.prop) {
       // GPU-accelerated snow.
-      this.o.style[features.transform.prop] = 'translate3d(0px, 0px, 0px)';
+      // this.o.style[features.transform.prop] = 'translate3d(0px, 0px, 0px)';
     }
     this.o.style.width = storm.flakeWidth+'px';
     this.o.style.height = storm.flakeHeight+'px';
