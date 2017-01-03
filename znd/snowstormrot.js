@@ -445,7 +445,7 @@ var snowStorm = (function(window, document) {
           s.recycle();
         }
       } else {
-        if (storm.useMeltEffect && s.active && s.type < 3 && !s.melting && Math.random()>0.998) {
+        if (storm.useMeltEffect && s.active && s.type < 3 && !s.melting) {
           // ~1/1000 chance of melting mid-air, with each frame
           s.melting = true;
           s.melt();
