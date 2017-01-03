@@ -147,12 +147,11 @@ var snowStorm = (function(window, document) {
   this.meltFrameCount = 20;
   this.meltFrames = [];
 
-  this.setXY = function(o, x, y) {
+  this.setXY = function(o, x, y, a) {
 
     if (!o) {
       return false;
     }
-
     
     if (storm.usePixelPosition || targetElementIsRelative) {
 
@@ -183,7 +182,7 @@ var snowStorm = (function(window, document) {
 
     }
     
-   o.style.transform = 'rotate(' + this.angle + 'deg)';
+   o.style.transform = 'rotate(' + a + 'deg)';
     
   };
 
@@ -396,7 +395,7 @@ var snowStorm = (function(window, document) {
         // safety check
         return false;
       }
-      storm.setXY(s.o, s.x, s.y);
+      storm.setXY(s.o, s.x, s.y, s.angle);
     };
 
     this.stick = function() {
