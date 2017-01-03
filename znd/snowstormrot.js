@@ -424,7 +424,7 @@ var snowStorm = (function(window, document) {
     };
 
     this.move = function() {
-      s.angle += rotation;
+      s.angle += s.rotation;
       
       
       var vX = s.vX*windOffset, yDiff;
