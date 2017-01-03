@@ -280,7 +280,7 @@ var snowStorm = (function(window, document) {
       screenX = (document.documentElement.clientWidth || document.body.clientWidth || document.body.scrollWidth) - (!isIE ? 8 : 0) - storm.flakeRightOffset;
       screenY = storm.flakeBottom || document.documentElement.clientHeight || document.body.clientHeight || document.body.scrollHeight;
     }
-    docHeight = document.body.offsetHeight;
+    docHeight = document.body.offsetHeight - 10;
     screenX2 = parseInt(screenX/2,10);
   };
 
@@ -288,7 +288,7 @@ var snowStorm = (function(window, document) {
     screenX = storm.targetElement.offsetWidth - storm.flakeRightOffset;
     screenY = storm.flakeBottom || storm.targetElement.offsetHeight;
     screenX2 = parseInt(screenX/2,10);
-    docHeight = document.body.offsetHeight;
+    docHeight = document.body.offsetHeight - 10;
   };
 
   this.freeze = function() {
