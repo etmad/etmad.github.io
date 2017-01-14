@@ -24,6 +24,7 @@
 	data.addColumn('number','value');
 	for(var i=0;i<data.getNumberOfRows();i++)
 		data.setValue(1,i,1);
+      console.log(data.toJSON());
       var chart = new google.visualization.Calendar(document.getElementById('chart_div'));
       chart.draw(data, { height: 400 });
     }
