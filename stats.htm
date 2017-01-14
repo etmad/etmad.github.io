@@ -22,7 +22,7 @@
 
       var data = response.getDataTable();
       var chart = new google.visualization.Calendar(document.getElementById('chart_div'));
-      chart.draw(data, { height: 400 });
+      chart.draw(data, { colorAxis: {minValue: 0,  colors: ['#FF0000', '#00FF00']} , height: 400 });
     }
 	
     </script>
