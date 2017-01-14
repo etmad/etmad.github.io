@@ -1,33 +1,32 @@
     
 	
 <html>
+  <style>
+  </style>
   <head>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1.1", {packages:["calendar"]});
       google.setOnLoadCallback(drawGID);
-
    function drawGID() {
       var query = new google.visualization.Query(
           'https://docs.google.com/spreadsheets/d/1csPBzPf5kIt5RdEi_BqKFRFyuWoCLku_RTa_2JuM9Ws/gviz/tq?range=Стримы!B7:C450');
 		
       query.send(handleQueryResponse);
     }
-
     function handleQueryResponse(response) {
       if (response.isError()) {
         alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
         return;
       }
-
       var data = response.getDataTable();
       var chart = new google.visualization.Calendar(document.getElementById('chart_div'));
-      chart.draw(data, { colorAxis: {minValue: 0,  colors: ['#FF0000', '#00FF00']} , height: 400 });
+      chart.draw(data, { colorAxis: {minValue: 0,  colors: ['#FF0000', '#00FF00']} , height: 900 });
     }
 	
     </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 1000px; height: 350px;"></div>
+    <div id="chart_div"></div>
   </body>
 </html>
