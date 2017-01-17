@@ -44,6 +44,8 @@ function cplottopickwinner() {
  var trs = document.getElementById("latestData").getElementsByTagName("tr");
  var rand = Math.floor( Math.random() * trs.length );
  document.getElementById('winners').appendChild(trs[rand]);
+ if(document.getElementById('winners').length % 3 ==0 )
+ 	document.getElementById('winners').appendChild("=======");
  //$("#latestData").load("content.html?"+Math.random());
 }
 </script>
@@ -62,29 +64,9 @@ function cplottopickwinner() {
     
 </table>
 <br>
-<b> Votes: </b>
-
-
+<b> Votes: </b>	
 	
-	
-	
-%keydzhi
-%soawesome
-%redKnight
-%AreUReady
-%инкогнито
-%lostded
-%Sir Maslenok
-%Пол Гаскойн
-%TheDima243
-%TakoePolo
-%rikardo
-%crocok
-%ВянтарьОдет
-%Igor
-	
-	
-    <table id="latestData" style="width:calc(100% - 450px)"><tbody><tr id="soldecroix"><td>soldecroix</td><td>Knights of the Round (на харде)</td></tr>
+<table id="latestData" style="width:calc(100% - 450px)"><tbody><tr id="soldecroix"><td>soldecroix</td><td>Knights of the Round (на харде)</td></tr>
 <tr id="keydzhi"><td>kornishon29</td><td>rocket league</td></tr>
 <tr id="soawesome"><td>alex_gothryd</td><td>баал</td></tr>
 <tr id="redKnight"><td>bestcomment</td><td>Fable</td></tr>
