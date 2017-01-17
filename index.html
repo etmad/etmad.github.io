@@ -44,8 +44,11 @@ function cplottopickwinner() {
  var trs = document.getElementById("latestData").getElementsByTagName("tr");
  var rand = Math.floor( Math.random() * trs.length );
  document.getElementById('winners').appendChild(trs[rand]);
- if(document.getElementById('winners').length % 3 ==0 )
+ if(document.getElementById('winners').length == 3 )
  	document.getElementById('winners').appendChild("=======");
+ if(document.getElementById('winners').length == 6 )
+ 	document.getElementById('winners').appendChild("=======");
+
  //$("#latestData").load("content.html?"+Math.random());
 }
 </script>
