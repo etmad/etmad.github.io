@@ -26,13 +26,23 @@ C99.387,33.883,93.598,19.539,81.495,13.923
 c-11.368-5.261-26.234-0.311-31.489,11.032z"/>
 </svg>
 
-<div id="follower_count" align=center style="font-family:'Lucida Console','Lucida Sans Typewriter', monaco, 'Bitstream Vera Sans Mono',monospace;font-size:24px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#ED6AED;"></div>
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+<div id="follower_count" align=center style="font-family:'Nunito', sans-serif;font-size:24px;margin-top:-140px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#ED6AED;">
+<span id="cnt">0</span>
+<br>
+of
+<br>
+10000
+</div>
 
 
 </div>
 
-<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
 <script>
@@ -43,6 +53,8 @@ var bar = new ProgressBar.Path('#heart-path', {
 
 bar.set(0);
 
+var was = 0;
+
 function update(){
 //var url = "https://api.twitch.tv/kraken/channels/alicetalks/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
 var url = "https://api.twitch.tv/kraken/channels/"+location.hash.substring(1)+"/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
@@ -50,11 +62,16 @@ $.get( url, function( data ) {
   //var datas = data +"";
   var count = data._total;
   //console.log(count);
-  document.getElementById("follower_count").innerHTML = count;
+
+  $('#cnt').prop('number', was)
+  .animateNumber({ number: count });
+  was = count;
+  
   bar.animate(parseInt(count)/10000);  
 });
-
 }
+
+
 
 update();
 
