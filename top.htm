@@ -74,10 +74,16 @@
   
  
   setInterval( function(){
-   $.ajax({crossDomain: true, xhrFields: {
-      withCredentials: true
-   }});
   
+  $.ajaxSetup({
+    type: "POST",
+    data: {},
+    dataType: 'json',
+    xhrFields: {
+       withCredentials: true
+    },
+    crossDomain: true
+  });  
   $.get("https://www.twitchalerts.com/api/donations?access_token="+location.hash.substring(1), function(data){
     var don = data.donations;
 	
