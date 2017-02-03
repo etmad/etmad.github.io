@@ -44,16 +44,26 @@
   }
   </style>
   <div style="width:400px;height:30px;text-align:center;vertical-align:middle;position:absolute;top:5px;"> <img src="http://plusquotes.com/images/quotes-img/hearts-9.jpg" height="30px"> Top-10 donators <img src="http://plusquotes.com/images/quotes-img/hearts-9.jpg" height="30px"></div>
-  <div class="container" id="0" nick="none1" value="-1" style="top: 50px; "></div>
-  <div class="container" id="1" nick="none2" value="-2" style="top:100px; "></div>
-  <div class="container" id="2" nick="none3" value="-3" style="top:150px; "></div>
-  <div class="container" id="3" nick="none4" value="-4" style="top:200px; "></div>
-  <div class="container" id="4" nick="none5" value="-5" style="top:250px; "></div>
-  <div class="container" id="5" nick="" style="top:300px; "></div>
-  <div class="container" id="6" nick="" style="top:350px; "></div>
-  <div class="container" id="7" nick="" style="top:400px; "></div>
-  <div class="container" id="8" nick="" style="top:450px; "></div>
-  <div class="container" id="9" nick="" style="top:500px; "></div>
+  <div class="container" id="0" nick="none1"  style="top: 50px; "></div>
+  <div class="container" id="1" nick="none2"  style="top:100px; "></div>
+  <div class="container" id="2" nick="none3"  style="top:150px; "></div>
+  <div class="container" id="3" nick="none4"  style="top:200px; "></div>
+  <div class="container" id="4" nick="none5"  style="top:250px; "></div>
+  <div class="container" id="5" nick="none6"  style="top:300px; "></div>
+  <div class="container" id="6" nick="none7"  style="top:350px; "></div>
+  <div class="container" id="7" nick="none8"  style="top:400px; "></div>
+  <div class="container" id="8" nick="none9"  style="top:450px; "></div>
+  <div class="container" id="9" nick="none0"  style="top:500px; "></div>
+  <div class="container" id="10" nick=""      style="top:550px; "></div>
+  <div class="container" id="11" nick=""      style="top:600px; "></div>
+  <div class="container" id="12" nick=""      style="top:650px; "></div>
+  <div class="container" id="13" nick=""      style="top:700px; "></div>
+  <div class="container" id="14" nick=""      style="top:750px; "></div>
+  <div class="container" id="15" nick=""      style="top:800px; "></div>
+  <div class="container" id="16" nick=""      style="top:850px; "></div>
+  <div class="container" id="17" nick=""      style="top:900px; "></div>
+  <div class="container" id="18" nick=""      style="top:950px; "></div>
+  <div class="container" id="19" nick=""      style="top:1000px; "></div>
   
     
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -79,11 +89,16 @@
     .rollup(function(v) { return d3.sum(v, function(d) { return d.amount; }); })
 	.map(don);
   
+  map["none0"] = 0;
   map["none1"] = 0;
   map["none2"] = 0;
   map["none3"] = 0;
   map["none4"] = 0;
   map["none5"] = 0;
+  map["none6"] = 0;
+  map["none7"] = 0;
+  map["none8"] = 0;
+  map["none9"] = 0;
   
   a = a.sort(function(a, b) {
       return d3.descending(a.values, b.values);
@@ -95,7 +110,7 @@
   //wasa
   //wasmap
   
-  var n = 5;
+  var n = 10;
   //populate
   for(var i=0; i<n; i++){
   //if(!exist) => make (5+i)-th 
@@ -104,8 +119,8 @@
 		exist |= (a[i].key === $("#"+j).attr("nick"));
   
 	if(!exist) {
-	$("#"+(5+i)).attr("nick",a[i].key);
-	$("#"+(5+i)).attr("value",a[i].values);
+	$("#"+(n+i)).attr("nick",a[i].key);
+	$("#"+(n+i)).attr("value",a[i].values);
 	}
   }
   
@@ -116,8 +131,8 @@
 	$("#"+j).html("<div class='left'><span>"+who+"</span></div> <div class='right'><span style='right:15px;'>$"+map[who]+"</span></div>");
   }
   
-  var np = [0,1,2,3,4,5,6,7,8,9];
-  var used = [false, false, false, false, false, false, false, false, false, false];
+  var np = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+  var used = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
   
   for(var i=0;i<n*2;i++){
   //choosing candidate for i-th place
@@ -143,7 +158,7 @@
 	setTimeout( function(){
 	for(var i=0;i<n*2;i++)
 	  $("#"+i).animate({backgroundColor : "#8888ee"}, 3000);
-	}, 5000);
+	}, 4000);
 	
 	for(var i=0;i<n*2;i++){
 	var j = np[i];
