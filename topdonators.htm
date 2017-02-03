@@ -8,16 +8,34 @@
 
   <body>
 
-  <div id="0" nick="none1" value="-1" style="position:absolute; top: 10px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="1" nick="none2" value="-2" style="position:absolute; top: 60px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="2" nick="none3" value="-3" style="position:absolute; top:110px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="3" nick="none4" value="-4" style="position:absolute; top:160px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="4" nick="none5" value="-5" style="position:absolute; top:210px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="5" nick="" style="position:absolute; top:260px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="6" nick="" style="position:absolute; top:310px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="7" nick="" style="position:absolute; top:360px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="8" nick="" style="position:absolute; top:410px; width:200px; background-color:#8888ee; height:40px;"></div>
-  <div id="9" nick="" style="position:absolute; top:460px; width:200px; background-color:#8888ee; height:40px;"></div>
+  <style>
+  div{
+  position:absolute; width:200px; background-color:#8888ee; height:40px;
+  }
+  .left{
+  left:5px;
+  width: 45%;
+  background-color:transparent;
+  }
+  
+  .right{
+  right:5px;
+  width: 45%;
+  text-align: right;
+  background-color:transparent;
+  }
+  </style>
+  
+  <div id="0" nick="none1" value="-1" style="top: 10px; "></div>
+  <div id="1" nick="none2" value="-2" style="top: 60px; "></div>
+  <div id="2" nick="none3" value="-3" style="top:110px; "></div>
+  <div id="3" nick="none4" value="-4" style="top:160px; "></div>
+  <div id="4" nick="none5" value="-5" style="top:210px; "></div>
+  <div id="5" nick="" style="top:260px; "></div>
+  <div id="6" nick="" style="top:310px; "></div>
+  <div id="7" nick="" style="top:360px; "></div>
+  <div id="8" nick="" style="top:410px; "></div>
+  <div id="9" nick="" style="top:460px; "></div>
     
   
     
@@ -33,16 +51,16 @@
     var don = data.donations;
 	
   var a = d3.nest()
-    //.key(function(d) { return d.donator.name; })
-    .key(function(d) { return d.donator.name.toLowerCase(); })
+    .key(function(d) { return d.donator.name; })
+    //.key(function(d) { return d.donator.name.toLowerCase(); })
     .rollup(function(v) { return d3.sum(v, function(d) { return d.amount; }); })
 	.entries(don);
 	
   var map = d3.nest()
-    //.key(function(d) { return d.donator.name; })
-    .key(function(d) { return d.donator.name.toLowerCase(); })
+    .key(function(d) { return d.donator.name; })
+    //.key(function(d) { return d.donator.name.toLowerCase(); })
     .rollup(function(v) { return d3.sum(v, function(d) { return d.amount; }); })
-	.entries(don);
+	.map(don);
   
   map["none1"] = 0;
   map["none2"] = 0;
@@ -54,7 +72,7 @@
       return d3.descending(a.values, b.values);
   });
   
-  console.log(JSON.stringify(a));
+  //console.log(JSON.stringify(a));
   console.log(JSON.stringify(map));
   
   //wasa
@@ -78,8 +96,9 @@
   for(var j=0;j<n*2;j++){
 	var who = $("#"+j).attr("nick");
 	$("#"+j).attr("value", map[who]);
+	$("#"+j).html("<div class='left'>"+who+"</div> <div class='right'>$"+map[who]+"</div>");
   }
-
+  
   var np = [0,1,2,3,4,5,6,7,8,9];
   var used = [false, false, false, false, false, false, false, false, false, false];
   
@@ -111,10 +130,10 @@
 	
 	for(var i=0;i<n*2;i++){
 	var j = np[i];
-	if(i>j)
+	if(i<j)
 		$("#"+j).animate({top : "+="+((i-j)*50)+"px", backgroundColor : "#88e88e"}, 3000);
 			
-	if(i<j)
+	if(i>j)
 		$("#"+j).animate({top : "-="+((j-i)*50)+"px", backgroundColor : "#e8888e"}, 3000);
 	//COLORIZE DAT SHIT
 	}
