@@ -74,7 +74,9 @@
   
  
   setInterval( function(){
-   $.ajax({crossDomain: true});
+   $.ajax({crossDomain: true, xhrFields: {
+      withCredentials: true
+   }});
   
   $.get("https://www.twitchalerts.com/api/donations?access_token="+location.hash.substring(1), function(data){
     var don = data.donations;
