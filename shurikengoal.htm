@@ -1,0 +1,57 @@
+<style>
+div{
+  margin: 20px;
+  width: 500px;
+  height: 500px;
+}
+
+</style>
+
+<div id="container" style="margin-top:-50px;">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 500 500">
+<path fill-opacity="0" stroke-width="1" stroke="#bbb" d="m 122.26378,250.00476 52.89278,52.8928 18.97403,18.974 2.98735,2.9874 52.89284,-52.8928 30.93135,30.9314 -52.89277,52.8928 21.96135,21.9614 52.89284,-52.8928 18.97402,-18.974 2.98734,-2.9874 -52.89278,-52.8928 30.93135,-30.9314 52.89284,52.8928 21.96136,-21.9614 -52.89277,-52.8928 -18.97402,-18.974 -2.98734,-2.9873 -52.89284,52.8928 -30.93142,-30.9314 52.89284,-52.8929 -21.96142,-21.9613 -52.89277,52.8928 -21.96136,21.9613 52.89278,52.8928 -30.93144,30.9315 -52.89278,-52.8928 -21.96136,21.9613 z"></path>
+
+<path id="heart-path" fill-opacity="0" stroke-width="12" stroke="#000" d="m 122.26378,250.00476 52.89278,52.8928 18.97403,18.974 2.98735,2.9874 52.89284,-52.8928 30.93135,30.9314 -52.89277,52.8928 21.96135,21.9614 52.89284,-52.8928 18.97402,-18.974 2.98734,-2.9874 -52.89278,-52.8928 30.93135,-30.9314 52.89284,52.8928 21.96136,-21.9614 -52.89277,-52.8928 -18.97402,-18.974 -2.98734,-2.9873 -52.89284,52.8928 -30.93142,-30.9314 52.89284,-52.8929 -21.96142,-21.9613 -52.89277,52.8928 -21.96136,21.9613 52.89278,52.8928 -30.93144,30.9315 -52.89278,-52.8928 -21.96136,21.9613 z"></path>
+
+
+</svg>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+</div>
+
+<div id="follower_count" align=center style="font-family:'Nunito', sans-serif;font-size:56px;margin-left:37px; margin-top:-450px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#ED6A6A;">
+<span id="cnt">0</span>
+/
+3000
+</div>
+
+
+<script>
+var bar = new ProgressBar.Path('#heart-path', {
+  easing: 'easeInOut',
+  duration: 1400
+});
+bar.set(0);
+var was = 0;
+function update(){
+//var url = "https://api.twitch.tv/kraken/channels/alicetalks/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+var url = "https://api.twitch.tv/kraken/channels/"+location.hash.substring(1)+"/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+$.get( url, function( data ) {
+  //var datas = data +"";
+  var count = data._total;
+  //console.log(count);
+  $('#cnt').prop('number', was)
+  .animateNumber({ number: count });
+  was = count;
+  
+  bar.animate(parseInt(count)/3000);  
+});
+}
+update();
+setInterval(update,10000);
+</script>
