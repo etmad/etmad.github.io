@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+  <head>
+    
+    
+
+  </head>
+
+  <body>
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+  
+  <style>
+  div{
+  font-family:'Nunito', sans-serif;font-size:24px;font-style:normal;font-variant:normal;font-weight:bold;
+  }
+  
+  .container{
+  position:absolute; box-shadow: 5px 5px 3px grey; width:400px; background-color:#8888ee; height:40px;
+  }
+  
+  .left{
+  margin-left:15px;
+  width: 45%;
+  height: 100%;
+  vertical-align: middle;
+  text-align:left;
+  background-color:transparent;
+  }
+  
+  .right{
+  right:15px;
+  width: 45%;
+  vertical-align: middle;
+  text-align: right;
+  vertical-align: middle;
+  background-color:transparent;
+  }
+  
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  </style>
+  
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+<script type="text/javascript">
+  
+ 
+  var points = new Map();
+  var count = 0;
+  
+  var socket = new WebSocket("wss://irc-ws.chat.twitch.tv/");
+	
+  socket.onopen = function() {
+  socket.send("NICK justinfan123456");
+  socket.send("JOIN #areyouready_88");
+//socket.send("JOIN #fua88");
+  };
+  
+  socket.onmessage = function(event){
+	var msg = event.data;
+	if(msg === "PING"){
+	socket.send("PONG :tmi.twitch.tv");
+	}
+	else{
+    if(msg.lastIndexOf(":areyouready_88!areyouready_88@areyouready_88.tmi.twitch.tv PRIVMSG #areyouready_88 :!add ", 0) === 0){
+  //if(msg.lastIndexOf(":grigory_skovoroda!grigory_skovoroda@grigory_skovoroda.tmi.twitch.tv PRIVMSG #fua88 :!add ", 0) === 0){
+		var cmd = msg.substring(90);
+		cmd = cmd.trim();
+		var q = 1;
+		var who = cmd;
+		if(cmd.indexOf(" ")!=-1){
+			who = cmd.split(" ")[0];
+			q = parseInt(cmd.split(" ")[1]);
+		}
+		
+		console.log(who+" gets "+q);
+		
+		if(!points.has(who)){
+			var newel = document.createElement("div");
+			newel.setAttribute("class","container");
+			newel.setAttribute("pos",count);
+			newel.setAttribute("id",who);
+			count++;
+			newel.setAttribute("style","top:"+(50*count)+"px;");
+			newel.setAttribute("value",0);
+			newel.innerHTML = "<div class='left'><span>"+who+"</span></div> <div class='right'><span style='right:15px;'>"+0+"</span></div>";
+			document.body.appendChild(newel);
+			points.set(who, 0);
+		}
+		
+		newval = points.get(who) + q;
+		var curel = document.getElementById(who);
+		var curpos = curel.getAttribute("pos");
+		points.set(who, newval);
+		
+		var all = document.getElementsByClassName("container");
+		if(q>0){
+		var moveup = 0;
+			for(var i=0;i<all.length;i++){
+				if(all[i].getAttribute("value")<newval)
+					if(all[i].getAttribute("pos")<curpos)
+						{
+						//move dat shit down 50px
+						$(all[i]).animate({top : "+=50px", backgroundColor : "#e8888e"}, 3000);
+						all[i].style["z-index"] = "0";
+						var newelpos = 1 + parseInt(all[i].getAttribute("pos"));
+						all[i].setAttribute("pos", newelpos);
+						moveup++;
+						}
+			}
+			$(curel).animate({top : "-="+(moveup*50)+"px", backgroundColor : "#88e88e"}, 3000);
+			curel.setAttribute("pos", curpos-moveup);
+			curel.setAttribute("value", newval);
+			curel.style["z-index"] = "1";
+			curel.innerHTML = "<div class='left'><span>"+who+"</span></div> <div class='right'><span style='right:15px;'>"+newval+"</span></div>";
+			setTimeout(colorBack(), 5000);
+		}
+		else{
+		var movedown = 0;
+			for(var i=0;i<all.length;i++){
+				if(all[i].getAttribute("value")>newval)
+					if(all[i].getAttribute("pos")>curpos)
+						{
+						//move dat shit up 50px
+						$(all[i]).animate({top : "-=50px", backgroundColor : "#88e88e"}, 3000);
+						all[i].style["z-index"] = "1";
+						var newelpos = parseInt(all[i].getAttribute("pos")) - 1;
+						all[i].setAttribute("pos", newelpos);
+						movedown++;
+						}
+			}
+			$(curel).animate({top : "+="+(movedown*50)+"px", backgroundColor : "#e8888e"}, 3000);
+			curel.setAttribute("pos", curpos+movedown);
+			curel.setAttribute("value", newval);
+			curel.style["z-index"] = "0";
+			curel.innerHTML = "<div class='left'><span>"+who+"</span></div> <div class='right'><span style='right:15px;'>"+newval+"</span></div>";
+			setTimeout(colorBack(), 4000);
+		
+		}
+		
+		}
+	}
+  }
+  
+  function colorBack(){
+	var all = document.getElementsByClassName("container");
+		for(var i=0;i<all.length;i++)
+			$(all[i]).animate({backgroundColor : "#8888ee"}, 3000);
+				
+  }
+  
+  </script>
+
+  </body>
+</html>
