@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "digital";
+    src: url("fonts/awesome-font.woff") format('woff');
+}
+
+<div id="clockdiv">
+  <div>
+    <span class="hours"></span>
+  </div>:<div>
+    <span class="minutes"></span>
+  </div>:<div>
+    <span class="seconds"></span>
+  </div>
+</div>
+
+<style>
+body{
+  text-align: center;
+  font-family: digital;
+  font-weight: 100;
+}
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+#clockdiv{
+	font-family: digital;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	background: #88eeee;
+	text-align: center;
+	border-radius: 3px;
+	font-size: 30px;
+}
+#clockdiv > div{
+	padding: 3px;
+	border-radius: 3px;
+	display: inline-block;
+}
+#clockdiv div > span{
+	border-radius: 3px;
+	display: inline-block;
+}
+</style>
+
+<script>
+function getTimeRemaining(endtime) {
+  var t = Date.parse(new Date()) - Date.parse(endtime) ;
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  return {
+    'total': t,
+    'hours': hours,
+    'minutes': minutes,
+    'seconds': seconds
+  };
+}
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var hoursSpan = clock.querySelector('.hours');
+  var minutesSpan = clock.querySelector('.minutes');
+  var secondsSpan = clock.querySelector('.seconds');
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
+    hoursSpan.innerHTML = ('00' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+  }
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
+var deadline = new Date(Date.parse(location.hash.substring(1)));
+initializeClock('clockdiv', deadline);
+</script>
