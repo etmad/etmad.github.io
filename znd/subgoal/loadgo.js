@@ -73,7 +73,7 @@ if (jQuery) (
           ';width:' + _w + 'px' +
           ';height:' + _h + 'px' +
           //';left:' + computedLeft + 'px' +
-          ';top:17;position:absolute;"></div>');
+          ';top:15px;position:absolute;"></div>');
 
         if (defaults.animated) {
           $overlay.css({
