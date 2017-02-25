@@ -51,8 +51,8 @@ if (jQuery) (
 
         var _w = $this[0].getBoundingClientRect().width, _h = $this[0].getBoundingClientRect().height, pl = $this.parent().css('padding-left');
 
-        _w = 112;
-        _h = 112;
+        _w = 168;
+        _h = 168;
         
         
         var ppl = parseFloat(getStyle($this[0].parentNode, 'padding-left')),
@@ -73,7 +73,7 @@ if (jQuery) (
           ';width:' + _w + 'px' +
           ';height:' + _h + 'px' +
           //';left:' + computedLeft + 'px' +
-          ';top:0;position:absolute;"></div>');
+          ';top:18;position:absolute;"></div>');
 
         if (defaults.animated) {
           $overlay.css({
