@@ -1,1 +1,78 @@
-<div> SOME STUFF HERE </div>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+  <style>
+	#follower_count {
+	 font-family: 'Roboto Condensed', sans-serif;
+	 font-size: 24px;
+	 color: rgb(57, 251, 207);
+	}
+  </style>
+
+<style>
+#container {
+  margin: 0px;
+  width: 168px;
+  height: 168px;
+}
+</style>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+<script src="http://etmad.github.io/znd/subgoal/loadgo.js"></script>
+
+<div id="container">
+
+<img id="sack" height=168 width=168 src="http://etmad.github.io/znd/subgoal/morethanthree.png" />
+
+
+</div>
+
+<div id="container">
+<div id="follower_count" align=center style="position:relative;font-family:'Nunito', sans-serif;font-size:24px;margin:10 auto;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#3dea1e;width:140px;z-index:100;">
+</div>
+</div>
+
+
+<script>
+$.ajaxSetup({ cache: false });
+$(document).ready(function () {
+  //console.log("GOT LOADED");
+  $('#sack').loadgo({'direction':'bt', 'opacity':0.9, 'bgcolor': '#FFFFFF'});
+//  $('#sack').loadgo('resetprogress');
+});
+
+var was = 0;
+
+function update(){
+var oauth = location.hash.substring(1,location.hash.indexOf("&"));
+var url = "https://api.twitch.tv/kraken/channels/etozhezanuda/subscriptions?client_id="+oauth;
+
+//url = "https://api.twitch.tv/kraken/channels/etozhezanuda/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+
+$.get( url, function( data ) {
+  //var datas = data +"";
+  //document.getElementById("cnt").innerHTML = data;
+  //var count = parseInt(data.replace("$","").replace(".",""));
+
+  var count = data._total % 1000;
+  console.log(count);
+  //console.log(count);
+  
+  $('#sack').loadgo('setprogress', Math.min(100,parseInt(count)/5));
+  //bar.animate(parseInt(count)/10000);  
+});
+}
+
+
+
+//update();
+
+
+setInterval(update,5000);
+
+
+
+</script>
+
