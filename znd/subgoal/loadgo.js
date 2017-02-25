@@ -51,6 +51,10 @@ if (jQuery) (
 
         var _w = $this[0].getBoundingClientRect().width, _h = $this[0].getBoundingClientRect().height, pl = $this.parent().css('padding-left');
 
+        _w = 112;
+        _h = 112;
+        
+        
         var ppl = parseFloat(getStyle($this[0].parentNode, 'padding-left')),
         eml = parseFloat(getStyle($this[0], 'margin-left')) ,
         epl = parseFloat(getStyle($this[0], 'padding-left'));
