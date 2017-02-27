@@ -2,33 +2,55 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-//         https://script.googleapis.com/v1/scripts/{scriptId}:run
-var url = "https://script.googleapis.com/v1/scripts/1KsjwtixiH_DDR2ZeCEvxhvmF4rwBPX1-ws4lgIjjGy-W3xXDxmqvl6R3:run?access_token=Glv_Ay4oWIl6aDQ40eJVYfr2UkCHlEWPzSDJ2_UzqgKUGivdyxArVHmEDwev2qvBcs8VoaWlVA7V2yCfZMTq6qYHthuDB_JPXRTBg8LFzONxJnzR1R3ksjmCsPYE&key=AIzaSyCloJr1i8l4tl67tuYFqDmi_HoRxRn0FYg";
-var args = 
-{
-  "function": "create"
-};
 
-var other_args = 
-{
-  "function": "create",
-  "parameters": [
-    value
-  ],
-  "sessionState": string,
-  "devMode": boolean,
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+function start() {
+  // 2. Initialize the JavaScript client library.
+  gapi.client.init({
+    'apiKey': 'AIzaSyCloJr1i8l4tl67tuYFqDmi_HoRxRn0FYg',
+    'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+    // clientId and scope are optional if auth is not required.
+    'clientId': '268093223201-luo1ithiero1d9m9qh2s7rgs9cq3ne24.apps.googleusercontent.com',
+    //'scope': 'profile',
+  });
 };
+// 1. Load the JavaScript client library.
+gapi.load('client', start);
 
 $(document).ready(function(){
     $("button").click(function(){
-        $.post(url, function(data, status){
-            alert("Data: " + data + "\nStatus: " + status);
-        });
-    });
+	
+	
+		var scriptId = "1KsjwtixiH_DDR2ZeCEvxhvmF4rwBPX1-ws4lgIjjGy-W3xXDxmqvl6R3";
+		
+		// Create execution request.
+		var request = {
+			'function': 'create',
+			//'parameters': [sheetId],
+			//'devMode': true   // Optional.
+		};
+		
+		// Make the request.
+		var op = gapi.client.request({
+			'root': 'https://script.googleapis.com',
+			'path': 'v1/scripts/' + scriptId + ':run',
+			'method': 'POST',
+			'body': request
+		});
+		
+		// Log the results of the request.
+		op.execute(function(resp) {
+			console.log(resp);
+		});
+				
+				
+				
+	});
 });
 
 </script>
+
 </head>
 <body>
 
