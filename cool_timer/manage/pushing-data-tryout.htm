@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+
+//low level DB management
+  
+function getTime(){
+}
+ 
+function getState(){
+}
+  
+function saveTime(value){
+  $.ajax({
+    data: {
+        '{"values":[["code-huetest-time'+value+'"]]}'
+    },
+    type: 'PUT',
+    url: 'https://sheets.googleapis.com/v4/spreadsheets/17-1tgtZ4iI2-27xOEAOr-wSoSK_86frEM1R9CtzK-uo/values/B1:B1?access_token=Glv_Ay4oWIl6aDQ40eJVYfr2UkCHlEWPzSDJ2_UzqgKUGivdyxArVHmEDwev2qvBcs8VoaWlVA7V2yCfZMTq6qYHthuDB_JPXRTBg8LFzONxJnzR1R3ksjmCsPYE&key=AIzaSyCloJr1i8l4tl67tuYFqDmi_HoRxRn0FYg'
+    });
+}
+  
+function saveState(value){
+}
+  
+//interface-driven scope
+  
+function pause(){
+}
+  
+function resume(){
+}
+  
+function stop(){
+}
+  
+function add(amount){
+}
+  
+function set(amount){
+}
+  
+function load(id){
+}
+
+
+  
+$(document).ready(function(){
+    $("button").click(saveTime("FOUOU"));
+});
+</script>
+
+</head>
+<body>
+
+<button>Send an HTTP GET request to a page and get the result back</button>
+
+</body>
+</html>
