@@ -5,48 +5,32 @@
 
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
-function start() {
-  // 2. Initialize the JavaScript client library.
-  gapi.client.init({
-    'apiKey': 'AIzaSyCloJr1i8l4tl67tuYFqDmi_HoRxRn0FYg',
-    'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
-    // clientId and scope are optional if auth is not required.
-    'clientId': '268093223201-luo1ithiero1d9m9qh2s7rgs9cq3ne24.apps.googleusercontent.com',
-    'scope': 'https://www.googleapis.com/auth/spreadsheets',
-  });
-};
-// 1. Load the JavaScript client library.
-gapi.load('client', start);
+var scriptId = "1X0qf4TYW1sFwMyvuK4jKqgTgn_B_eOd4V-x_-d7-5V6d0f0rv5JR-PMq";
 
-$(document).ready(function(){
-    $("button").click(function(){
-	
-	
-		var scriptId = "1KsjwtixiH_DDR2ZeCEvxhvmF4rwBPX1-ws4lgIjjGy-W3xXDxmqvl6R3";
-		
-		// Create execution request.
-		var request = {
-			'function': 'create',
-			//'parameters': [sheetId],
-			//'devMode': true   // Optional.
-		};
-		
-		// Make the request.
-		var op = gapi.client.request({
-			'root': 'https://script.googleapis.com',
-			'path': 'v1/scripts/' + scriptId + ':run',
-			'method': 'POST',
-			'body': request
-		});
-		
-		// Log the results of the request.
-		op.execute(function(resp) {
-			console.log(resp);
-		});
-				
-				
-				
-	});
+
+var request = {
+    'function': 'runtest',
+    'parameters': [],
+    'devMode': true   // Optional.
+};
+
+var op = gapi.client.request({
+    'root': 'https://script.googleapis.com',
+    'path': 'v1/scripts/' + scriptId + ':run',
+    'method': 'POST',
+    'body': request
+});
+
+op.execute(function(resp) {
+ console.log(resp);
+  if (resp.error && resp.error.status) {
+    console.log('Error calling API: ' + JSON.stringify(resp, null, 2));
+  } else if (resp.error) {
+    var error = resp.error.details[0];
+    console.log('Script error! Message: ' + error.errorMessage);
+  } else {
+    console.log(resp);
+  }
 });
 
 </script>
