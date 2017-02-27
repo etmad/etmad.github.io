@@ -1,0 +1,18 @@
+FULL SIZED:
+
+https://accounts.google.com/o/oauth2/v2/auth?
+ scope=https://www.googleapis.com/auth/spreadsheets&
+ include_granted_scopes=true&
+ state=state_parameter_passthrough_value&
+ redirect_uri=http://etmad.github.io/get_google_oauth/&
+ response_type=token&
+ client_id=268093223201-dn0dlfsg5m7ianter99kvs139nl9pt5l.apps.googleusercontent.com
+ 
+in one line:
+https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/spreadsheets&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://etmad.github.io/get_google_oauth/&response_type=token&client_id=268093223201-dn0dlfsg5m7ianter99kvs139nl9pt5l.apps.googleusercontent.com
+ 
+and HTMLfied
+: => %3A
+/ => %2F
+
+https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fspreadsheets&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http%3A%2F%2Fetmad.github.io%2Fget_google_oauth%2F&response_type=token&client_id=268093223201-dn0dlfsg5m7ianter99kvs139nl9pt5l.apps.googleusercontent.com
