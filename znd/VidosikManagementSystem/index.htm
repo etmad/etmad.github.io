@@ -33,7 +33,7 @@ $.get(url, function( data ) {
 		
 		var newel = document.createElement('a');
 		document.getElementsByClassName("list-group")[0].appendChild(newel);
-		newel.outerHTML = '<a href="'+link+'" class="list-group-item active" target="frame"><h4 class="list-group-item-heading">'+descr+' by '+who+'</h4><p class="list-group-item-text">'+name+'</p></a>';
+		newel.outerHTML = '<a href="'+link+'" class="list-group-item active" target="frame"><h5 class="list-group-item-heading">'+descr+' by '+who+'</h5><h6 class="list-group-item-text">'+name+'</h6></a>';
 	}
 	lastupd = newlastupd;
   }
