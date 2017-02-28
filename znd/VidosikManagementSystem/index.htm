@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script>
-
+	
 var url = "https://sheets.googleapis.com/v4/spreadsheets/1EX1FfhAM67p7cxnuakZjAztF1yP96z6btibJ61cEqrM/values/A:E?access_token=Glv_Ay4oWIl6aDQ40eJVYfr2UkCHlEWPzSDJ2_UzqgKUGivdyxArVHmEDwev2qvBcs8VoaWlVA7V2yCfZMTq6qYHthuDB_JPXRTBg8LFzONxJnzR1R3ksjmCsPYE&key=AIzaSyCloJr1i8l4tl67tuYFqDmi_HoRxRn0FYg";
 var lastupd = -1;
 
@@ -44,11 +44,23 @@ setInterval(update, 5000);
 
 </script>
 
+<style>
+div.scrollable {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+</style>
+
 <html>
 <body>
 <table style="width:100%;height:98%;">
 <tr><td width="20%">
+<div class="scrollable">
 <div class="list-group" style="width:100%;height:100%;">
+</div>
 </div>
 </td>
 <td width="80%">
