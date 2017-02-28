@@ -8,7 +8,7 @@
 
 <script>
 
-var url = "https://docs.google.com/spreadsheets/d/1EX1FfhAM67p7cxnuakZjAztF1yP96z6btibJ61cEqrM/gviz/tq?range=Requests!A:E";
+var url = "https://sheets.googleapis.com/v4/spreadsheets/1EX1FfhAM67p7cxnuakZjAztF1yP96z6btibJ61cEqrM/values/A:E?access_token=Glv_Ay4oWIl6aDQ40eJVYfr2UkCHlEWPzSDJ2_UzqgKUGivdyxArVHmEDwev2qvBcs8VoaWlVA7V2yCfZMTq6qYHthuDB_JPXRTBg8LFzONxJnzR1R3ksjmCsPYE&key=AIzaSyCloJr1i8l4tl67tuYFqDmi_HoRxRn0FYg";
 var lastupd = -1;
 
 function unwrap(s){
@@ -17,29 +17,17 @@ function unwrap(s){
 
 function update(){
 
-$.ajax({
-  type: 'GET',
-  url: url,
-  contentType: 'text/plain',
-  crossDomain : true,
-  xhrFields: {
-   withCredentials: false
-  },
-
-  headers: {
-  },
-
-}).done(function( data ) {
-  var parts = data.split('"v":"');
-  var cnt = Math.floor(parts.length/5);
-  console.log(cnt);
+$.get(function( data ) {
+  var parts = data.values;
+  console.log(parts);
+  var cnt = parts.length;
   var newlastupd = lastupd;
   for(var i=0;i<cnt;i++){
-	var time = parseInt(unwrap(parts[i*5+1]));
-	var link = unwrap(parts[i*5+2]);
-	var name = unwrap(parts[i*5+3]);
-	var who  = unwrap(parts[i*5+4]);
-	var descr  = unwrap(parts[i*5+5]);
+	var time  = parseInt(parts[i][0]);
+	var link  = parts[i][1];
+	var name  = parts[i][2];
+	var who   = parts[i][3];
+	var descr = parts[i][4];
 	if(time>lastupd){
 		newlastupd = Math.max(newlastupd, time);
 		
