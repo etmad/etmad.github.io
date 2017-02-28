@@ -17,7 +17,7 @@ function unwrap(s){
 
 function update(){
 
-$.get(function( data ) {
+$.get(url, function( data ) {
   var parts = data.values;
   console.log(parts);
   var cnt = parts.length;
