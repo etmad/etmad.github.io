@@ -21,8 +21,9 @@ $.ajax({
   type: 'GET',
   url: url,
   contentType: 'text/plain',
+  crossDomain : true,
   xhrFields: {
-   withCredentials: true
+   withCredentials: false
   },
 
   headers: {
