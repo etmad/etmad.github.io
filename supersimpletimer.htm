@@ -74,7 +74,7 @@ function initializeClock(id, endtime) {
   }
 
   updateClock();
-  var timeinterval = setInterval(updateClock, 900);
+  var timeinterval = setInterval(updateClock, 1000);
 }
 
 var deadline = new Date(Date.parse(location.hash.substring(1)));
