@@ -16,8 +16,11 @@ snowStorm.useTwinkleEffect = false; // let the snow flicker in and out of view
 snowStorm.vMaxY = 1;
 snowStorm.vMaxX = 0.2;
 snowStorm.flakeLeftOffset = 80;
-this.flakeWidth = 74;            // Max pixel width reserved for snow element
-this.flakeHeight = 100;
+snowStorm.snowStick = false;          // Whether or not snow should "stick" at the bottom. When off, will never collect.
+snowStorm.targetElement = null;      // element which snow will be appended to (null = document.body) - can be an element ID eg. 'myDiv', or a DOM node reference
+snowStorm.useMeltEffect = false;      // When recycling fallen snow (or rarely, when falling), have it "melt" and fade out if browser supports it
+snowStorm.flakeWidth = 74;            // Max pixel width reserved for snow element
+snowStorm.flakeHeight = 100;
 </script>
 </head>
 
