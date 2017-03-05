@@ -10,22 +10,51 @@
 <style>
 @keyframes godown {
     0%   {top:-120px;}
-    100% {top:100%;}
+    100% {bottom:-120px;}
 }
 </style>
 
 <script type="text/javascript">
-function htmlToElement(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html;
-    return template.content.firstChild;
+var ws;
+//:twitchnotify!twitchnotify@twitchnotify.tmi.twitch.tv PRIVMSG #salavatunited :kosmos_eto_mars just subscribed with Twitch Prime!
+
+startSocket("wss://irc-ws.chat.twitch.tv/");
+
+function startSocket(websocketServerLocation){
+    ws = new WebSocket(websocketServerLocation);
+    ws.onopen = function() {
+		socket.send("NICK justinfan169856");
+		socket.send("JOIN #etozhezanuda");
+	};
+    
+	ws.onmessage = function(event) { 
+		var msg = event.data;
+		if(msg === "PING"){
+			socket.send("PONG :tmi.twitch.tv");
+		}
+		else{																				//
+			if(msg.startsWith(":twitchnotify!twitchnotify@twitchnotify.tmi.twitch.tv PRIVMSG #salavatunited :")){
+				String info = msg.substring(78);//here should be 77
+				String io = msg.indexOf(" ");
+				String who = msg.substring(0,io);
+				String content = msg.substring(io);
+				console.log("THAT GUY:"+who);
+				console.log("SUBSCRIBED WITH SUCH TEXT:"+content);
+				//and here we adding text to showing queue
+			}
+		}
+	};
+    ws.onclose = function(){
+        //try to reconnect in 5 seconds
+        setTimeout(function(){startSocket(websocketServerLocation)}, 5000);
+    };
 }
-	
+
 var countdown = 0;
 function startEvent(text){
   showText(text);
   countdown = 200;
-  showTheFrog();
+  setTimeout(showTheFrog(), 50);
   setTimeout(hideText(), 10000);
   setTimeout(clearUp(), 10000);
 }
@@ -34,8 +63,8 @@ function showTheFrog(){
 if(countdown <= 0) return;
 countdown = countdown - 1;
 console.log(countdown+" frogs remaining");
-document.body.appendChild(htmlToElement('<div style="position: absolute; animation: godown 5s linear; width: 74px; height: 100px; overflow: hidden; z-index: 0; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*100+'%;"><img src="http://i2.kym-cdn.com/photos/images/original/000/968/807/1be.gif" style="max-width:100%;max-height:100%;"></div>')); 
-setTimeout(showTheFrog, 50);
+document.body.innerHTML += '<div style="position: absolute; animation: godown 5s linear; width: 74px; height: 100px; overflow: hidden; z-index: 0; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*100+'%;"><img src="http://i2.kym-cdn.com/photos/images/original/000/968/807/1be.gif" style="max-width:100%;max-height:100%;"></div>'; 
+setTimeout(showTheFrog(), 50);
 }
 
 function clearUp(){
