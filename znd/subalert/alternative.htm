@@ -25,7 +25,7 @@ var countdown = 0;
 function startEvent(text){
   showText(text);
   countdown = 200;
-  setTimeout(showTheFrog, 500);
+  showTheFrog();
   setTimeout(hideText(), 10000);
   setTimeout(clearUp(), 10000);
 }
@@ -35,7 +35,7 @@ if(countdown <= 0) return;
 countdown = countdown - 1;
 console.log(countdown+" frogs remaining");
 document.body.appendChild(htmlToElement('<div style="position: absolute; animation: godown 5s linear; width: 74px; height: 100px; overflow: hidden; z-index: 0; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*100+'%;"><img src="http://i2.kym-cdn.com/photos/images/original/000/968/807/1be.gif" style="max-width:100%;max-height:100%;"></div>')); 
-setTimeout(showTheFrog, 500);
+setTimeout(showTheFrog, 50);
 }
 
 function clearUp(){
