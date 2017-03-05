@@ -7,6 +7,13 @@
 <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 <meta http-equiv="pragma" content="no-cache" /><title>DHTML SnowStorm: Basic Example</title>
 <head>
+<style>
+@keyframes godown {
+    0%   {top:-120px;}
+    100% {bottom:-120px;}
+}
+</style>
+
 <script type="text/javascript">
 var countdown = 0;
 function startEvent(text){
@@ -21,7 +28,7 @@ function showTheFrog(){
 if(countdown <= 0) return;
 countdown = countdown - 1;
 console.log(countdown+" frogs remaining");
-document.body.innerHTML += '<div style="position: absolute; -moz-transform: translateY(1200px); -ms-transform: translateY(1200px); -webkit-transform: translateY(1200px); -o-transform: translateY(1200px); transform: translateY(1200px); -webkit-transition-duration: 5s; transition-duration: 5s;  width: 74px; height: 100px; overflow: hidden; z-index: 0; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*100+'%;"><img src="http://i2.kym-cdn.com/photos/images/original/000/968/807/1be.gif" style="max-width:100%;max-height:100%;"></div>'; 
+document.body.innerHTML += '<div style="position: absolute; animation: godown 5s linear; width: 74px; height: 100px; overflow: hidden; z-index: 0; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*100+'%;"><img src="http://i2.kym-cdn.com/photos/images/original/000/968/807/1be.gif" style="max-width:100%;max-height:100%;"></div>'; 
 setTimeout(showTheFrog(), 50);
 }
 
