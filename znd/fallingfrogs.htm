@@ -10,14 +10,13 @@
 <style>
 @keyframes godown {
     0%   {top:-120px;}
-    100% {bottom:-120px;}
+    100% {top:100%;}
 }
 </style>
 
 <script type="text/javascript">
 var countdown = 100;
-setTimeout(showTheFrog(), 50);
-
+	
 function showTheFrog(){
 if(countdown <= 0) return;
 countdown = countdown - 1;
@@ -25,6 +24,8 @@ console.log(countdown+" frogs remaining");
 document.body.innerHTML += '<div style="position: absolute; animation: godown 5s linear; width: 74px; height: 100px; overflow: hidden; z-index: 0; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*100+'%;"><img src="http://i2.kym-cdn.com/photos/images/original/000/968/807/1be.gif" style="max-width:100%;max-height:100%;"></div>'; 
 setTimeout(showTheFrog(), 50);
 }
+	
+document.addEventListener("DOMContentLoaded", showTheFrog);
 </script>
 </head>
 
