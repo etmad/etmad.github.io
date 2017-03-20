@@ -6,6 +6,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 arr := ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "z", "x", "c", "v", "b", "n", "m", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
 F9::
+sendinput {Y}
+sendinput {a}
+sendinput {s}
+sendinput {Y}
+sendinput {a}
+
 Random, oVar, 1, 34						
 sendinput % arr[oVar]
 Random, oVar, 1, 34						
