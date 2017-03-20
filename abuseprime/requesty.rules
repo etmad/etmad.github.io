@@ -1,0 +1,19 @@
+requestly rules
+
+1. Matches (Wildcard)
+from:
+https://www.twitch.tv/pr/welcome*
+to:
+https://twitch.tv/salavatunited
+
+2. Matches (Wildcard)
+from: 
+https://passport.twitch.tv/authentications/*
+to:
+https://passport.twitch.tv/users/$1
+
+3. Contains
+from:
+https://www.amazon.de/gp/prime/pipeline/membersignup?ie=UTF8
+to:
+https://www.amazon.de/gp/prime/pipeline/landing?ie=UTF8&ref_=nav_prime_try_btn
