@@ -44,7 +44,7 @@ var lastupd = -1;
 
 function update(){
 $.get(url, function( data ) {
-  var arr = data.split(",");
+  var arr = data.split("\",\"");
   console.log(arr);
   var val = parseInt(arr[1]);
   var state = parseInt(arr[4]);
