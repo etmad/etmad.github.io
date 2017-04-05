@@ -63,10 +63,9 @@ $.get(url, function( data ) {
   var m = (s - ts) / 60;
   document.getElementById("clockdiv").querySelector('.min').innerHTML = m;
   document.getElementById("clockdiv").querySelector('.sec').innerHTML = s;
-  document.getElementById("clockdiv").querySelector('.msec').innerHTML = ms;
 });
 }
-setInterval(update, 200);
+setInterval(update, 2000);
 </script>
 
 <div id="clockdiv">
@@ -74,7 +73,4 @@ setInterval(update, 200);
     <span class="min"></span>
   </div>:<div>
     <span class="sec"></span>
-  </div>.<div>
-    <span class="msec"></span>
-  </div>
 </div>
