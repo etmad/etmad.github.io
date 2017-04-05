@@ -47,7 +47,7 @@ $.get(url, function( data ) {
   var arr = data.split("\",\"");
   console.log(arr);
   var val = parseInt(arr[1]);
-  var state = parseInt(arr[4]);
+  var state = parseInt(arr[3]);
   console.log(val+" "+state);
   var dt = 0;
   if(state === 0)
