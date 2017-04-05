@@ -43,8 +43,9 @@ var lastupd = -1;
 
 function update(){
 $.get(url, function( data ) {
-  var val = parseInt(data.table.rows[0].c[0].v);
-  var state = parseInt(data.table.rows[1].c[0].v);
+  var val = parseInt(data.table.rows[0].c[1].v);
+  var state = parseInt(data.table.rows[1].c[1].v);
+  console.log(val+" "+state);
   var dt = 0;
   if(state === "0")
   {
