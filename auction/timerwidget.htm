@@ -45,9 +45,8 @@ function unwrap(s){
 }
 function update(){
 $.get(url, function( data ) {
-  var parts = data.values;
-	var val = parseInt(parts[0][0]);
-  var state = parseInt(parts[1][0]);
+  var val = parseInt(data.table.rows[0].c[0].v);
+  var state = parseInt(data.table.rows[1].c[0].v);
   var dt = 0;
   if(state === "0")
   {
