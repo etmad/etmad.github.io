@@ -63,9 +63,9 @@ $.get(url, function( data ) {
   var ts = (dt - ms) / 1000;
   var s = ts % 60;
   var m = (s - ts) / 60;
-  document.getElementById(id).querySelector('.min').innerHTML = m;
-  document.getElementById(id).querySelector('.sec').innerHTML = s;
-  document.getElementById(id).querySelector('.msec').innerHTML = ms;
+  document.getElementById("clockdiv").querySelector('.min').innerHTML = m;
+  document.getElementById("clockdiv").querySelector('.sec').innerHTML = s;
+  document.getElementById("clockdiv").querySelector('.msec').innerHTML = ms;
 });
 }
 setInterval(update, 200);
