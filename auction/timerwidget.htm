@@ -63,7 +63,7 @@ $.get(url, function( data ) {
   var ms = dt % 1000;
   var ts = (dt - ms) / 1000;
   var s = ts % 60;
-  var m = (s - ts) / 60;
+  var m = (ts - s) / 60;
   document.getElementById("clockdiv").querySelector('.min').innerHTML = m;
   document.getElementById("clockdiv").querySelector('.sec').innerHTML = s;
 });
