@@ -48,6 +48,7 @@ $.get(url, function( data ) {
   var parts = data.values;
 	var val = parseInt(parts[0][0]);
   var state = parseInt(parts[1][0]);
+  console.log(val+" "+state);
   var dt = 0;
   if(state === "0")
   {
