@@ -46,6 +46,11 @@
     from {opacity: 0;} 
     to {opacity: 1; } 
   }
+  
+  @keyframes disappear{
+    from {opacity: 1;} 
+    to {opacity: 0; } 
+  }
 
   </style>
   
@@ -69,11 +74,20 @@ function update(){
 		var lines = data.split("\n");
 		console.log(lines);
 		var cnt = parseInt(lines[0].split("\",\"")[2]);
+		if(cnt === 0){
+			makeDisappear();
+			setTimeout(clearUp, 2500);
+			names = [];
+			vals = [];
+			pos = [];
+		}
+		else{
 		console.log(cnt);
 			var nvals = [];
 			var nnames = [];
 			var prevpos = [];
 			var newpos = [];
+			ppc = 12345;
 			for(var i=0;i<cnt;i++){
 				var varr = lines[i].split("\",\"");
 				var name = varr[0].slice(1);
@@ -86,7 +100,8 @@ function update(){
 				//										2c. smaller than was
 				nnames[i] = name;
 				nvals[i] = val;
-				prevpos[i] = 12345;
+				prevpos[i] = ppc;
+				ppc = ppc + 1;
 				newpos[i] = 0;
 				for(var j=0;j<cnt;j++)
 					if(name === names[j]){
@@ -96,7 +111,7 @@ function update(){
 			
 			for(var i=0;i<cnt;i++){
 				for(var j=0;j<cnt;j++)
-				if((parseInt(nvals[j])>parseInt(nvals[i]))||((parseInt(nvals[j])==parseInt(nvals[i]))&&(prevpos[j]<prevpos[j])))
+				if((parseInt(nvals[j])>parseInt(nvals[i]))||((parseInt(nvals[j])==parseInt(nvals[i]))&&(prevpos[j]<prevpos[i])))
 					newpos[i]++;
 			}
 			
@@ -107,7 +122,7 @@ function update(){
 			//var labels = document.getElementsByClassName("container");
 			
 			for(var i=0;i<cnt;i++){
-				if(prevpos[i] == 12345){
+				if(prevpos[i] >= 12345){
 					var newel = document.createElement("div");
 					newel.setAttribute("class","container");
 					//newel.setAttribute("pos",newpos[i]);
@@ -128,7 +143,6 @@ function update(){
 					else if(prevpos[i] > newpos[i]){
 						$(modify).animate({top : "-="+((prevpos[i]-newpos[i])*50)+"px", backgroundColor : "#88e88e"}, 2000);	
 					}
-					
 				}
 			}
 			
@@ -141,9 +155,10 @@ function update(){
 				pos[i] = newpos[i];
 			}
 			
-			
+		}	
 			
 		setTimeout(update, 5000);	
+		
 	});
 	
 
@@ -152,10 +167,21 @@ function update(){
   function colorBack(){
 	var all = document.getElementsByClassName("container");
 		for(var i=0;i<all.length;i++)
-			$(all[i]).animate({backgroundColor : "#8888ee"}, 2000);
-				
+			$(all[i]).animate({backgroundColor : "#8888ee"}, 2000);	
   }
 
+  function makeDisappear(){
+	var all = document.getElementsByClassName("container");
+		for(var i=0;i<all.length;i++)
+			$(all[i]).fadeTo(2000, 0);
+  }
+  
+  function clearUp(){
+	var all = document.getElementsByClassName("container");
+		for(var i=0;i<all.length;i++)
+			all[i].outerHTML = "";
+  }
+  
 
 setTimeout(update, 500); 
   
