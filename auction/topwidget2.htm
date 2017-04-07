@@ -8,7 +8,9 @@
 
 
   <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
-  
+  <script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+  <script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
   <style>
   div{
   font-family:'Nunito', sans-serif;font-size:24px;font-style:normal;font-variant:normal;font-weight:bold;
@@ -87,6 +89,7 @@ function update(){
 			var nnames = [];
 			var prevpos = [];
 			var newpos = [];
+			var prevvals = [];
 			ppc = 12345;
 			for(var i=0;i<cnt;i++){
 				var varr = lines[i].split("\",\"");
@@ -106,6 +109,7 @@ function update(){
 				for(var j=0;j<cnt;j++)
 					if(name === names[j]){
 						prevpos[i] = pos[j];
+						prevvals[i] = vals[j];
 					}
 			}
 			
@@ -130,13 +134,15 @@ function update(){
 					//count++;
 					newel.setAttribute("style", "top:"+(50*newpos[i])+"px; animation: blink 2s;");
 					//newel.setAttribute("value", nvals[i]);
-					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
+					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>0</span></div>";
 					document.body.appendChild(newel);
+					$(newel).first().next().prop('number', 0).animateNumber({ number: nvals[i] },4000);
 				}
 				else{
 					var modify = document.getElementById(nnames[i]);
 					modify.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
-					
+					$(modify).first().next().prop('number', prevvals[i]).animateNumber({ number: nvals[i] },4000);
+				
 					if (prevpos[i] < newpos[i]){	
 						$(modify).animate({top : "+="+((newpos[i]-prevpos[i])*50)+"px", backgroundColor : "#e8888e"}, 2000);
 					}
