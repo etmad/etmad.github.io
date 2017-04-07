@@ -145,7 +145,7 @@ function update(){
 					var modify = document.getElementById(nnames[i]);
 					//modify.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
 					var ue = $(modify).first().next();
-					ue.prop('number', prevvals[i]).animateNumber({ number: nvals[i] },4000);
+					ue.prop('number', prevvals[i]).animateNumber({ number: nvals[i] });
 					
 					if (prevpos[i] < newpos[i]){	
 						$(modify).animate({top : "+="+((newpos[i]-prevpos[i])*50)+"px", backgroundColor : "#e8888e"}, 2000);
