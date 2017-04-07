@@ -130,7 +130,7 @@ function update(){
 					//newel.setAttribute("value", nvals[i]);
 					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
 					document.body.appendChild(newel);
-					setTimeout(goSmooth, 100, $(newel), nvals[i]);
+					setTimeout(goSmooth, 250, $(newel), nvals[i]);
 				}
 				else{
 					var modify = document.getElementById(nnames[i]);
