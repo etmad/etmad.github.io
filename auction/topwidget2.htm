@@ -166,6 +166,7 @@ function update(){
 }
 
   function goSmooth(x, govalue){
+	  console.log(x.first().next().first().innerHTML);
 	  x.first().next().first().prop('number', 0).animateNumber({ number: govalue },4000);
   }
 	
