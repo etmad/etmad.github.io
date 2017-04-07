@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+  <head>
+    
+    
+
+  </head>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+  
+  <style>
+  div{
+  font-family:'Nunito', sans-serif;font-size:24px;font-style:normal;font-variant:normal;font-weight:bold;
+  }
+  
+  .container{
+  position:absolute; box-shadow: 5px 5px 3px grey; width:400px; background-color:#8888ee; height:40px;
+  }
+  
+  .left{
+  margin-left:15px;
+  width: 45%;
+  height: 100%;
+  vertical-align: middle;
+  text-align:left;
+  background-color:transparent;
+  }
+  
+  .right{
+  right:15px;
+  width: 45%;
+  vertical-align: middle;
+  text-align: right;
+  vertical-align: middle;
+  background-color:transparent;
+  }
+  
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  
+  @keyframes blink{
+    from {opacity: 0;} 
+    to {opacity: 1; } 
+  }
+  
+  @keyframes disappear{
+    from {opacity: 1;} 
+    to {opacity: 0; } 
+  }
+
+  </style>
+  
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+<script type="text/javascript">
+
+var names = [];
+var vals  = [];
+var pos = [];
+
+var url = "https://spreadsheets.google.com/tq?key=1xsOHW4UrgdUorqwspuUMcOQwMWDPdplmCB88O7YMmnc&tqx=out:csv";
+
+function update(){
+	
+	console.log("update started @ "+(new Date()));
+
+	$.get(url, function( data ) {
+		var lines = data.split("\n");
+		console.log(lines);
+		var cnt = parseInt(lines[0].split("\",\"")[2]);
+		if(cnt === 0){
+			makeDisappear();
+			setTimeout(clearUp, 2500);
+			names = [];
+			vals = [];
+			pos = [];
+		}
+		else{
+		console.log(cnt);
+			var nvals = [];
+			var nnames = [];
+			var prevpos = [];
+			var newpos = [];
+			ppc = 12345;
+			for(var i=0;i<cnt;i++){
+				var varr = lines[i].split("\",\"");
+				var name = varr[0].slice(1);
+				var val = varr[1];
+				//four ways:
+				//1. we never encountered that name before - creating italic
+				//2. we found it and have new place X
+				//										2a. larger than was
+				//										2b. same as was
+				//										2c. smaller than was
+				nnames[i] = name;
+				nvals[i] = val;
+				prevpos[i] = ppc;
+				ppc = ppc + 1;
+				newpos[i] = 0;
+				for(var j=0;j<cnt;j++)
+					if(name === names[j]){
+						prevpos[i] = pos[j];
+					}
+			}
+			
+			for(var i=0;i<cnt;i++){
+				for(var j=0;j<cnt;j++)
+				if((parseInt(nvals[j])>parseInt(nvals[i]))||((parseInt(nvals[j])==parseInt(nvals[i]))&&(prevpos[j]<prevpos[i])))
+					newpos[i]++;
+			}
+			
+			for(var i=0;i<cnt;i++){
+				console.log("item: "+names[i]+" position was "+prevpos[i]+" going to "+newpos[i]);
+			}
+			
+			//var labels = document.getElementsByClassName("container");
+			
+			for(var i=0;i<cnt;i++){
+				if(prevpos[i] >= 12345){
+					var newel = document.createElement("div");
+					newel.setAttribute("class","container");
+					//newel.setAttribute("pos",newpos[i]);
+					newel.setAttribute("id", nnames[i]);
+					//count++;
+					newel.setAttribute("style", "top:"+(50*newpos[i])+"px; animation: blink 2s;");
+					//newel.setAttribute("value", nvals[i]);
+					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
+					document.body.appendChild(newel);
+				}
+				else{
+					var modify = document.getElementById(nnames[i]);
+					modify.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
+					
+					if (prevpos[i] < newpos[i]){	
+						$(modify).animate({top : "+="+((newpos[i]-prevpos[i])*50)+"px", backgroundColor : "#e8888e"}, 2000);
+					}
+					else if(prevpos[i] > newpos[i]){
+						$(modify).animate({top : "-="+((prevpos[i]-newpos[i])*50)+"px", backgroundColor : "#88e88e"}, 2000);	
+					}
+				}
+			}
+			
+			setTimeout(colorBack(), 2500);
+			
+			//update names vals pos
+			for(var i=0;i<cnt;i++){
+				names[i] = nnames[i];
+				vals[i] = nvals[i];
+				pos[i] = newpos[i];
+			}
+			
+		}	
+			
+		setTimeout(update, 5000);	
+		
+	});
+	
+
+}
+
+  function colorBack(){
+	var all = document.getElementsByClassName("container");
+		for(var i=0;i<all.length;i++)
+			$(all[i]).animate({backgroundColor : "#8888ee"}, 2000);	
+  }
+
+  function makeDisappear(){
+	var all = document.getElementsByClassName("container");
+		for(var i=0;i<all.length;i++)
+			$(all[i]).fadeTo(2000, 0);
+  }
+  
+  function clearUp(){
+	var all = document.getElementsByClassName("container");
+		for(var i=0;i<all.length;i++)
+			all[i].outerHTML = "";
+  }
+  
+
+setTimeout(update, 500); 
+  
+  
+</script>
+<body>
+
+
+
+</body>
+</html>
