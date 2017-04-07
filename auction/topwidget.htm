@@ -1,13 +1,11 @@
-<!doctype html>
-<html>
-  <head>
-    
-    
 
-  </head>
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
 
-
-  <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
   
   <style>
   div{
@@ -55,8 +53,6 @@
   </style>
   
     
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
 <script type="text/javascript">
 
@@ -87,6 +83,7 @@ function update(){
 			var nnames = [];
 			var prevpos = [];
 			var newpos = [];
+			var prevvals = [];
 			ppc = 12345;
 			for(var i=0;i<cnt;i++){
 				var varr = lines[i].split("\",\"");
@@ -106,6 +103,7 @@ function update(){
 				for(var j=0;j<cnt;j++)
 					if(name === names[j]){
 						prevpos[i] = pos[j];
+						prevvals[i] = vals[j];
 					}
 			}
 			
@@ -130,18 +128,23 @@ function update(){
 					//count++;
 					newel.setAttribute("style", "top:"+(50*newpos[i])+"px; animation: blink 2s;");
 					//newel.setAttribute("value", nvals[i]);
-					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
+					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>0</span></div>";
 					document.body.appendChild(newel);
+					setTimeout(goSmooth, 250, $(newel), nvals[i]);
 				}
 				else{
 					var modify = document.getElementById(nnames[i]);
-					modify.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+nvals[i]+"</span></div>";
+					modify.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>"+vals[i]+"</span></div>";
+					var ue = $(modify).children().next().children();
+					ue.prop('number', vals[i]).animateNumber({ number: nvals[i] });
 					
 					if (prevpos[i] < newpos[i]){	
 						$(modify).animate({top : "+="+((newpos[i]-prevpos[i])*50)+"px", backgroundColor : "#e8888e"}, 2000);
+						$(modify).css('z-index', 0);
 					}
 					else if(prevpos[i] > newpos[i]){
 						$(modify).animate({top : "-="+((prevpos[i]-newpos[i])*50)+"px", backgroundColor : "#88e88e"}, 2000);	
+						$(modify).css('z-index', 1);
 					}
 				}
 			}
@@ -164,6 +167,11 @@ function update(){
 
 }
 
+  function goSmooth(x, govalue){
+	  console.log(x.first().next().first().html());
+	  x.children().next().children().prop('number', 0).animateNumber({ number: govalue },4000);
+  }
+	
   function colorBack(){
 	var all = document.getElementsByClassName("container");
 		for(var i=0;i<all.length;i++)
@@ -183,13 +191,8 @@ function update(){
   }
   
 
-setTimeout(update, 500); 
+setTimeout(update, 2500); 
   
   
 </script>
-<body>
 
-
-
-</body>
-</html>
