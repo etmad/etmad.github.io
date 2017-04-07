@@ -139,8 +139,7 @@ function update(){
 					//newel.setAttribute("value", nvals[i]);
 					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>0</span></div>";
 					document.body.appendChild(newel);
-					var ue = $(newel).first().next();
-					ue.prop('number', 0).animateNumber({ number: nvals[i] },4000);
+					setTimeout(goSmooth, 900, $(newel));
 				}
 				else{
 					var modify = document.getElementById(nnames[i]);
@@ -175,6 +174,10 @@ function update(){
 
 }
 
+  function goSmooth(x){
+	  x.first().next().prop('number', 0).animateNumber({ number: nvals[i] },4000);
+  }
+	
   function colorBack(){
 	var all = document.getElementsByClassName("container");
 		for(var i=0;i<all.length;i++)
