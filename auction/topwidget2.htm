@@ -140,9 +140,11 @@ function update(){
 					
 					if (prevpos[i] < newpos[i]){	
 						$(modify).animate({top : "+="+((newpos[i]-prevpos[i])*50)+"px", backgroundColor : "#e8888e"}, 2000);
+						$(modify).css('z-index', 0);
 					}
 					else if(prevpos[i] > newpos[i]){
 						$(modify).animate({top : "-="+((prevpos[i]-newpos[i])*50)+"px", backgroundColor : "#88e88e"}, 2000);	
+						$(modify).css('z-index', 1);
 					}
 				}
 			}
