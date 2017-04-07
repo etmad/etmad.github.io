@@ -139,7 +139,7 @@ function update(){
 					//newel.setAttribute("value", nvals[i]);
 					newel.innerHTML = "<div class='left'><span>"+nnames[i]+"</span></div> <div class='right'><span style='right:15px;'>0</span></div>";
 					document.body.appendChild(newel);
-					setTimeout(goSmooth, 900, $(newel));
+					setTimeout(goSmooth, 900, $(newel), nvals[i]);
 				}
 				else{
 					var modify = document.getElementById(nnames[i]);
@@ -174,8 +174,8 @@ function update(){
 
 }
 
-  function goSmooth(x){
-	  x.first().next().prop('number', 0).animateNumber({ number: nvals[i] },4000);
+  function goSmooth(x, govalue){
+	  x.first().next().prop('number', 0).animateNumber({ number: govalue },4000);
   }
 	
   function colorBack(){
