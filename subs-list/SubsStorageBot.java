@@ -49,18 +49,7 @@ public class SubsStorageBot
 						if (line.contains("twitchnotify@twitchnotify")){
 						line = line.replaceAll("^:", "");
 						line = line.trim();
-						String user = "";
-						for (int i = 0; i < line.length(); i++) 
-							if (line.substring(i, i + 1).equals("!")) {
-								user = line.substring(0, i);
-								break;
-							}
-						
-						for (int i = 0; i < line.length(); i++) 
-							if (line.substring(i, i + 1).equalsIgnoreCase(":")) {
-								line = line.replace(line.substring(0, i + 1), "");
-								break;
-							}
+						String user = line.split(" ")[0];
 						
 						//gsi.add(new SimpleDateFormat("dd-MM-yyyy").format(new Date()), user, line);
 						
