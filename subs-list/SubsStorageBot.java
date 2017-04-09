@@ -53,7 +53,7 @@ public class SubsStorageBot
 						if (line.contains("twitchnotify@twitchnotify")){
 						line = line.replaceAll("^:", "");
 						line = line.trim();
-						user = "";
+						String user = "";
 						for (int i = 0; i < line.length(); i++) 
 							if (line.substring(i, i + 1).equals("!")) {
 								user = line.substring(0, i);
