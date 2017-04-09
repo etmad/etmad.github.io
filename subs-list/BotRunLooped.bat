@@ -1,3 +1,3 @@
 :start
-java VidosikBot
+java SubsStorageBot
 goto start
