@@ -1,5 +1,4 @@
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.*;
 import java.text.*;
 import java.net.*;
 import java.io.*;
