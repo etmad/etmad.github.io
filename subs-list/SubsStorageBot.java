@@ -14,27 +14,6 @@ public class SubsStorageBot
 // implements Runnable
 {
 
-	public static String getYoutubeVideoId(String youtubeUrl) {
-		String video_id = "";
-		if (youtubeUrl != null && youtubeUrl.trim().length() > 0 && youtubeUrl.startsWith("http")) {
-
-			String expression = "^.*((youtu.be" + "\\/)"
-					+ "|(v\\/)|(\\/u\\/w\\/)|(embed\\/)|(watch\\?))\\??v?=?([^#\\&\\?]*).*"; // var
-																								// regExp
-																								// =
-																								// /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-			CharSequence input = youtubeUrl;
-			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-			Matcher matcher = pattern.matcher(input);
-			if (matcher.matches()) {
-				String groupIndex1 = matcher.group(7);
-				if (groupIndex1 != null && groupIndex1.length() == 11)
-					video_id = groupIndex1;
-			}
-		}
-		return video_id;
-	}
-
 	public static void main(String[] args) {
 
 		while (true) {
@@ -89,8 +68,19 @@ public class SubsStorageBot
 						
 						//gsi.add(new SimpleDateFormat("dd-MM-yyyy").format(new Date()), user, line);
 						
-						boolean isPrime = false;
-						if(line.contains("Twitch Prime")) isPrime = true;
+						boolean isPrime = line.contains("Twitch Prime");
+						String src = isPrime?"https://static-cdn.jtvnw.net/badges/v1/a1dd5073-19c3-4911-8cb4-c464a7bc1510/1":"https://static-cdn.jtvnw.net/badges/v1/c5439b12-e908-4f87-8c92-0bd63836b636/1";
+						src = "<tr><td><img src=\""+src+"\"></td><td>"+user+"</td><td>"+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+"</td><td>"+line+"</td></tr>";
+						if(!isPrime) 
+						{
+							PrintWriter out = new PrintWriter(new FileOutputStream(new File("non-primes.htm"), true));
+							out.println(src);
+							out.close();
+						}
+						
+						PrintWriter out = new PrintWriter(new FileOutputStream(new File("all.htm"), true));
+						out.println(src);
+						out.close();
 							
 						}
 					}
