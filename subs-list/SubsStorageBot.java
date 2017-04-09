@@ -66,7 +66,7 @@ public class SubsStorageBot
 						
 						boolean isPrime = line.contains("Twitch Prime");
 						String src = isPrime?"https://static-cdn.jtvnw.net/badges/v1/a1dd5073-19c3-4911-8cb4-c464a7bc1510/1":"https://static-cdn.jtvnw.net/badges/v1/c5439b12-e908-4f87-8c92-0bd63836b636/1";
-						src = "<tr><td><img src=\""+src+"\"></td><td>"+user+"</td><td>"+new SimpleDateFormat("dd-MM-yyyy").format(new Date())+"</td><td>"+line+"</td></tr>";
+						src = "<tr><td><img src=\""+src+"\"></td><td>"+user+"</td><td>"+new SimpleDateFormat("dd-MM HH:mm:ss").format(new Date())+"</td><td>"+line+"</td></tr>";
 						if(!isPrime) 
 						{
 							PrintWriter out = new PrintWriter(new FileOutputStream(new File("non-primes.htm"), true));
