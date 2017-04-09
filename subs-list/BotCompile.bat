@@ -1,2 +1,2 @@
-javac -classpath lib/ -encoding "UTF-8" GSInteractor.java VidosikBot.java 
+javac -encoding "UTF-8" SubsStorageBot.java 
 pause
