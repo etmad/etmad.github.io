@@ -1,0 +1,70 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+div{ position:absolute;}
+</style>
+
+<script>
+//roll one platform
+var alltop = 0;
+var lowest = 250;
+var len = [];
+function rollOne(){
+	alltop += 50;
+	var cnt = Math.round(50 + Math.random() * 100);
+	for(var i=0;i<cnt;i++){
+		var part = (cnt-i) / cnt;
+		var time = 1000*part*part*part;
+		len[i] = time;
+	}
+	console.log(len);
+	goShifting(cnt, 0);
+	pickTop();
+}
+
+function goShifting(cnt){
+	if(cnt==0) return;
+	shiftOne(len[cnt]);
+	setTimeout(goShifting, len[cnt], cnt-1);
+}
+
+function shiftOne(time){
+	//console.log("SHIFT GOES");
+	var all = document.getElementsByTagName("div");
+	console.log(all);
+	for(var i=0;i<all.length;i++){
+		var topv = parseInt(all[i].getAttribute("value"));
+		console.log(topv);
+		if(topv==alltop)
+			{
+				$(all[i]).animate({top:lowest+"px"},time,'linear');
+				//console.log("FLOAT DOWN GOES");
+				all[i].setAttribute("value", lowest);
+			}
+		else if(topv>alltop)
+			{
+				//console.log("FLOAT UP GOES");
+				$(all[i]).animate({top:"-=50"},time,'linear');
+				//$(all[i]).animate({top:"-=50"},time);
+				all[i].setAttribute("value", topv-50);
+			}
+	}
+}
+
+function pickTop(){
+	
+}
+
+</script>
+
+<body>
+<input value="ROLL" onclick="rollOne();" type="button">
+
+<div style="top:50px" value=50>NES</div>
+<div style="top:100px" value=100>DOC</div>
+<div style="top:150px" value=150>GBA</div>
+<div style="top:200px" value=200>SMD</div>
+<div style="top:250px" value=250>GBA</div>
+
+</body>
