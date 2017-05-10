@@ -1,15 +1,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
 
 <style>
-div{ position:absolute;}
+div{  background-color:#ffccff;}
+  div{
+  position:absolute; font-family:'Nunito', sans-serif;font-size:24px;font-style:normal;font-variant:normal;font-weight:bold;
+  box-shadow: 1px 5px 3px grey; width:300px; background-color:#ee88ee; height:40px;
+  text-align: center;
+  vertical-align: middle;}
+ 
+.button {
+    box-shadow: 1px 5px 3px grey;
+	background-color: #504CAF; /* Green */
+    border: none;
+    color: white;
+    padding: 12px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 48px;
+	width:300px;
+} 
+ 
 </style>
 
 <script>
 //roll one platform
-var alltop = 0;
-var lowest = 250;
+var alltop = 50;
+var lowest = 550;
 var len = [];
+var last = -1;
 function rollOne(){
 	alltop += 50;
 	var cnt = Math.round(50 + Math.random() * 100);
@@ -24,7 +45,18 @@ function rollOne(){
 }
 
 function goShifting(cnt){
-	if(cnt==0) return;
+	if(cnt==0) {
+	var all = document.getElementsByTagName("div");
+	for(var i=0;i<all.length;i++){
+		var topv = parseInt(all[i].getAttribute("value"));
+		console.log(topv);
+		if(topv==alltop)
+			{
+				$(all[i]).animate({backgroundColor:"#88ee88"},2000,'linear');
+			}
+		}
+	return;
+	}
 	shiftOne(len[cnt]);
 	setTimeout(goShifting, len[cnt], cnt-1);
 }
@@ -38,9 +70,11 @@ function shiftOne(time){
 		console.log(topv);
 		if(topv==alltop)
 			{
+				all[i].style.zIndex = last;
 				$(all[i]).animate({top:lowest+"px"},time,'linear');
 				//console.log("FLOAT DOWN GOES");
 				all[i].setAttribute("value", lowest);
+				last--;
 			}
 		else if(topv>alltop)
 			{
@@ -59,12 +93,17 @@ function pickTop(){
 </script>
 
 <body>
-<input value="ROLL" onclick="rollOne();" type="button">
+<input class="button" value="ROLL" onclick="rollOne();" type="button">
 
-<div style="top:50px" value=50>NES</div>
-<div style="top:100px" value=100>DOC</div>
-<div style="top:150px" value=150>GBA</div>
-<div style="top:200px" value=200>SMD</div>
-<div style="top:250px" value=250>GBA</div>
+<div style="top:100px" value=100>GameBoy</div>
+<div style="top:150px" value=150>MasterSystem</div>
+<div style="top:200px" value=200>SEGA MD</div>
+<div style="top:250px" value=250>SNES</div>
+<div style="top:300px" value=300>Turbografx</div>
+<div style="top:350px" value=350>GameBoy Advance</div>
+<div style="top:400px" value=400>DOS</div>
+<div style="top:450px" value=450>Commodore 64</div>
+<div style="top:500px" value=500>PS1</div>
+<div style="top:550px" value=550>NES</div>
 
 </body>
