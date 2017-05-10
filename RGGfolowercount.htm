@@ -1,0 +1,84 @@
+<style>
+#container {
+  margin: 20px;
+  width: 800px;
+  height: 800px;
+}
+
+.colored{
+	color: #ED6AED;
+}
+
+</style>
+
+<div id="container">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 1000 1000">
+<path fill-opacity="0" stroke-width="25" stroke="#bbb" d="   M59.351,287.254c-17.052,0-31.16,10.153-31.3,22.185c-0.112,7.404,4.852,12.648,7.797,15.145c5.89,4.881,14.22,7.77,22.886,7.881   l210.236,2.693c3.702,0.057,7.264,1.57,9.872,4.234c2.581,2.664,4.039,6.254,3.983,9.957l-2.637,203.252   c-0.196,16.828,9.957,31.188,22.241,31.355l0.196,14.023v-14.023c12.144,0,22.549-14.078,22.773-30.766l2.636-203.254   c0.112-7.684,6.366-13.854,14.023-13.854c0.056,0,0.112,0,0.196,0l210.348,2.691l0,0c17.361,0,31.188-9.955,31.355-22.213   c0.141-12.228-13.938-22.745-30.794-22.969L342.787,290.9c-3.702-0.056-7.265-1.571-9.873-4.235   c-2.58-2.665-4.038-6.254-3.982-9.957l2.805-217.332c0.112-8.694-2.552-17.108-7.292-23.11c-2.384-3.029-7.517-8.133-14.921-8.217   c-12.312,0-22.773,14.079-22.969,30.739l-2.805,217.303c-0.112,7.685-6.366,13.855-14.023,13.855c-0.056,0-0.112,0-0.196,0z" style="fill: rgb(145, 220, 90);"></path>
+
+<path id="plus" fill-opacity="0" stroke-width="25" stroke="#ED6AED" d="M59.351,287.254c-17.052,0-31.16,10.153-31.3,22.185c-0.112,7.404,4.852,12.648,7.797,15.145c5.89,4.881,14.22,7.77,22.886,7.881   l210.236,2.693c3.702,0.057,7.264,1.57,9.872,4.234c2.581,2.664,4.039,6.254,3.983,9.957l-2.637,203.252   c-0.196,16.828,9.957,31.188,22.241,31.355l0.196,14.023v-14.023c12.144,0,22.549-14.078,22.773-30.766l2.636-203.254   c0.112-7.684,6.366-13.854,14.023-13.854c0.056,0,0.112,0,0.196,0l210.348,2.691l0,0c17.361,0,31.188-9.955,31.355-22.213   c0.141-12.228-13.938-22.745-30.794-22.969L342.787,290.9c-3.702-0.056-7.265-1.571-9.873-4.235   c-2.58-2.665-4.038-6.254-3.982-9.957l2.805-217.332c0.112-8.694-2.552-17.108-7.292-23.11c-2.384-3.029-7.517-8.133-14.921-8.217   c-12.312,0-22.773,14.079-22.969,30.739l-2.805,217.303c-0.112,7.685-6.366,13.855-14.023,13.855c-0.056,0-0.112,0-0.196,0z"/>
+
+
+</svg>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+<div id="follower_count" align=center style="font-family:'Nunito', sans-serif;width:470px;font-size:130px;margin-top:-500px;font-style:normal;font-variant:normal;font-weight:bold;linecolor:#ED6AED;">
+<div class="colored" id="cnt" style="display:inline-block; width:178px;">0</div>
+<div class="colored" id="middle" style="display:inline-block; width:56px;">&nbsp;</div>
+<div class="colored" id="req" style="display:inline-block; width:166px;">20</div>
+</div>
+<div class="colored" style="font-size:72px; width:500px; text-align:center;">
+фолловеров
+</div>
+<div class="colored" style="font-size:72px; width:500px; text-align:center;">
+до плюс игры
+</div>
+
+</div>
+
+
+
+<script>
+var bar = new ProgressBar.Path('#plus', {
+  easing: 'easeInOut',
+  duration: 1400
+});
+bar.set(0);
+var was = 0;
+function update(){
+//var url = "https://api.twitch.tv/kraken/channels/alicetalks/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+var args = location.hash.substring(1).split("/");
+
+console.log(args);
+
+var streamer = args[0];
+var cnt_at_start = args[1];
+var cnt_was = args[2];
+var cnt_needed = args[3];
+
+//          #grigory_skovoroda/105/0/20
+
+
+var url = "https://api.twitch.tv/kraken/channels/"+streamer+"/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+$.get( url, function( data ) {
+  //var datas = data +"";
+  var count = data._total;
+  var count_to_display = count - cnt_at_start - (-cnt_was);
+  //console.log(count);
+  $('#cnt').prop('number', was)
+  .animateNumber({ number: count_to_display });
+  
+  $('#req').html(cnt_needed);
+  
+  was = count_to_display;
+  
+  bar.animate(parseInt(count_to_display)/cnt_needed);  
+});
+}
+update();
+setInterval(update,10000);
+</script>
