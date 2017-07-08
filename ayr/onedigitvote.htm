@@ -69,10 +69,11 @@
 	}
 	else{
     //if(msg.lastIndexOf(":areyouready_88!areyouready_88@areyouready_88.tmi.twitch.tv PRIVMSG #areyouready_88 :!add ", 0) === 0)
-    {
+    
   //if(msg.lastIndexOf(":grigory_skovoroda!grigory_skovoroda@grigory_skovoroda.tmi.twitch.tv PRIVMSG #fua88 :!add ", 0) === 0){
 		var cmd = msg.substring(msg.lastIndexOf("PRIVMSG #zhem4uzhinka :")+23);
-    
+    		if(cmd.length()==1)
+		{
 		cmd = cmd.trim();
 		var q = 1;
 		var who = cmd;
