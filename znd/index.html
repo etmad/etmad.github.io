@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
@@ -91,3 +92,107 @@ function shiftOne(time){
 
 <div style="top:70px" value=70> 123 123 321 тест тест(Grigory_Skovoroda)</div>
 </body>
+=======
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+
+<style>
+div{  background-color:#ffccff;}
+  div{
+  position:absolute; font-family:'Nunito', sans-serif;font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;
+  width:800px; background-color:white; height:20px;
+  text-align: center;
+  vertical-align: middle;}
+ 
+.button {
+    background-color: #504CAF; /* Green */
+    border: none;
+    color: white;
+    padding: 4px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 36px;
+	width:800px;
+} 
+ 
+</style>
+
+<script>
+//roll one platform
+var alltop = 50;
+var lowest = 250;
+var len = [];
+var last = -1;
+function rollOne(){
+	alltop += 20;
+	var cnt = Math.round(50 + Math.random() * 100);
+	for(var i=0;i<cnt;i++){
+		var part = (cnt-i) / cnt;
+		var time = 1000*part*part*part;
+		len[i] = time;
+	}
+	console.log(len);
+	goShifting(cnt, 0);
+	pickTop();
+}
+function goShifting(cnt){
+	if(cnt==0) {
+	var all = document.getElementsByTagName("div");
+	for(var i=0;i<all.length;i++){
+		var topv = parseInt(all[i].getAttribute("value"));
+		console.log(topv);
+		if(topv==alltop)
+			{
+				$(all[i]).animate({backgroundColor:"#88ee88"},2000,'linear');
+			}
+		}
+	return;
+	}
+	shiftOne(len[cnt]);
+	setTimeout(goShifting, len[cnt], cnt-1);
+}
+function shiftOne(time){
+	//console.log("SHIFT GOES");
+	var all = document.getElementsByTagName("div");
+	console.log(all);
+	for(var i=0;i<all.length;i++){
+		var topv = parseInt(all[i].getAttribute("value"));
+		console.log(topv);
+		if(topv==alltop)
+			{
+				last--;
+				all[i].style.zIndex = last;
+				$(all[i]).animate({top:lowest+"px"},time,'linear');
+				//console.log("FLOAT DOWN GOES");
+				all[i].setAttribute("value", lowest);
+			}
+		else if(topv>alltop)
+			{
+				//console.log("FLOAT UP GOES");
+				$(all[i]).animate({top:"-=20"},time,'linear');
+				//$(all[i]).animate({top:"-=50"},time);
+				all[i].setAttribute("value", topv-20);
+			}
+	}
+}
+function pickTop(){
+	
+}
+
+window.onload = function() {
+	$("#latestData").load("inner.html?"+Math.random());	
+	}
+</script>
+
+
+<body>
+<input class="button" value="крутануть" onclick="rollOne();" type="button">
+
+<section id = "latestData">
+
+</section>
+
+</body>
+>>>>>>> 3660af84f53c4a368c9695dd5558b2f7fea06c0b
