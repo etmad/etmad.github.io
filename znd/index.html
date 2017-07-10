@@ -1,105 +1,102 @@
-<!DOCTYPE html>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<head>
-<title>Random voting twitch.tv/etozhezanuda!</title>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
 
 <style>
-   td{
-   width : 50%;
-   }
-   table {
-    width: 100%; /* Ширина таблицы */
-    border-collapse: collapse; /* Убираем двойные линии между ячейками */
-   }
-   td, th {
-    padding: 3px; /* Поля вокруг содержимого таблицы */
-    border: 1px solid #000; /* Параметры рамки */
-   }
-   th {
-    background: #afd792; /* Цвет фона */
-    color: #333;  /* Цвет текста */
-   }
-   tbody tr:hover {
-    background: #f3bd48; /* Цвет фона при наведении */
-    color: #fff; /* Цвет текста при наведении */
-   }
-   iframe {
-    position: absolute; /* Ђбсолютное позиционирование */
-	top : 15px;
-    right: 15px; /* Џоложение от правого краЯ */
-    line-height: 0px;
-   }
-   
-  
-  
-  input{
-  position: relative;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  }
+div{  background-color:#ffccff;}
+  div{
+  position:absolute; font-family:'Nunito', sans-serif;font-size:16px;font-style:normal;font-variant:normal;font-weight:bold;
+  width:800px; background-color:white; height:20px;
+  text-align: center;
+  vertical-align: middle;}
+ 
+.button {
+    background-color: #504CAF; /* Green */
+    border: none;
+    color: white;
+    padding: 4px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 36px;
+	width:800px;
+} 
+ 
 </style>
 
-<script>	
-function cplottopickwinner() {      
- var trs = document.getElementById("latestData").getElementsByTagName("tr");
- var rand = Math.floor( Math.random() * trs.length );
- document.getElementById('winners').appendChild(trs[rand]);
+<script>
+//roll one platform
+var alltop = 50;
+var lowest = 250;
+var len = [];
+var last = -1;
+function rollOne(){
+	alltop += 20;
+	var cnt = Math.round(50 + Math.random() * 100);
+	for(var i=0;i<cnt;i++){
+		var part = (cnt-i) / cnt;
+		var time = 1000*part*part*part;
+		len[i] = time;
+	}
+	console.log(len);
+	goShifting(cnt, 0);
+	pickTop();
 }
+function goShifting(cnt){
+	if(cnt==0) {
+	var all = document.getElementsByTagName("div");
+	for(var i=0;i<all.length;i++){
+		var topv = parseInt(all[i].getAttribute("value"));
+		console.log(topv);
+		if(topv==alltop)
+			{
+				$(all[i]).animate({backgroundColor:"#88ee88"},2000,'linear');
+			}
+		}
+	return;
+	}
+	shiftOne(len[cnt]);
+	setTimeout(goShifting, len[cnt], cnt-1);
+}
+function shiftOne(time){
+	//console.log("SHIFT GOES");
+	var all = document.getElementsByTagName("div");
+	console.log(all);
+	for(var i=0;i<all.length;i++){
+		var topv = parseInt(all[i].getAttribute("value"));
+		console.log(topv);
+		if(topv==alltop)
+			{
+				last--;
+				all[i].style.zIndex = last;
+				$(all[i]).animate({top:lowest+"px"},time,'linear');
+				//console.log("FLOAT DOWN GOES");
+				all[i].setAttribute("value", lowest);
+			}
+		else if(topv>alltop)
+			{
+				//console.log("FLOAT UP GOES");
+				$(all[i]).animate({top:"-=20"},time,'linear');
+				//$(all[i]).animate({top:"-=50"},time);
+				all[i].setAttribute("value", topv-20);
+			}
+	}
+}
+function pickTop(){
+	
+}
+
+window.onload = function() {
+	$("#latestData").load("inner.html?"+Math.random());	
+	}
 </script>
-  
-</head>
+
 
 <body>
+<input class="button" value="РєСЂСѓС‚Р°РЅСѓС‚СЊ" onclick="rollOne();" type="button">
 
-<input type="button" value="GO!" onclick="cplottopickwinner(document.search)">
-<br>
-<b> Winners: </b>
-<table style="width:calc(100% - 450px)">
+<section id = "latestData">
 
-    <tbody id="winners">
-    </tbody>
-    
-</table>
-<br>
-<b> Votes: </b>
+</section>
 
-    <table id = "latestData" style="width:calc(100% - 450px)">
-
-<tr id="hobh0bhob"><td>hobh0bhob</td><td>fallout3</td></tr>
-<tr id="Nimferna"><td>Nimferna</td><td>Syberia</td></tr>
-<tr id="Ktab_Starlord"><td>Ktab_Starlord</td><td>The fall</td></tr>
-<tr id="Applejackl33t"><td>Applejackl33t</td><td>Borderlands2</td></tr>
-<tr id="Cool_Guy_Vlad"><td>Cool_Guy_Vlad</td><td>Silent Hill 3</td></tr>
-<tr id="Kimondi"><td>Kimondi</td><td>Garry Potter</td></tr>
-<tr id="Grigory_Skovoroda"><td>Grigory_Skovoroda</td><td>football manager 2015</td></tr>
-<tr id="Madgeeks"><td>Madgeeks</td><td>Microsoft Flight Simulator X</td></tr>
-<tr id="Large_Serum"><td>Large_Serum</td><td>State of Decay</td></tr>
-<tr id="kapus7ka"><td>kapus7ka</td><td>HOTEL REMORSE</td></tr>
-<tr id="Alpencolt"><td>Alpencolt</td><td>PappersPlease</td></tr>
-<tr id="Dontgiveadamnabouttime"><td>Dontgiveadamnabouttime</td><td>Spore</td></tr>
-<tr id="oduvankenobi"><td>oduvankenobi</td><td>skyrim</td></tr>
-<tr id="Starosta3000"><td>Starosta3000</td><td>Skyrim</td></tr>
-<tr id="PavelDatsyukSib"><td>PavelDatsyukSib</td><td>Layers of fear</td></tr>
-<tr id="HeardScientist"><td>HeardScientist</td><td>to the moon</td></tr>
-<tr id="Jerusalem1488_ru"><td>Jerusalem1488_ru</td><td> The punisher</td></tr>
-<tr id="InvisibleAnomally"><td>InvisibleAnomally</td><td>Witcher 3</td></tr>
-<tr id="Qlkmr"><td>Qlkmr</td><td> Prince of Persia: Warrior Within</td></tr>
-<tr id="2Madeira"><td>2Madeira</td><td>ZOMBI</td></tr>
-<tr id="etozhebot"><td>etozhebot</td><td>Girls Like Robots</td></tr>
-<tr id="MastterAr"><td>MastterAr</td><td>Dragon Age: Origins</td></tr>
-<tr id="Johnny_Hoffmann"><td>Johnny_Hoffmann</td><td>Dark Souls: Prepare to Die Edition</td></tr>
-<tr id="MrSnowen"><td>MrSnowen</td><td>Skyrim</td></tr>
-<tr id="OgyReZ"><td>OgyReZ</td><td>Boson X</td></tr>
-<tr id="etozhezanuda"><td>etozhezanuda</td><td>Sims1</td></tr>
-<tr id="Kerrigon"><td>Kerrigon</td><td>СЃС‚Р°СЂРєР°С„С‚</td></tr>
-    </table>
-
-
-<br>
-<br>
-<br>
-<iframe src="http://www.twitch.tv/etozhezanuda/chat?popout=" style="width:420px; height:95%; position:fixed;">
 </body>
-</html>
