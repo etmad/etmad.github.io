@@ -39,7 +39,7 @@ var lowest = 1125;
 var len = [];
 var last = -1;
 function rollOne(){
-	alltop += 20;
+	alltop += 25;
 	var cnt = Math.round(50 + Math.random() * 100);
 	for(var i=0;i<cnt;i++){
 		var part = (cnt-i) / cnt;
@@ -84,9 +84,9 @@ function shiftOne(time){
 		else if(topv>alltop)
 			{
 				//console.log("FLOAT UP GOES");
-				$(all[i]).animate({top:"-=20"},time,'linear');
+				$(all[i]).animate({top:"-=25"},time,'linear');
 				//$(all[i]).animate({top:"-=50"},time);
-				all[i].setAttribute("value", topv-20);
+				all[i].setAttribute("value", topv-25);
 			}
 	}
 }
