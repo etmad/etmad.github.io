@@ -43,7 +43,7 @@ var lowest = 50;
 var len = [];
 var last = -1;
 
-document.onload = function() {
+window.onload = function() {
   var args = window.location.hash.substr(1).split(",");
   var html = '';
   var toadd = '';
@@ -51,10 +51,8 @@ document.onload = function() {
       lowest += step;
       toadd = '<div style="top:'+lowest+'px" value='+lowest+'>'+args[i]+'</div>';
       html += toadd;
-      console.log(toadd);
   }
   document.body.innerHTML += html;
- //  <div style="top:75px" value=75>Portal  (Grigory_Skovoroda)</div>
 }
 
 //roll one platform
