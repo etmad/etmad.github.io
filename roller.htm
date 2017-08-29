@@ -46,9 +46,12 @@ var last = -1;
 document.onload = function() {
   var args = window.location.hash.substr(1).split(",");
   var html = '';
+  var toadd = '';
   for(var i=0;i<args.length;i++){
       lowest += step;
-      html += '<div style="top:'+lowest+'px" value='+lowest+'>'+args[i]+'</div>';
+      toadd = '<div style="top:'+lowest+'px" value='+lowest+'>'+args[i]+'</div>';
+      html += toadd;
+      console.log(toadd);
   }
   document.body.innerHTML += html;
  //  <div style="top:75px" value=75>Portal  (Grigory_Skovoroda)</div>
@@ -67,7 +70,7 @@ function rollOne(){
 	}
 	console.log(len);
 	goShifting(cnt, 0);
-	pickTop();
+	//pickTop();
 }
 function goShifting(cnt){
 	if(cnt==0) {
