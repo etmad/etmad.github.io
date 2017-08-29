@@ -46,7 +46,7 @@ var last = -1;
 document.onload = function() {
   var args = window.location.hash.substr(1).split(",");
   var html = '';
-  for(int i=0;i<args.length;i++){
+  for(var i=0;i<args.length;i++){
       lowest += step;
       html += '<div style="top:'+lowest+'px" value='+lowest+'>'+args[i]+'</div>';
   }
