@@ -82,7 +82,7 @@ function shiftOne(time){
 			{
 				last--;
 				all[i].style.zIndex = last;
-				$(all[i]).animate({top:lowest+"px"},time,'linear');
+				$(all[i]).animate({top:lowest+"px"},time,'linear'function() {$(this).style.zIndex = last;});
 				//console.log("FLOAT DOWN GOES");
 				all[i].setAttribute("value", lowest);
 			}
