@@ -71,6 +71,11 @@ function goShifting(cnt){
 	shiftOne(len[cnt]);
 	setTimeout(goShifting, len[cnt], cnt-1);
 }
+function reduce(index){
+	last--;
+	document.getElementsByTagName("div")[index].style.zIndex = last;
+}
+
 function shiftOne(time){
 	//console.log("SHIFT GOES");
 	var all = document.getElementsByTagName("div");
@@ -80,7 +85,8 @@ function shiftOne(time){
 		console.log(topv);
 		if(topv==alltop)
 			{
-				$(all[i]).animate({top:lowest+"px"},time,'linear', function() {console.log("UPD z-index for"); console.log($(this)); last--; $(this).style.zIndex = last;});
+				$(all[i]).animate({top:lowest+"px"},time,'linear');
+				setTimeout(reduce, time, i);
 				//console.log("FLOAT DOWN GOES");
 				all[i].setAttribute("value", lowest);
 			}
