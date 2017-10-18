@@ -40,7 +40,7 @@ div{
 <script>
 //roll one platform
 var alltop = 50;
-var lowest = 100;
+var lowest = 125;
 var len = [];
 var last = -1;
 function rollOne(){
@@ -71,11 +71,6 @@ function goShifting(cnt){
 	shiftOne(len[cnt]);
 	setTimeout(goShifting, len[cnt], cnt-1);
 }
-function reduce(index){
-	last--;
-	document.getElementsByTagName("div")[index].style.zIndex = last;
-}
-
 function shiftOne(time){
 	//console.log("SHIFT GOES");
 	var all = document.getElementsByTagName("div");
@@ -85,8 +80,9 @@ function shiftOne(time){
 		console.log(topv);
 		if(topv==alltop)
 			{
-				//setTimeout(reduce, time, i);
-				$(all[i]).animate({top:lowest+"px"},time,'linear',reduce(i));
+				last--;
+				all[i].style.zIndex = last;
+				$(all[i]).animate({top:lowest+"px"},time,'linear');
 				//console.log("FLOAT DOWN GOES");
 				all[i].setAttribute("value", lowest);
 			}
@@ -106,6 +102,7 @@ function shiftOne(time){
 <body>
 <input class="button" value="крутануть" onclick="rollOne();" type="button">
 
-<div style="top:75px" value=75>Portal  (Grigory_Skovoroda)</div>
-<div style="top:100px" value=100>ECHO  (MiaRivers)</div>
+<div style="top:75px" value=75>заработай BlessRNG  (Grigory_Skovoroda)</div>
+<div style="top:100px" value=100>лето  (AppleJackl33t)</div>
+<div style="top:125px" value=125>ECHO  (MiaRivers)</div>
 </body>
