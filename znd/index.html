@@ -80,9 +80,7 @@ function shiftOne(time){
 		console.log(topv);
 		if(topv==alltop)
 			{
-				last--;
-				all[i].style.zIndex = last;
-				$(all[i]).animate({top:lowest+"px"},time,'linear', function() {$(this).style.zIndex = last;});
+				$(all[i]).animate({top:lowest+"px"},time,'linear', function() {last--; $(this).style.zIndex = last;});
 				//console.log("FLOAT DOWN GOES");
 				all[i].setAttribute("value", lowest);
 			}
