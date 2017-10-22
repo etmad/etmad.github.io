@@ -51,16 +51,16 @@ function rollOne(){
 		var time = 1000*part*part*part;
 		len[i] = time;
 	}
-	console.log(len);
 	goShifting(cnt, 0);
 	pickTop();
 }
+
+var all = document.getElementsByTagName("div");
+
 function goShifting(cnt){
 	if(cnt==0) {
-	var all = document.getElementsByTagName("div");
 	for(var i=0;i<all.length;i++){
 		var topv = parseInt(all[i].getAttribute("value"));
-		console.log(topv);
 		if(topv==alltop)
 			{
 				$(all[i]).animate({backgroundColor:"#88ee88", top:"-=15"},2000,'linear');
@@ -71,25 +71,24 @@ function goShifting(cnt){
 	shiftOne(len[cnt]);
 	setTimeout(goShifting, len[cnt], cnt-1);
 }
+
+function updateOrder(i){
+	last++;
+	all[i].style.zIndex = last;	
+}
+
 function shiftOne(time){
 	//console.log("SHIFT GOES");
-	var all = document.getElementsByTagName("div");
-	console.log(all);
 	for(var i=0;i<all.length;i++){
 		var topv = parseInt(all[i].getAttribute("value"));
-		console.log(topv);
-		if(topv==alltop)
-			{
-				last++;
-				all[i].style.zIndex = -1;
-				$(all[i]).animate({top:lowest+"px"},time,'linear');
-				//console.log("FLOAT DOWN GOES");
-				all[i].setAttribute("value", lowest);
+		if(topv==alltop){
+			updateOrder(i);
+			$(all[i]).animate({top:lowest+"px"},time,'linear');
+			//console.log("FLOAT DOWN GOES");
+			all[i].setAttribute("value", lowest);
 			}
-		else if(topv>alltop)
-			{
+		else if(topv>alltop){
 				//console.log("FLOAT UP GOES");
-				all[i].style.zIndex = 0;
 				$(all[i]).animate({top:"-=25"},time,'linear');
 				//$(all[i]).animate({top:"-=50"},time);
 				all[i].setAttribute("value", topv-25);
@@ -103,7 +102,7 @@ function shiftOne(time){
 <body>
 <input class="button" value="крутануть" onclick="rollOne();" type="button">
 
-<div style="top:75px" value=75>Portal  (Grigory_Skovoroda)</div>
+<div style="top:75px" value=75>Oppa  (Grigory_Skovoroda)</div>
 <div style="top:100px" value=100>ECHO  (MiaRivers)</div>
 <div style="top:125px" value=125>Скайрим  (KronusN7)</div>
 </body>
