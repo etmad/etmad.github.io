@@ -81,7 +81,7 @@ function shiftOne(time){
 		if(topv==alltop)
 			{
 				last++;
-				all[i].style.zIndex = last;
+				all[i].style.zIndex = -1;
 				$(all[i]).animate({top:lowest+"px"},time,'linear');
 				//console.log("FLOAT DOWN GOES");
 				all[i].setAttribute("value", lowest);
@@ -89,6 +89,7 @@ function shiftOne(time){
 		else if(topv>alltop)
 			{
 				//console.log("FLOAT UP GOES");
+				all[i].style.zIndex = 0;
 				$(all[i]).animate({top:"-=25"},time,'linear');
 				//$(all[i]).animate({top:"-=50"},time);
 				all[i].setAttribute("value", topv-25);
@@ -102,7 +103,7 @@ function shiftOne(time){
 <body>
 <input class="button" value="крутануть" onclick="rollOne();" type="button">
 
-<div style="top:75px" value=75>Poortal  (Grigory_Skovoroda)</div>
+<div style="top:75px" value=75>Portal  (Grigory_Skovoroda)</div>
 <div style="top:100px" value=100>ECHO  (MiaRivers)</div>
 <div style="top:125px" value=125>Скайрим  (KronusN7)</div>
 </body>
