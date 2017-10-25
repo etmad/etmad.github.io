@@ -83,16 +83,17 @@ function shiftOne(time){
 	for(var i=0;i<all.length;i++){
 		var topv = parseInt(all[i].getAttribute("value"));
 		if(topv==alltop){
-			updateOrder(i);
-			$(all[i]).animate({top:lowest+"px"},1,'linear');
-			//console.log("FLOAT DOWN GOES");
+			//updateOrder(i);
 			all[i].setAttribute("value", lowest);
+			all[i].style.top = lowest+"px";
+			//$(all[i]).animate({top:},1,'linear');
+			//console.log("FLOAT DOWN GOES");
 			}
 		else if(topv>alltop){
 				//console.log("FLOAT UP GOES");
+				all[i].setAttribute("value", topv-25);
 				$(all[i]).animate({top:"-=25"},time,'linear');
 				//$(all[i]).animate({top:"-=50"},time);
-				all[i].setAttribute("value", topv-25);
 			}
 	}
 }
