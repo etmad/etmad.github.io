@@ -91,15 +91,15 @@ function shiftOne(time){
 		var topv = parseInt(all[i].getAttribute("value"));
 		if(i==downIndex){
 			updateOrder(i);
+			all[i].setAttribute("value", lowest);
 			$(all[i]).animate({top:lowest+"px"},time,'linear');
 			//console.log("FLOAT DOWN GOES");
-			all[i].setAttribute("value", lowest);
 			}
 		else if(topv>alltop){
 				//console.log("FLOAT UP GOES");
+				all[i].setAttribute("value", topv-25);
 				$(all[i]).animate({top:"-=25"},time,'linear');
 				//$(all[i]).animate({top:"-=50"},time);
-				all[i].setAttribute("value", topv-25);
 			}
 	}
 }
