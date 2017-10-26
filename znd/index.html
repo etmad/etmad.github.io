@@ -92,8 +92,7 @@ function shiftOne(time){
 		if(i==downIndex){
 			updateOrder(i);
 			all[i].setAttribute("value", lowest);
-			all[i].style.top = lowest+"px";
-			//$(all[i]).animate({top:lowest+"px"},time,'linear');
+			$(all[i]).animate({top:lowest+"px"},time,'linear');
 			//console.log("FLOAT DOWN GOES");
 			}
 		else if(topv>alltop){
