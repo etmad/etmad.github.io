@@ -1,28 +1,91 @@
 <html>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 
 <style>
-#left {
+.left {
 position:absolute;
+display: table;
 width:60%;
-height:100%;
-top:0;
-left:0;
-background: linear-gradient(-90deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+height:100px;
+left:-5px;
+background: #33cccc;
 color: white;
 opacity: 0.95;
 transition: all 2s linear;
 }
 
-#right {
+.right {
 position:absolute;
+display: table;
 width:40%;
-height:100%;
-top:0;
-right:0;
-background: linear-gradient(-90deg, #d80f0d 0%, #c81f2b 51%, #b52c48 75%);
+height:100px;
+right:-5px;
+background: #ff4040;
 color: white;
 opacity: 0.95;
 transition: all 2s linear;
+}
+
+.content-left {
+font-family: 'Roboto', sans-serif;
+vertical-align: middle;
+display: table-cell;
+text-align:left;
+padding-left: 20px;
+font-size: 40;
+color: black;
+}
+
+.content-right {
+font-family: 'Roboto', sans-serif;
+vertical-align: middle;
+display: table-cell;
+text-align:right;
+padding-right: 20px;
+font-size: 40;
+color: white;
+}
+
+.g1 {
+top:0;
+}
+
+.g2 {
+top:110;
+}
+
+.g3 {
+top:220;
+}
+
+.g4 {
+top:330;
+}
+
+#l3 {
+background: #30d5c8;
+}
+
+#r3 {
+background: #ff00ff;
+}
+
+#l2 {
+opacity: 0.5;
+}
+
+#r2 {
+opacity: 0.5;
+}
+
+#l4 {
+background: #30d5c8;
+opacity: 0.5;
+}
+
+#r4 {
+background: #ff00ff;
+opacity: 0.5;
 }
 
 </style>
@@ -45,18 +108,30 @@ function resize(l, r){
 	var s = l + r;
 	var pl = 100.0 * l / s;
 	var pr = 100.0 * r / s;
-	document.getElementById("left").style.width = pl+"%";
-	document.getElementById("right").style.width = pr+"%";
+	document.getElementById("l1").style.width = pl+"%";
+	document.getElementById("r1").style.width = pr+"%";
+	document.getElementById("l2").style.width = pl+"%";
+	document.getElementById("r2").style.width = pr+"%";
+	document.getElementById("l3").style.width = pl+"%";
+	document.getElementById("r3").style.width = pr+"%";
+	document.getElementById("l4").style.width = pl+"%";
+	document.getElementById("r4").style.width = pr+"%";
 }
 </script>
 
-<head>
-MOVING STUFF
-</head>
 <body>
 <div style="width:100%;height:100px;">
-<div id="left" onclick="upl()"> </div>
-<div id="right" onclick="upr()"> </div>
+<div class="left g1"  id="l1" onclick="upl()"> <div class="content-left"> TEXT </div> </div>
+<div class="right g1" id="r1" onclick="upr()"> <div class="content-right"> TEXT </div> </div>
+
+<div class="left g2"  id="l2" onclick="upl()"> <div class="content-left"> TEXT </div> </div>
+<div class="right g2" id="r2" onclick="upr()"> <div class="content-right"> TEXT </div> </div>
+
+<div class="left g3"  id="l3" onclick="upl()"> <div class="content-left"> TEXT </div> </div>
+<div class="right g3" id="r3" onclick="upr()"> <div class="content-right"> TEXT </div> </div>
+
+<div class="left g4"  id="l4" onclick="upl()"> <div class="content-left"> TEXT </div> </div>
+<div class="right g4" id="r4" onclick="upr()"> <div class="content-right"> TEXT </div> </div>
 </div>
 </body>
 </html>
