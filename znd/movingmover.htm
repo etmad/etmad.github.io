@@ -1,0 +1,62 @@
+<html>
+
+<style>
+#left {
+position:absolute;
+width:60%;
+height:100%;
+top:0;
+left:0;
+background: linear-gradient(-90deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+color: white;
+opacity: 0.95;
+transition: all 2s linear;
+}
+
+#right {
+position:absolute;
+width:40%;
+height:100%;
+top:0;
+right:0;
+background: linear-gradient(-90deg, #d80f0d 0%, #c81f2b 51%, #b52c48 75%);
+color: white;
+opacity: 0.95;
+transition: all 2s linear;
+}
+
+</style>
+
+<script>
+var ls = 1;
+var rs = 1;
+
+function upl(){
+ls++;
+resize(ls,rs);
+}
+
+function upr(){
+rs++;
+resize(ls,rs);
+}
+
+function resize(l, r){
+	var s = l + r;
+	var pl = 100.0 * l / s;
+	var pr = 100.0 * r / s;
+	document.getElementById("left").style.width = pl+"%";
+	document.getElementById("right").style.width = pr+"%";
+}
+</script>
+
+<head>
+MOVING STUFF
+</head>
+<body>
+<div style="width:100%;height:100px;">
+<div id="left" onclick="upl()"> </div>
+<div id="right" onclick="upr()"> </div>
+</div>
+</body>
+</html>
