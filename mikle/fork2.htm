@@ -1,0 +1,167 @@
+<meta charset="utf-8"/>
+<style>
+  div{
+    width: -webkit-calc(100% - 430px);
+    width: -moz-calc(100% - 430px);
+    width: calc(100% - 430px);
+  }
+  
+  .main{
+	height: -webkit-calc(100% - 40px);
+    height: -moz-calc(100% - 40px);
+    height: calc(100% - 40px);
+	position:absolute;
+  }
+  
+  .info{
+    bottom: 0;
+	height: 40px;
+	position: fixed;
+	border-top: solid;
+	background-color: white;
+  }
+  
+  .message{
+	display: inline;
+	right:15px;
+	vertical-align: middle;
+	text-align: right;
+	vertical-align: middle;
+	background-color:transparent;
+	width: 75%;
+	position: absolute;
+	border-bottom: thin solid #cccccc;
+  }
+  
+  .time{
+	display: inline;
+	text-align: right;
+	width: 20%;
+	margin-left:15px;
+	height: 100%;
+	vertical-align: middle;
+	text-align:left;
+  }
+  
+  .record{
+	  border-bottom: thin solid #cccccc;
+  }
+  
+  .record:hover{
+	  background: lightpink;
+  }
+  
+  .message:hover{
+	  background: lightpink;
+  }
+  
+  .time:hover{
+	  background: lightpink;
+  }
+  
+  iframe{
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+  var channel = "wave6lol";
+  var count = 0;
+  
+  var chatinfo_url = "https://tmi.twitch.tv/group/user/"+channel+"/chatters";
+  var stats_url = "https://api.twitch.tv/kraken/channels/"+channel+"?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+  var follows_url = "https://api.twitch.tv/kraken/channels/"+channel+"/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+
+  var followers = {};
+  var chatters = {};
+  
+  function setStats(){
+	
+  }
+  
+  function init(){
+	//load subs, load chatters
+	$.get( follows_url, function( data ) {
+		for(var i=0;i<data.follows.length;i++){
+		    var cur = data.follows[i];
+			//console.log(cur);
+			followers[cur.user.display_name] = true;
+		}
+	});
+	
+	$.get({url: chatinfo_url, dataType: "jsonp",  success: function( result ) {
+		var data = result.data;
+		for(var i=0;i<data.chatters.moderators.length;i++){
+			cur = data.chatters.moderators[i];
+			chatters[cur] = true;
+		}
+		for(var i=0;i<data.chatters.viewers.length;i++){
+			cur = data.chatters.viewers[i];
+			chatters[cur] = true;
+		}
+	}});
+	
+	setStats();
+  }
+  
+  function refresh(){
+	var time = new Date();
+	var timestr = ("0"+time.getHours()).slice(-2)+":"+("0"+time.getMinutes()).slice(-2);
+			
+	$.get( follows_url, function( data ) {
+		//var data = jQuery.parseJSON(dataS);
+		for(var i=0;i<data.follows.length;i++){
+			var cur = data.follows[i];
+			if(followers[cur.user.display_name] !== true) 
+				$(".main").append("<div class='record'><div class='time'>"+timestr+"</div><div class='message'>Новы фоллоўер : <b>"+cur.user.display_name+"</b> ! </div>");
+			followers[cur.user.display_name] = true;
+		}
+	});
+	
+	$.get({ url: chatinfo_url, dataType: "jsonp",  success: function( result ) {
+		var data = result.data;
+		if(data.chatter_count == 0) return;
+		var newchatters = {};
+		//console.log(chatters);
+		
+		for(var i=0;i<data.chatters.moderators.length;i++){
+			var cur = data.chatters.moderators[i];
+			if(chatters[cur] !== true)
+				$(".main").append("<div class='record'><div class='time'>"+timestr+"</div><div class='message'>Новы чалавек у чате : <b>"+cur+"</b> ! </div>");	
+			newchatters[cur] = true;
+		}
+		for(var i=0;i<data.chatters.viewers.length;i++){
+			var cur = data.chatters.viewers[i];
+			if(chatters[cur] !== true)
+				$(".main").append("<div class='record'><div class='time'>"+timestr+"</div><div class='message'>Новы чалавек у чате : <b>"+cur+"</b> ! </div>");
+			newchatters[cur] = true;
+		}
+		
+		for(var was in chatters){ 
+			if(newchatters[was] !== true)
+				$(".main").append("<div class='record'><div class='time'>"+timestr+"</div><div class='message'>Чалавек сыйшоў да іншага стрымера: <b>"+was+"</b> ! </div>");
+		}
+		chatters = newchatters;
+	}});
+	setStats();
+  }
+  
+  setTimeout(init, 500);
+  setInterval(refresh, 5000);
+  
+  
+</script>
+
+<body>
+<div class="main">
+
+</div>
+<div class="info">
+</div>
+<iframe src="http://www.twitch.tv/wave6lol/chat?popout=" style="width:420px; height:100%; position:fixed; right:0px; top:0px;"></iframe>
+</body>
