@@ -66,7 +66,7 @@ function spawnEmotesFromMessage(text){
 		var cnt = token.split(":")[1].split(",").length;
 		var linkToEmote = "https://static-cdn.jtvnw.net/emoticons/v1/"+id+"/3.0";
 		for(var at=0;at<cnt;at++)
-			document.body.appendChild(htmlToElement('<div style="position: absolute; animation: godown 5s linear 0s; width: 112px; height: 112px; overflow: hidden; z-index: '+order+'; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:-120px; vertical-align: baseline; left: '+Math.random()*90+'%;"><img src="'+linkToEmote+'" style="max-width:100%;max-height:100%;"></div>')); 
+			document.body.appendChild(htmlToElement('<div style="position: absolute; animation: godown 6s linear 0s; width: 28px; height: 28px; overflow: hidden; z-index: '+order+'; display: block; opacity: 1; padding: 0px; margin: 0px; text-align: center; top:'+Math.round(-Math.random()*200)+'px; vertical-align: baseline; left: '+Math.random()*90+'%;"><img src="'+linkToEmote+'" style="max-width:100%;max-height:100%;"></div>')); 
 	}
 
 	order++;
