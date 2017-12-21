@@ -1,0 +1,84 @@
+<style>
+@font-face {
+    font-family : pixelatedFont;
+    src : url(LCD_Solid.ttf);
+}
+
+div {
+	font-face : pixelatedFont;
+	display : inline-block;
+	margin-right : -15px;
+}  
+
+.pvz {
+	margin-right : -35px;
+}
+
+.intext {
+	position : relative;
+	top : -29px;
+	width : 170px;
+	left : -210px;
+	margin-right : -170px;
+	text-align : center;
+	font-weight : 800;
+}
+
+#train {
+	position : absolute;
+	left : 1000px;
+	width : 1000000px;
+}
+
+</style>
+
+<script>
+var length = 0;
+var maxpos = 1920;
+var pos = maxpos;
+var nicks = ["very_long_nickname", "not_so_long", "autism", "wtf", "LOLOLO"];
+var lastSub = -1;
+var train;
+
+function createTrain(){
+	var src = '<div class="pvz"> <img src="parvoz0.gif"> </div>';
+	for(var i = 0; i < nicks.length; i++) {
+		src += '<div> <img src="wagon0.gif"> <div class="intext"> ' + nicks[i] + '</div> </div>'
+
+	}
+	train = document.getElementById("train");
+	train.innerHTML = src;
+	
+	pos = maxpos;
+	
+	train.style.left = pos+"px";
+	length = 400 + (nicks.length * 200);
+	setTimeout(moveTrain, 30);
+}
+
+function moveTrain(){
+	pos = pos - 5;
+	
+	train = document.getElementById('train');
+	
+	train.style.left = pos+"px";
+	
+	if(pos < -length) {
+		setTimeout(createTrain, 15000);
+	}
+	else {
+		setTimeout(moveTrain, 30);
+	}
+	
+}
+
+setTimeout(createTrain, 2000);
+</script>
+
+<body>
+
+<div id="train"> 
+
+</div>
+
+</body>
