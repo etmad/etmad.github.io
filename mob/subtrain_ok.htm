@@ -1,0 +1,179 @@
+<style>
+@font-face {
+    font-family : pixelatedFont;
+    src : url(LCD_Solid.ttf);
+}
+
+div {
+	font-face : pixelatedFont;
+	display : inline-block;
+	margin-right : -15px;
+}  
+
+.pvz {
+	margin-right : -35px;
+}
+
+.intext {
+	position : relative;
+	top : -29px;
+	width : 170px;
+	left : -210px;
+	margin-right : -170px;
+	text-align : center;
+	font-weight : 800;
+}
+
+#train {
+	position : absolute;
+	left : 1000px;
+	width : 1000000px;
+}
+
+#timer {
+	position : absolute;
+	left : 20px;
+	top : 0px;
+	font-size : 72px;
+}
+</style>
+
+<script>
+var length = 0;
+var maxpos = 1920;
+var pos = maxpos;
+var nicks = [];
+var lastSub = -1;
+var train;
+
+var soundFile = document.createElement("audio");
+soundFile.preload = "auto";
+var src = document.createElement("source");
+src.src = "https://s91.123apps.com/aconv/d/s91cDucMBAr.mp3";
+soundFile.appendChild(src);
+soundFile.load();
+soundFile.volume = 0.000000;
+soundFile.play();
+
+function playSound() {
+   soundFile.currentTime = 0.01;
+   soundFile.volume = 0.2;
+   setTimeout(function(){soundFile.play();},1);
+}
+
+function createTrain(){
+	if(Date.now() - lastSub > 1000 * 60 * 5) { return; nicks = []; lastSub = -1;}
+	
+	if(nicks.length == 0) return;
+
+	var src = '<div class="pvz"> <img src="parvoz0.gif"> </div>';
+	for(var i = 0; i < nicks.length; i++) {
+		src += '<div> <img src="wagon0.gif"> <div class="intext"> ' + nicks[i] + '</div> </div>'
+
+	}
+	train = document.getElementById("train");
+	train.innerHTML = src;
+	
+	pos = maxpos;
+	
+	train.style.left = pos + "px";
+	length = 400 + (nicks.length * 200);
+	setTimeout(moveTrain, 30);
+	playSound();
+}
+
+function moveTrain(){
+	pos = pos - 5;
+	
+	train = document.getElementById('train');
+	
+	train.style.left = pos+"px";
+	
+	if(pos < -length) {
+		setTimeout(createTrain, 30000);
+	}
+	else {
+		setTimeout(moveTrain, 30);
+	}
+	
+}
+
+setTimeout(createTrain, 2000);
+
+function updateTimer() {
+	var delta = Math.round((Date.now() - lastSub) / 1000);
+	var rem = 300 - delta;
+	if (rem > 300)
+		rem = 0;
+	if (rem < 0)
+		rem = 0;
+	var mins = Math.floor(rem / 60);
+	var secs = rem - mins * 60;
+	if(secs<10) secs = "0" + secs;
+	var s = mins + ":" + secs; 
+	document.getElementById("timer").innerHTML = s;
+}
+
+setInterval(updateTimer, 1000);
+
+var socket;
+
+const socketOpenListener = (event) => {
+  socket.send("NICK justinfan123456");
+  socket.send("JOIN #mob5tertv");
+  socket.send("CAP REQ :twitch.tv/tags");
+  socket.send("CAP REQ :twitch.tv/commands");
+};
+
+const socketStart = (event) => {
+  if (socket) {
+    console.error('Disconnected.');
+  }
+  socket = new WebSocket('wss://irc-ws.chat.twitch.tv/');
+  socket.addEventListener('open', socketOpenListener);
+  socket.addEventListener('message', socketMessageListener);
+  socket.addEventListener('close', socketStart);
+}; 
+
+const socketMessageListener = (event) => {
+	var msg = event.data;
+	//console.log(msg);
+	if(msg === "PING"){
+		socket.send("PONG :tmi.twitch.tv");
+	}
+	else 
+	if(msg.indexOf("USERNOTICE") != -1)
+	{
+		if(msg.indexOf("msg-param-recipient-display-name=" != -1)) {
+			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
+			msg = msg.substring(0, msg.indexOf(";"));
+			nicks.push(msg);
+			lastSub = Date.now();
+			console.log(msg);
+		}
+		else {
+			msg = msg.substring(msg.indexOf("display-name=") + 13);
+			msg = msg.substring(0, msg.indexOf(";"));
+			nicks.push(msg);
+			lastSub = Date.now();
+			console.log(msg);
+		}
+		
+		createTrain();
+	}
+}
+
+socketStart();	
+</script>
+
+<body>
+
+<div id="train"> 
+
+</div>
+
+<div id="timer">
+5:00
+</div>
+
+</body>
