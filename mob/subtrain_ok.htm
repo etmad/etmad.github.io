@@ -57,7 +57,7 @@ soundFile.play();
 
 function playSound() {
    soundFile.currentTime = 0.01;
-   soundFile.volume = 0.2;
+   soundFile.volume = 0.5;
    setTimeout(function(){soundFile.play();},1);
 }
 
@@ -137,6 +137,7 @@ const socketStart = (event) => {
 
 const socketMessageListener = (event) => {
 	var msg = event.data;
+	msg = msg + "";
 	//console.log(msg);
 	if(msg === "PING"){
 		socket.send("PONG :tmi.twitch.tv");
@@ -144,21 +145,23 @@ const socketMessageListener = (event) => {
 	else 
 	if(msg.indexOf("USERNOTICE") != -1)
 	{
+		console.log(msg);
 		if(msg.indexOf("msg-param-recipient-display-name=" != -1)) {
 			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
 			msg = msg.substring(0, msg.indexOf(";"));
 			nicks.push(msg);
+			if(Date.now() - lastSub > 1000 * 60 * 5) createTrain();
 			lastSub = Date.now();
-			console.log(msg);
+			console.log(">"+msg);
 		}
 		else {
 			msg = msg.substring(msg.indexOf("display-name=") + 13);
 			msg = msg.substring(0, msg.indexOf(";"));
 			nicks.push(msg);
+			if(Date.now() - lastSub > 1000 * 60 * 5) createTrain();
 			lastSub = Date.now();
-			console.log(msg);
+			console.log(">"+msg);
 		}
-		
 		createTrain();
 	}
 }
@@ -173,7 +176,7 @@ socketStart();
 </div>
 
 <div id="timer">
-5:00
+0:00
 </div>
 
 </body>
