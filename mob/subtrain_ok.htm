@@ -66,9 +66,9 @@ function createTrain(){
 	
 	if(nicks.length == 0) return;
 
-	var src = '<div class="pvz"> <img src="parvoz0.gif"> </div>';
+	var src = '<div class="pvz"> <img src="parvoz-ny.gif"> </div>';
 	for(var i = 0; i < nicks.length; i++) {
-		src += '<div> <img src="wagon0.gif"> <div class="intext"> ' + nicks[i] + '</div> </div>'
+		src += '<div> <img src="wagon-ny.gif"> <div class="intext"> ' + nicks[i] + '</div> </div>'
 
 	}
 	train = document.getElementById("train");
@@ -146,7 +146,7 @@ const socketMessageListener = (event) => {
 	if(msg.indexOf("USERNOTICE") != -1)
 	{
 		console.log(msg);
-		if(msg.indexOf("msg-param-recipient-display-name=" != -1)) {
+		if(msg.indexOf("msg-param-recipient-display-name=") != -1) {
 			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
 			msg = msg.substring(0, msg.indexOf(";"));
 			nicks.push(msg);
