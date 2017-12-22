@@ -98,8 +98,6 @@ function moveTrain(){
 	
 }
 
-setTimeout(createTrain, 2000);
-
 function updateTimer() {
 	var delta = Math.round((Date.now() - lastSub) / 1000);
 	var rem = 300 - delta;
@@ -162,7 +160,7 @@ const socketMessageListener = (event) => {
 			lastSub = Date.now();
 			console.log(">"+msg);
 		}
-		createTrain();
+		//createTrain();
 	}
 }
 
@@ -170,6 +168,7 @@ socketStart();
 
 function addWagon(name){
     nicks.push(name);
+    lastSub = Date.now();
     createTrain();
 }
 </script>
@@ -180,7 +179,7 @@ function addWagon(name){
 
 </div>
 
-<div id="timer" onclick="addWagon("GOGOGOGO")">
+<div id="timer" onclick='addWagon("GOGOGOGO");'>
 0:00
 </div>
 
