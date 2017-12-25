@@ -148,7 +148,7 @@ const socketMessageListener = (event) => {
 			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
 			msg = msg.substring(0, msg.indexOf(";"));
 			nicks.push(msg);
-			if(Date.now() - lastSub > 1000 * 60 * 5) createTrain();
+			//if(Date.now() - lastSub > 1000 * 60 * 5) createTrain();
 			lastSub = Date.now();
 			console.log(">"+msg);
 		}
@@ -156,11 +156,11 @@ const socketMessageListener = (event) => {
 			msg = msg.substring(msg.indexOf("display-name=") + 13);
 			msg = msg.substring(0, msg.indexOf(";"));
 			nicks.push(msg);
-			if(Date.now() - lastSub > 1000 * 60 * 5) createTrain();
+			//if(Date.now() - lastSub > 1000 * 60 * 5) createTrain();
 			lastSub = Date.now();
 			console.log(">"+msg);
 		}
-		//createTrain();
+		createTrain();
 	}
 }
 
