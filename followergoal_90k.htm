@@ -1,0 +1,71 @@
+<style>
+#container {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+}
+</style>
+
+<div id="container">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
+<path fill-opacity="0" stroke-width="1" stroke="#bbb" d="
+M50,24.4
+C44.74,13.612,29.879,8.657,18.511,13.923  
+C6.402,19.539,0.613,33.883,10.175,50.804
+c6.792,12.04,18.826,21.111,39.831,37.379
+c20.993-16.268,33.033-25.344,39.819-37.379  
+C99.387,33.883,93.598,19.539,81.495,13.923
+c-11.368-5.261-26.234-0.311-31.489,11.032z"/>
+<path id="heart-path" fill-opacity="0" stroke-width="2" stroke="#ED6AED" d="
+M50,24.5
+C44.74,13.612,29.879,8.657,18.511,13.923  
+C6.402,19.539,0.613,33.883,10.175,50.804
+c6.792,12.04,18.826,21.111,39.831,37.379
+c20.993-16.268,33.033-25.344,39.819-37.379  
+C99.387,33.883,93.598,19.539,81.495,13.923
+c-11.368-5.261-26.234-0.311-31.489,11.032z"/>
+</svg>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+<div id="follower_count" align=center style="font-family:'Nunito', sans-serif;font-size:24px;margin-top:-140px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#ED6AED;">
+<span id="cnt">0</span>
+<br>
+из
+<br>
+90000
+</div>
+
+
+</div>
+
+
+
+<script>
+var bar = new ProgressBar.Path('#heart-path', {
+  easing: 'easeInOut',
+  duration: 1400
+});
+bar.set(0);
+var was = 0;
+function update(){
+//var url = "https://api.twitch.tv/kraken/channels/alicetalks/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+var url = "https://api.twitch.tv/kraken/channels/"+location.hash.substring(1)+"/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+$.get( url, function( data ) {
+  //var datas = data +"";
+  var count = data._total;
+  //console.log(count);
+  $('#cnt').prop('number', was)
+  .animateNumber({ number: count });
+  was = count;
+  
+  bar.animate((parseInt(count)-89000)/1000);  
+});
+}
+update();
+setInterval(update,100000);
+</script>
