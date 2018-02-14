@@ -35,9 +35,9 @@ c-11.368-5.261-26.234-0.311-31.489,11.032z"/>
 <div id="follower_count" align=center style="font-family:'Nunito', sans-serif;font-size:24px;margin-top:-140px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#ED6AED;">
 <span id="cnt">0</span>
 <br>
-of
+из
 <br>
-10000
+100000
 </div>
 
 
@@ -63,9 +63,9 @@ $.get( url, function( data ) {
   .animateNumber({ number: count });
   was = count;
   
-  bar.animate(parseInt(count)/10000);  
+  bar.animate(parseInt(count)/100000);  
 });
 }
 update();
-setInterval(update,10000);
+setInterval(update,100000);
 </script>
