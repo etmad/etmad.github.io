@@ -28,6 +28,7 @@ z-index:-1;
 function setValue(v){
 var px = - v* 2.25 + 950;
 $("#up").css('top', px + "px");
+$("#mid").css('top', (px+112) + "px");
 $("#mid").css('height', (390 - px) + "px");
 $("#text").html(v+" => "+px);
 }
