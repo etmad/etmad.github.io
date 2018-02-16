@@ -1,0 +1,50 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+body{
+background-color:#0A0;
+}
+img{
+position:absolute;
+left:0px;
+}
+#down{
+top:500px;
+}
+#up{
+top:388px;
+}
+#mid{
+position:absolute;
+width:51px;
+background-color:#DDD;
+left:25px;
+bottom:237px;
+z-index:-1;
+}
+</style>
+
+<script>
+function setValue(v){
+var px = - v* 2.25 + 950;
+$("#up").css('top', px + "px");
+$("#mid").css('height', (390 - px) + "px");
+$("#text").html(v+" => "+px);
+}
+
+var val = 0;
+
+setInterval(function(){
+val++;
+if(val>150) val=0;
+setValue(val+250);
+},
+100);
+</script>
+
+<body>
+<img id="up" src="https://cdn.betterttv.net/emote/5a269faffc6e584787d98580/3x"></img>
+<img id="down" src="https://cdn.betterttv.net/emote/5a269fbdfc6e584787d98581/3x"></img>
+<div id="text"></div>
+<div id="mid"></div>
+</body>
