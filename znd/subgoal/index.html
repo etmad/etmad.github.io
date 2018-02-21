@@ -1,0 +1,33 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<style>
+img{
+position:absolute;
+left:0px;
+top:0px;
+}
+</style>
+
+<script>
+function setValue(v){
+var percent = (v - 250) / 50; 
+var clipwidth = percent * 520;
+$("#main").css('clip', "rect(0, " + clipwidth + "px, 520px, 0)");
+$("#text").html(v + " => " + percent);
+}
+
+var val = 0;
+
+setInterval(function(){
+val++;
+if(val>50) val=0;
+setValue(val+250);
+},
+100);
+</script>
+
+<body>
+<img id="main" src="mt3_yellow.png"></img>
+<img id="outline" src="mt3_line_transparent.png"></img>
+<div id="text"></div>
+</body>
