@@ -6,6 +6,12 @@
   </div>:<div>
     <span class="seconds"></span>
   </div>
+  <br>
+  <div style="font-size:30px;">
+    Выкупите сон стримера за &nbsp;
+	  <span class="price"></span>
+    &nbsp; рублей
+  </div>
 </div>
 
 <style>
@@ -64,6 +70,7 @@ function initializeClock(id, endtime) {
   var hoursSpan = clock.querySelector('.hours');
   var minutesSpan = clock.querySelector('.minutes');
   var secondsSpan = clock.querySelector('.seconds');
+  var priceSpan = clock.querySelector('.price');
 
   function updateClock() {
     var t = getTimeRemaining(endtime);
@@ -71,6 +78,11 @@ function initializeClock(id, endtime) {
     hoursSpan.innerHTML = (t.hours);
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    var price = t.hours * 300 + t.minutes*5 + t.seconds/12.0;
+    price = Math.ceil(price);
+    if (price % 2 == 0) 
+	price++;
+    priceSpan.innerHTML = price;
   }
 
   updateClock();
