@@ -1,33 +1,54 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
 
 <style>
-img{
-position:absolute;
-left:0px;
-top:0px;
+img {
+  position:absolute;
+  left:0px;
+  top:0px;
 }
+div {
+  margin: 420px;
+  height: 28px;
+  width: 500px;
+  font-family:'Nunito', sans-serif;
+  font-size:56px;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:bold;
+  line-height:26.4px;
+  color:#FFD600;
+}
+  
 </style>
 
 <script>
-function setValue(v){
-var percent = (v - 250) / 50; 
-var clipwidth = percent * 520;
-$("#main").css('clip', "rect(0, " + clipwidth + "px, 520px, 0)");
-$("#text").html(v + " => " + percent);
+var low = 250;
+var high = 300;
+var span = high - low;
+var imgwidth = 520;
+function setValue(v) {
+  var percent = (v - low) / span; 
+  var clipwidth = percent * imgwidth;
+  $("#main").css('clip', "rect(0, " + clipwidth + "px, " + imgwidth + "px, 0)");
+  $("#cnt").html(v);
 }
 
 var val = 0;
 
-setInterval(function(){
-val++;
-if(val>50) val=0;
-setValue(val+250);
-},
+setInterval( function() {
+    val++;
+    if (val > 50) val=0;
+    setValue(val+250);
+  },
 100);
 </script>
 
 <body>
 <img id="main" src="mt3_yellow.png"></img>
 <img id="outline" src="mt3_line_orange.png"></img>
-<div id="text"></div>
+<div id="text">
+  <span id="cnt">250</span> 
+  / 600 
+</div>
 </body>
