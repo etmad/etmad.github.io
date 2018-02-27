@@ -3,23 +3,23 @@
 
 <style>
 img {
-  position:absolute;
-  left:0px;
-  top:0px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
 }
 div {
   margin: 420px;
   height: 28px;
-  width: 500px;
-  font-family:'Nunito', sans-serif;
-  font-size:56px;
-  font-style:normal;
-  font-variant:normal;
-  font-weight:bold;
-  line-height:26.4px;
-  color:#FFD600;
+  width: 250px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 56px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: bold;
+  line-height: 26.4px;
+  color: #FFD600;
+  text-align: center;
 }
-  
 </style>
 
 <script>
@@ -39,7 +39,7 @@ var val = 0;
 setInterval( function() {
     val++;
     if (val > 50) val=0;
-    setValue(val+250);
+    setValue(val + 250);
   },
 100);
 </script>
@@ -48,7 +48,6 @@ setInterval( function() {
 <img id="main" src="mt3_yellow.png"></img>
 <img id="outline" src="mt3_line_orange.png"></img>
 <div id="text">
-  <span id="cnt">250</span> 
-  / 600 
+  <span id="cnt">250</span>
 </div>
 </body>
