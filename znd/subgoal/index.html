@@ -25,7 +25,7 @@ div {
 </style>
 
 <script>
-var low = 250;
+var low = 240;
 var high = 300;
 var span = high - low;
 var imgwidth = 520;
@@ -36,20 +36,21 @@ function setValue(v) {
   $("#cnt").html(v);
 }
 
-var val = 0;
-
-setInterval( function() {
-    val++;
-    if (val > 50) val=0;
-    setValue(val + 250);
-  },
-100);
+function update(){
+var url = "https://api.twitch.tv/kraken/channels/etozhezanuda/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+$.get( url, function( data ) {
+  var count = data._total;
+  setValue(count);
+});
+}
+update();
+setInterval(update,1000);
 </script>
 
 <body>
 <img id="main" src="mt3_yellow.png"></img>
 <img id="outline" src="mt3_line_orange.png"></img>
 <div id="text">
-  <span id="cnt">250</span>
+  <span id="cnt">0</span>
 </div>
 </body>
