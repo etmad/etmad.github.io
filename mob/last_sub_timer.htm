@@ -1,0 +1,115 @@
+<style>
+@font-face {
+    font-family : pixelatedFont;
+    src : url(LCD_Solid.ttf);
+}
+
+div {
+	font-face : pixelatedFont;
+	display : inline-block;
+	margin-right : -15px;
+}  
+
+.pvz {
+	margin-right : -35px;
+}
+
+.intext {
+	position : relative;
+	top : -29px;
+	width : 170px;
+	left : -210px;
+	margin-right : -170px;
+	text-align : center;
+	font-weight : 800;
+}
+
+#train {
+	position : absolute;
+	left : 1000px;
+	width : 1000000px;
+}
+
+#timer {
+	position : absolute;
+	left : 20px;
+	top : 0px;
+	font-size : 72px;
+}
+</style>
+
+<script>
+var lastSub = -1;
+
+function updateTimer() {
+	var delta = Math.round((Date.now() - lastSub) / 1000);
+	var rem = delta;
+	var mins = Math.floor(rem / 60);
+	var secs = rem - mins * 60;
+	if(secs<10) secs = "0" + secs;
+	var s = mins + ":" + secs; 
+	document.getElementById("timer").innerHTML = s;
+}
+
+setInterval(updateTimer, 1000);
+
+var socket;
+
+const socketOpenListener = (event) => {
+  socket.send("NICK justinfan123456");
+  socket.send("JOIN #mob5tertv");
+  socket.send("CAP REQ :twitch.tv/tags");
+  socket.send("CAP REQ :twitch.tv/commands");
+};
+
+const socketStart = (event) => {
+  if (socket) {
+    console.error('Disconnected.');
+  }
+  socket = new WebSocket('wss://irc-ws.chat.twitch.tv/');
+  socket.addEventListener('open', socketOpenListener);
+  socket.addEventListener('message', socketMessageListener);
+  socket.addEventListener('close', socketStart);
+}; 
+
+const socketMessageListener = (event) => {
+	var msg = event.data;
+	msg = msg + "";
+	//console.log(msg);
+	if(msg === "PING"){
+		socket.send("PONG :tmi.twitch.tv");
+	}
+	else 
+	if(msg.indexOf("USERNOTICE") != -1)
+	{
+		console.log(msg);
+		if(msg.indexOf("msg-param-recipient-display-name=") != -1) {
+			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
+			msg = msg.substring(0, msg.indexOf(";"));
+			lastSub = Date.now();
+			console.log(">"+msg);
+		}
+		else {
+			msg = msg.substring(msg.indexOf("display-name=") + 13);
+			msg = msg.substring(0, msg.indexOf(";"));
+			lastSub = Date.now();
+			console.log(">"+msg);
+		}
+		createTrain();
+	}
+}
+
+socketStart();	
+</script>
+
+<body>
+
+<div id="train"> 
+
+</div>
+
+<div id="timer">
+0:00
+</div>
+
+</body>
