@@ -1,0 +1,53 @@
+<style>
+div{
+  margin: 20px;
+  height: 28px;
+  width: 500px;
+}
+</style>
+
+<div id="container">
+<svg style="width:100%;height:100%;">
+<path fill-opacity="0" stroke-width="1" stroke="#bbb" d="m 0,14 h 500"></path>
+<path id="heart-path" fill-opacity="0" stroke-width="24" stroke="#6AED6A" d="m 0,14 h 500"></path>
+</svg>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+</div>
+
+<div id="follower_count" align=center style="font-family:'Nunito', sans-serif;font-size:56px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#6AED6A;">
+<span id="cnt">0</span>
+ / 600
+</div>
+
+
+<script>
+var bar = new ProgressBar.Path('#heart-path', {
+  easing: 'easeInOut',
+  duration: 1400
+});
+bar.set(0);
+var was = 0;
+function update(){
+//var url = "https://api.twitch.tv/kraken/channels/alicetalks/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+var url = "https://api.twitch.tv/kraken/channels/areyouready_88/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+//var url = "https://api.twitch.tv/kraken/channels/"+location.hash.substring(1)+"/follows?client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+$.get( url, function( data ) {
+  //var datas = data +"";
+  var count = data._total;
+  //console.log(count);
+  $('#cnt').prop('number', was)
+  .animateNumber({ number: count });
+  was = count;
+  
+  bar.animate(parseInt(count)/600);  
+});
+}
+update();
+setInterval(update,1000);
+</script>
