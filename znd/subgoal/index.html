@@ -33,7 +33,7 @@ function setValue(v) {
   var percent = (v - low) / span; 
   var clipwidth = percent * imgwidth;
   $("#main").css('clip', "rect(0, " + clipwidth + "px, " + imgwidth + "px, 0)");
-  $("#cnt").html(v);
+  $("#cnt").html(v+"/333");
 }
 
 function update(){
@@ -52,7 +52,5 @@ setInterval(update,1000);
 <img id="outline" src="mt3_line_orange.png"></img>
 <div id="text">
   <span id="cnt">0</span>
-  <span id="of">/333</span>
-  
 </div>
 </body>
