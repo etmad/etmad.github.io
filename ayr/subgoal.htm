@@ -40,6 +40,7 @@ var url = "https://api.twitch.tv/kraken/channels/areyouready_88/subscriptions?li
 $.get( url, function( data ) {
   //var datas = data +"";
   var count = data._total;
+  document.title = count;
   //console.log(count);
   $('#cnt').prop('number', was)
   .animateNumber({ number: count });
