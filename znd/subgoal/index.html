@@ -25,15 +25,15 @@ div {
 </style>
 
 <script>
-var low = 270;
-var high = 333;
+var low = 333;
+var high = 400;
 var span = high - low;
 var imgwidth = 520;
 function setValue(v) {
   var percent = (v - low) / span; 
   var clipwidth = percent * imgwidth;
   $("#main").css('clip', "rect(0, " + clipwidth + "px, " + imgwidth + "px, 0)");
-  $("#cnt").html(v+"/333");
+  $("#cnt").html(v+"/400");
 }
 
 function update(){
