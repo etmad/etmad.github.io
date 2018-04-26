@@ -34,7 +34,7 @@ var bar = new ProgressBar.Path('#heart-path', {
 bar.set(0);
 var was = 0;
 function update(){
-var url = "https://api.twitch.tv/kraken/channels/mob5tertv/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
 $.get( url, function( data ) {
   //var datas = data +"";
   var count = data._total;
