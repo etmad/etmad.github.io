@@ -34,12 +34,6 @@ div{
 </div>
 
 <script>
-var bar = new ProgressBar.Path('#heart-path', {
-  easing: 'easeInOut',
-  duration: 1400
-});
-bar.set(0);
-var was = 0;
 function update(){
 var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
 $.get( url, function( data ) {
@@ -53,6 +47,17 @@ $.get( url, function( data ) {
   bar.animate(parseInt(count)/1500);  
 });
 }
+
+function setup(){
+var bar = new ProgressBar.Path('#heart-path', {
+  easing: 'easeInOut',
+  duration: 1400
+});
+bar.set(0);
+var was = 0;
 update();
+}
+  
+setTimeout(setup,1000);
 setInterval(update,10000);
 </script>
