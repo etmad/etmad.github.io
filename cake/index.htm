@@ -58,8 +58,8 @@ bar = new ProgressBar.Path('#heart-path', {
 });
 bar.set(0);
 update();
-}
-  
-setTimeout(setup,1000);
 setInterval(update,10000);
+}
+
+document.addEventListener("DOMContentLoaded", setup);
 </script>
