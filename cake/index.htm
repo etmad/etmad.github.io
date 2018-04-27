@@ -35,6 +35,8 @@ div{
 
 <script>
 var was = 0;
+var bar;
+
 function update(){
 var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
 $.get( url, function( data ) {
@@ -50,7 +52,7 @@ $.get( url, function( data ) {
 }
 
 function setup(){
-var bar = new ProgressBar.Path('#heart-path', {
+bar = new ProgressBar.Path('#heart-path', {
   easing: 'easeInOut',
   duration: 1400
 });
