@@ -1,0 +1,86 @@
+<style>
+div{
+  margin: 5px;
+  height: 42px;
+  display: inline-block; 
+}
+#container{
+  width: 500px;
+  border: 2px solid #ccc !important;
+  border-color:#000;
+}
+.caption{
+  width:700px;
+  margin-left:500px;
+}
+
+@-webkit-keyframes shake {
+0%{-webkit-transform: rotate(0deg);}
+5%{-webkit-transform: rotate(25deg);}
+10%{-webkit-transform: rotate(-20deg);}
+15%{-webkit-transform: rotate(16deg);}
+20%{-webkit-transform: rotate(-12.8deg);}
+25%{-webkit-transform: rotate(10.24deg);}
+30%{-webkit-transform: rotate(-8.192deg);}
+35%{-webkit-transform: rotate(6.553deg);}
+40%{-webkit-transform: rotate(-5.243deg);}
+45%{-webkit-transform: rotate(4.194deg);}
+50%{-webkit-transform: rotate(-3.355deg);}
+55%{-webkit-transform: rotate(2.68deg);}
+60%{-webkit-transform: rotate(-2.147deg);}
+65%{-webkit-transform: rotate(1.718deg);}
+70%{-webkit-transform: rotate(-1.37deg);}
+75%{-webkit-transform: rotate(1.1deg);}
+80%{-webkit-transform: rotate(-0.88deg);}
+85%{-webkit-transform: rotate(0.704deg);}
+90%{-webkit-transform: rotate(-0.563deg);}
+95%{-webkit-transform: rotate(0.45deg);}
+100%{-webkit-transform: rotate(0deg);}
+}
+</style>
+
+<div class="caption" id="follower_count" style="font-family:'Nunito', sans-serif;font-size:56px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#555;">
+<span id="cnt">0</span> / 1500
+</div>
+
+<div id="container">
+<svg style="width:100%;height:100%;">
+<path fill-opacity="0" stroke-width="56" stroke="#999" d="m 0,14 h 500"></path>
+<path id="heart-path" fill-opacity="0" stroke-width="56" stroke="#ddd" d="m 0,14 h 500"></path>
+</svg>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+</div>
+
+<script>
+var was = 0;
+var bar;
+function update(){
+var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+$.get( url, function( data ) {
+  //var datas = data +"";
+  var count = data._total;
+  //console.log(count);
+  $('#cnt').prop('number', was)
+  .animateNumber({ number: count });
+  was = count;
+  
+  bar.animate(parseInt(count)/1500);  
+});
+}
+function setup(){
+bar = new ProgressBar.Path('#heart-path', {
+  easing: 'easeInOut',
+  duration: 1400
+});
+bar.set(0);
+update();
+setInterval(update,10000);
+}
+document.addEventListener("DOMContentLoaded", setup);
+</script>
