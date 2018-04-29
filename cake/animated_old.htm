@@ -1,0 +1,114 @@
+<style>
+div{
+  margin: 5px;
+  height: 52px;
+  display: inline-block; 
+  font-family:'Nunito', sans-serif;
+  font-size:56px;
+  font-style:normal;
+  font-variant:normal;
+  font-weight:bold;
+  line-height:26.4px;
+  color:#555;
+}
+  
+#container{
+  width: 500px;
+  border: 2px solid #ccc !important;
+  border-color:#000;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+  
+.caption{
+  margin-left: -333px;
+  position: absolute;
+  margin-top: 27px;
+}
+.run-animation {
+  animation: shake 10s 1; 
+}  
+  
+@-webkit-keyframes shake {
+0%{-webkit-transform: rotate(0deg);}
+5%{-webkit-transform: rotate(25deg);}
+10%{-webkit-transform: rotate(-20deg);}
+15%{-webkit-transform: rotate(16deg);}
+20%{-webkit-transform: rotate(-12.8deg);}
+25%{-webkit-transform: rotate(10.24deg);}
+30%{-webkit-transform: rotate(-8.192deg);}
+35%{-webkit-transform: rotate(6.553deg);}
+40%{-webkit-transform: rotate(-5.243deg);}
+45%{-webkit-transform: rotate(4.194deg);}
+50%{-webkit-transform: rotate(-3.355deg);}
+55%{-webkit-transform: rotate(2.68deg);}
+60%{-webkit-transform: rotate(-2.147deg);}
+65%{-webkit-transform: rotate(1.718deg);}
+70%{-webkit-transform: rotate(-1.37deg);}
+75%{-webkit-transform: rotate(1.1deg);}
+80%{-webkit-transform: rotate(-0.88deg);}
+85%{-webkit-transform: rotate(0.704deg);}
+90%{-webkit-transform: rotate(-0.563deg);}
+95%{-webkit-transform: rotate(0.45deg);}
+100%{-webkit-transform: rotate(0deg);}
+}
+</style>
+
+<img id="icon" src="https://static-cdn.jtvnw.net/badges/v1/fde64ad8-db00-4d12-8c69-b4996481f1fe/3" height="56">
+
+<div id="container">
+<svg style="width:100%;height:100%;">
+<path fill-opacity="0" stroke-width="76" stroke="#999" d="m 0,14 h 500"></path>
+<path id="heart-path" fill-opacity="0" stroke-width="76" stroke="#ddd" d="m 0,14 h 500"></path>
+</svg>
+
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+<script src="https://kimmobrunfeldt.github.io/progressbar.js/bundle.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.color.js"></script>
+<script src="http://aishek.github.io/jquery-animateNumber/javascripts/jquery.animateNumber.js"></script>
+
+</div>
+
+<div class="caption" id="follower_count" style="font-family:'Nunito', sans-serif;font-size:56px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#555;">
+<span id="cnt">0</span>
+</div>
+
+<div class="caption" style="margin-left: 404px;">
+  <span id="maxcnt">2000</span>
+</div>
+
+<script>
+var was = 0;
+var bar;
+var args = location.hash.substring(1).split("/");
+var token = args[0];
+var maxcnt = args[1];
+var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+token+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+function update(){
+  $.get( url, function( data ) {
+    //var datas = data +"";
+    var count = data._total;
+    //console.log(count);
+    if(was != count) {
+      $('#cnt').prop('number', was)
+        .animateNumber({ number: count });
+      $("#icon").removeClass("run-animation").addClass("run-animation");
+      was = count;
+      bar.animate(parseInt(count)/maxcnt);
+    }
+  });
+}
+function setup(){
+  bar = new ProgressBar.Path('#heart-path', {
+    easing: 'easeInOut',
+    duration: 1400
+  });
+  bar.set(0);
+  update();
+  setInterval(update,10000);
+  $("#maxcnt").html(maxcnt);
+}
+  
+document.addEventListener("DOMContentLoaded", setup);
+</script>
