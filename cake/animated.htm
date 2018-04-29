@@ -65,36 +65,46 @@ div{
 </div>
 
 <div class="caption" id="follower_count" style="font-family:'Nunito', sans-serif;font-size:56px;font-style:normal;font-variant:normal;font-weight:bold;line-height:26.4px;color:#555;">
-<span id="cnt">0</span> / 1500
+<span id="cnt">0</span>
+</div>
+
+<div class="caption">
+  <span id="maxcnt">2000</span>
 </div>
 
 <script>
 var was = 0;
 var bar;
+var args = location.hash.substring(1).split("/");
+var token = args[0];
+var maxcnt = args[1];
+var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+token+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
+
 function update(){
-var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+location.hash.substring(1)+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
-$.get( url, function( data ) {
-  //var datas = data +"";
-  var count = data._total;
-  //console.log(count);
-  $('#cnt').prop('number', was)
-  .animateNumber({ number: count });
-  if(was != count) {
-    $("#icon").removeClass("run-animation").addClass("run-animation");
-  }
-  was = count;
-  
-  bar.animate(parseInt(count)/1500);  
-});
+  $.get( url, function( data ) {
+    //var datas = data +"";
+    var count = data._total;
+    //console.log(count);
+    if(was != count) {
+      $('#cnt').prop('number', was)
+        .animateNumber({ number: count });
+      $("#icon").removeClass("run-animation").addClass("run-animation");
+      was = count;
+      bar.animate(parseInt(count)/maxcnt);
+    }
+  });
 }
+
 function setup(){
-bar = new ProgressBar.Path('#heart-path', {
-  easing: 'easeInOut',
-  duration: 1400
-});
-bar.set(0);
-update();
-setInterval(update,10000);
+  bar = new ProgressBar.Path('#heart-path', {
+    easing: 'easeInOut',
+    duration: 1400
+  });
+  bar.set(0);
+  update();
+  setInterval(update,10000);
+  $("#maxcnt").html(maxcnt);
 }
+  
 document.addEventListener("DOMContentLoaded", setup);
 </script>
