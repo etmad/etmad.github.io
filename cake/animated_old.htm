@@ -93,10 +93,12 @@ function update(){
     if(was != count) {
       $('#cnt').prop('number', was)
         .animateNumber({ number: count });
-      $("#icon").removeClass("run-animation").addClass("run-animation");
+      $("#icon").addClass("run-animation");
       was = count;
       bar.animate(parseInt(count)/maxcnt);
     }
+    else
+      $("#icon").removeClass("run-animation");
   });
 }
 function setup(){
