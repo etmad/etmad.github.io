@@ -83,7 +83,8 @@ var was = 0;
 var bar;
 var args = location.hash.substring(1).split("/");
 var token = args[0];
-var maxcnt = args[1];
+var initial = args[1];
+var maxcnt = args[2];
 var url = "https://api.twitch.tv/kraken/channels/c_a_k_e/subscriptions?limit=1&oauth_token="+token+"&client_id=36fqy7zrg6wccnl7gwntvuxl8ffv0h";
 function update(){
   $.get( url, function( data ) {
@@ -95,7 +96,7 @@ function update(){
         .animateNumber({ number: count });
       $("#icon").addClass("run-animation");
       was = count;
-      bar.animate(parseInt(count)/maxcnt);
+      bar.animate((parseInt(count)-initial)/(maxcnt-initial));
     }
     else
       $("#icon").removeClass("run-animation");
