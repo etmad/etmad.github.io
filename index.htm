@@ -1,0 +1,157 @@
+<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet">
+
+<style>
+@font-face {
+    font-family : pixelatedFont;
+    src : url(LCD_Solid.ttf);
+}
+
+div {
+    font-family:'Nunito', sans-serif;
+	font-size:56px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:bold;
+	line-height:26.4px;
+	color:#555;
+	
+	font-face : pixelatedFont;
+	display : inline-block;
+	margin-right : -15px;
+}  
+
+#main {
+text-align : center;
+bottom: 5px;
+left: -500px;
+position: absolute;
+}
+
+.pvz {
+	margin-right : -35px;
+}
+
+.intext {
+	position : relative;
+	top : -29px;
+	width : 170px;
+	left : -210px;
+	margin-right : -170px;
+	text-align : center;
+	font-weight : 800;
+}
+
+#train {
+	position : absolute;
+	left : 1000px;
+	width : 1000000px;
+}
+
+#timer {
+	position : absolute;
+	left : 20px;
+	top : 0px;
+	font-size : 72px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+var lastSub = 9999999999; // -1
+var lastAnimationPlayed = -1;
+var queue = ['NICKNAME']; // []
+var cnt = 1; // 0
+
+var animationLength = 7500;
+
+function queuePoller() {
+	if (Date.now() - lastAnimationPlayed < animationLength) 
+		return;
+	
+	if (cnt > 0) {
+		showAnimation(queue.shift());
+		lastAnimationPlayed = Date.now();
+		cnt--;
+	}	
+}
+
+var animationPhase = 0;
+
+function showAnimation(nick) {
+	document.getElementById("text").innerHTML = nick;
+	var cnt = 0;
+	var stepper = setInterval(frame, 5);
+    function frame() {
+        if (cnt == 1450) {
+			document.getElementById("main").style.left = "2000px";
+			clearInterval(stepper);
+        } else {
+            cnt++;
+			var pos = Math.round(-240 + 1.3 * cnt + 300 * Math.sin(cnt*0.01));
+            //$("main").css('left',  pos + 'px');
+			document.getElementById("main").style.left = pos + "px";
+			console.log(pos);
+        }
+    }
+}
+
+setInterval(queuePoller, 1000);
+
+var socket;
+const socketOpenListener = (event) => {
+  socket.send("NICK justinfan123456");
+  socket.send("JOIN #etozhezanuda");
+  socket.send("CAP REQ :twitch.tv/tags");
+  socket.send("CAP REQ :twitch.tv/commands");
+};
+const socketStart = (event) => {
+  if (socket) {
+    console.error('Disconnected.');
+  }
+  socket = new WebSocket('wss://irc-ws.chat.twitch.tv/');
+  socket.addEventListener('open', socketOpenListener);
+  socket.addEventListener('message', socketMessageListener);
+  socket.addEventListener('close', socketStart);
+}; 
+const socketMessageListener = (event) => {
+	var msg = event.data;
+	msg = msg + "";
+	//console.log(msg);
+	if(msg === "PING"){
+		socket.send("PONG :tmi.twitch.tv");
+	}
+	else 
+	if(msg.indexOf("USERNOTICE") != -1)
+	{
+		console.log(msg);
+		if(msg.indexOf("msg-param-recipient-display-name=") != -1) {
+			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
+			msg = msg.substring(0, msg.indexOf(";"));
+			console.log(">"+msg);
+		}
+		else {
+			msg = msg.substring(msg.indexOf("display-name=") + 13);
+			msg = msg.substring(0, msg.indexOf(";"));
+			console.log(">"+msg);
+		}
+		queue.push(msg);
+		cnt++;
+		lastSub = Date.now();
+	}
+}
+socketStart();	
+</script>
+
+<body>
+
+<div id="main" onclick="showAnimation('OLOLO')"> 
+<div id="text">
+</div>
+<br>
+<br>
+<img src="https://i.4pcdn.org/sp/1507478409212.gif" style="width:240px">
+</div>
+
+
+</body>
