@@ -85,6 +85,7 @@ function playSound() {
 
 	
 function showAnimation(nick) {
+	playSound();
 	document.getElementById("text").innerHTML = nick;
 	var cnt = 0;
 	var stepper = setInterval(frame, 5);
