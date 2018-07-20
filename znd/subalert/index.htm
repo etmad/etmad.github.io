@@ -168,7 +168,7 @@ setInterval(queuePoller, 1000);
 var socket;
 const socketOpenListener = (event) => {
   socket.send("NICK justinfan123456");
-  socket.send("JOIN #timthetatman"); //etozhezanuda
+  socket.send("JOIN #etozhezanuda"); //
   socket.send("CAP REQ :twitch.tv/tags");
   socket.send("CAP REQ :twitch.tv/commands");
 };
