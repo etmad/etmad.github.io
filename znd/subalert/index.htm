@@ -5,6 +5,7 @@
     font-family : pixelatedFont;
     src : url(LCD_Solid.ttf);
 }
+
 div {
     font-family:'Nunito', sans-serif;
 	font-size:56px;
@@ -18,15 +19,25 @@ div {
 	display : inline-block;
 	margin-right : -15px;
 }  
+
+.badge {
+	margin-bottom: -5px;
+	margin-left: 5px;
+	height: 60px;
+}
+
 #main {
 text-align : center;
 bottom: 5px;
-left: -500px;
+left: 0px;
 position: absolute;
+opacity: 0;
 }
+
 .pvz {
 	margin-right : -35px;
 }
+
 .intext {
 	position : relative;
 	top : -29px;
@@ -36,11 +47,13 @@ position: absolute;
 	text-align : center;
 	font-weight : 800;
 }
+
 #train {
 	position : absolute;
 	left : 1000px;
 	width : 1000000px;
 }
+
 #timer {
 	position : absolute;
 	left : 20px;
@@ -52,27 +65,38 @@ position: absolute;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script>
-var lastSub = -1;
+var lastSub = -1; // -1
 var lastAnimationPlayed = -1;
-var queue = [];
-var cnt = 0;
-var animationLength = 7500;
+var queue = []; // []
+var queuet = []; // []
+var cnt = 0; // 0
+
+var animationLength = 20000;
+
 function queuePoller() {
 	if (Date.now() - lastAnimationPlayed < animationLength) 
 		return;
 	
 	if (cnt > 0) {
-		showAnimation(queue.shift());
+		var type = queuet.shift();
+		if(type === 1) {
+			showAnimationFirst(queue.shift());
+		}
+		else
+		{
+			showAnimationResub(queue.shift());
+		}
 		lastAnimationPlayed = Date.now();
 		cnt--;
 	}	
 }
+
 var animationPhase = 0;
 
 var soundFile = document.createElement("audio");
 soundFile.preload = "auto";
 var src = document.createElement("source");
-src.src = "https://etmad.github.io/znd/subalert/sound.mp3";
+src.src = "https://uploads.twitchalerts.com/000/087/238/332/www.tamada-smirnov.ru%20-%20%D0%B0%D0%BF%D0%BF%D0%BB%D0%BE%D0%B4%D0%B8%D1%81%D0%BC%D0%B5%D0%BD%D1%82%D1%8B.ogg";
 soundFile.appendChild(src);
 soundFile.load();
 soundFile.volume = 0.000000;
@@ -81,32 +105,70 @@ function playSound() {
    soundFile.currentTime = 0.01;
    soundFile.volume = 0.2;
    setTimeout(function(){soundFile.play();},1);
+   setTimeout(function(){soundFile.pause();},6000);
 }
 
-	
-function showAnimation(nick) {
+var soundFile2 = document.createElement("audio");
+soundFile2.preload = "auto";
+var src2 = document.createElement("source");
+src2.src = "https://uploads.twitchalerts.com/000/087/238/332/%20-%20%D0%9E%D1%82%D1%81%D0%B8%D0%B4%D0%B8.ogg";
+soundFile2.appendChild(src2);
+soundFile2.load();
+soundFile2.volume = 0.000000;
+soundFile2.play();
+function playSound2() {
+   soundFile2.currentTime = 0.01;
+   soundFile2.volume = 0.2;
+   setTimeout(function(){soundFile2.play();},1);
+}
+
+function showAnimationResub(text) {
 	playSound();
-	document.getElementById("text").innerHTML = nick;
+	document.getElementById("text").innerHTML = text;
+	document.getElementById("gif").src = "https://uploads.twitchalerts.com/000/087/238/332/znd.gif";
 	var cnt = 0;
-	var stepper = setInterval(frame, 5);
+	var stepper = setInterval(frame, 20);
+	var frameLimit = 600;
     function frame() {
-        if (cnt == 1450) {
-			document.getElementById("main").style.left = "2000px";
+        if (cnt == frameLimit) {
+			document.getElementById("main").style.opacity = "0";
 			clearInterval(stepper);
         } else {
             cnt++;
-			var pos = Math.round(-240 + 1.3 * cnt + 300 * Math.sin(cnt*0.01));
-            //$("main").css('left',  pos + 'px');
-			document.getElementById("main").style.left = pos + "px";
-			console.log(pos);
+			var phase = 1 - 1.0 * cnt / frameLimit;
+			var percentage = Math.pow(phase, 0.2);
+			document.getElementById("main").style.opacity = percentage;
+			console.log(percentage);
         }
     }
 }
+
+function showAnimationFirst(text) {
+	playSound2();
+	document.getElementById("text").innerHTML = text;
+	document.getElementById("gif").src = "https://uploads.twitchalerts.com/000/087/238/332/wut_is_love.gif";
+	var cnt = 0;
+	var stepper = setInterval(frame, 20);
+    function frame() {
+        if (cnt == 300) {
+			document.getElementById("main").style.opacity = "0";
+			clearInterval(stepper);
+        } else {
+            cnt++;
+			var phase = 1 - cnt / 300.0;
+			var percentage = Math.pow(phase, 0.2);
+			document.getElementById("main").style.opacity = percentage;
+			console.log(percentage);
+        }
+    }
+}
+
 setInterval(queuePoller, 1000);
+
 var socket;
 const socketOpenListener = (event) => {
   socket.send("NICK justinfan123456");
-  socket.send("JOIN #etozhezanuda");
+  socket.send("JOIN #timthetatman"); //etozhezanuda
   socket.send("CAP REQ :twitch.tv/tags");
   socket.send("CAP REQ :twitch.tv/commands");
 };
@@ -122,6 +184,7 @@ const socketStart = (event) => {
 const socketMessageListener = (event) => {
 	var msg = event.data;
 	msg = msg + "";
+	var nick = "";
 	//console.log(msg);
 	if(msg === "PING"){
 		socket.send("PONG :tmi.twitch.tv");
@@ -130,32 +193,68 @@ const socketMessageListener = (event) => {
 	if(msg.indexOf("USERNOTICE") != -1)
 	{
 		console.log(msg);
+		// 
+		// 
 		if(msg.indexOf("msg-param-recipient-display-name=") != -1) {
-			msg = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
-			msg = msg.substring(0, msg.indexOf(";"));
-			console.log(">"+msg);
+			nick = msg.substring(msg.indexOf("msg-param-recipient-display-name=") + 33);
+			nick = nick.substring(0, nick.indexOf(";"));
 		}
 		else {
-			msg = msg.substring(msg.indexOf("display-name=") + 13);
-			msg = msg.substring(0, msg.indexOf(";"));
-			console.log(">"+msg);
+			nick = msg.substring(msg.indexOf("display-name=") + 13);
+			nick = nick.substring(0, nick.indexOf(";"))
 		}
-		queue.push(msg);
-		cnt++;
-		lastSub = Date.now();
+		
+		console.log(">"+nick);
+		
+		if(msg.indexOf("months\\sin\\sa\\srow!") != -1)
+		{
+			var months = msg.substring(msg.indexOf("msg-param-months") + 17);
+			months = months.substring(0, months.indexOf(";")).trim();
+			console.log(months);
+			var intmonths = parseInt(cnt);
+			var imgsrc = "https://static-cdn.jtvnw.net/badges/v1/018dbff4-5bc9-452d-8489-123fd3d5c0af/3";
+			if(intmonths > 2) 
+				imgsrc = "https://static-cdn.jtvnw.net/badges/v1/7c8be591-fa70-482f-bfaf-23ee30f50a37/3";
+			if(intmonths > 5) 
+				imgsrc = "https://static-cdn.jtvnw.net/badges/v1/4c810ab5-7521-4865-b685-ba44451b2739/3";
+			if(intmonths > 11) 
+				imgsrc = "https://static-cdn.jtvnw.net/badges/v1/2aef5f67-1e55-42ee-9112-3fd7a448ea33/3";
+			if(intmonths > 23) 
+				imgsrc = "https://static-cdn.jtvnw.net/badges/v1/a1f8d586-2892-4c93-be49-e775b68f844c/3";
+			if(intmonths > 35) 
+				imgsrc = "https://static-cdn.jtvnw.net/badges/v1/89012315-cd52-4d26-97c7-728f6389f618/3";
+
+			var alerttext = nick + " " + months + " <img class='badge' src='" + imgsrc + "'>";
+			queue.push(alerttext);
+			queuet.push(0);
+			cnt++;
+			lastSub = Date.now();
+		}
+		else if(msg.indexOf("sub-plan=Prime") != -1) //PRIME
+		{
+		//DO NOTHING
+		}
+		else //FIRST TIME NON PRIME
+		{
+			var alerttext = nick + "<img class='badge' src='https://static-cdn.jtvnw.net/badges/v1/018dbff4-5bc9-452d-8489-123fd3d5c0af/3'></img>";
+			queue.push(alerttext);
+			queuet.push(1);
+			cnt++;
+			lastSub = Date.now();
+		}
 	}
 }
-socketStart();	
+socketStart();
 </script>
 
 <body>
 
-<div id="main"> 
+<div id="main" onclick=""> 
 <div id="text">
 </div>
 <br>
 <br>
-<img src="https://i.4pcdn.org/sp/1507478409212.gif" style="width:240px">
+<img id="gif" src="https://uploads.twitchalerts.com/000/087/238/332/znd.gif" style="width:480px">
 </div>
 
 
