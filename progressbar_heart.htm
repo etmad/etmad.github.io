@@ -37,7 +37,7 @@ c-11.368-5.261-26.234-0.311-31.489,11.032z"/>
 <br>
 из
 <br>
-100000
+50
 </div>
 
 
@@ -63,9 +63,9 @@ $.get( url, function( data ) {
   .animateNumber({ number: count });
   was = count;
   
-  bar.animate(parseInt(count)/100000);  
+  bar.animate(parseInt(count)/50);  
 });
 }
 update();
-setInterval(update,100000);
+setInterval(update,5000);
 </script>
