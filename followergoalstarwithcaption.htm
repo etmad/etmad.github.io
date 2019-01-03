@@ -33,11 +33,9 @@ div{
 
 <div id="follower_count" align=center style="font-family:'Nunito', sans-serif;font-size:56px;margin-left:14px; width:540px; margin-top:-310px;font-style:normal;font-variant:normal;font-weight:bold;line-height:22px;color:#6AED6A;">
 <span id="cnt">0</span>
- / 100
+ / 50
  <br>
  <div style="font-size:32px;"> фолловеров <br><br>
- до 24ч
-<br> марафона
  </div>
 </div>
 
@@ -60,7 +58,7 @@ $.get( url, function( data ) {
   .animateNumber({ number: count });
   was = count;
   
-  bar.animate(parseInt(count)/100);  
+  bar.animate(parseInt(count)/50);  
 });
 }
 update();
