@@ -1,0 +1,35 @@
+<input type="textbox" id="vod">
+<input value="GO" onclick="retreive(document.getElementById('vod').value);" type="button">
+
+<div id="main">
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+var url = "";
+
+function retreive(vod){
+alert(vod);
+url = "https://api.twitch.tv/v5/videos/"+vod+"/comments?client_id=kimne78kx3ncx6brgo4mv6wki5h1ko"
+var last = 0;
+get_part(0);
+}
+
+function get_part(time){
+var cur_url = url + "&content_offset_seconds=" + time;
+$.getJSON(cur_url, function(data) { 
+									var maxt = 0;
+									$.each(data.comments, function(i, item) {
+											$("#main").append(item.content_offset_seconds + "\t<b>" + item.commenter.name + "</b> >> \t" + item.message.body);
+											$("#main").append("<br>");
+											maxt = item.content_offset_seconds;
+										}
+									);
+									if (maxt != time)
+										setTimeout(get_part(maxt), 50);
+								  }
+		  );
+}
+
+</script>
