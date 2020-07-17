@@ -1,11 +1,9 @@
 /* Helpful information:
-
 Clips
 	Endpoint: https://api.twitch.tv/kraken/clips/ReliableSplendidInternPogChamp?on_site=1&api_version=5
 	Exmpample Clip: https://clips.twitch.tv/ReliableSplendidInternPogChamp
 	Missing thumbnail: https://clips-media-assets.twitch.tv/404-preview-86x45.jpg
 	Broken thumbnail: https://clips-media-assets.twitch.tv/vod-153090723-offset-1928.5-60-preview-1920x1080.jpg
-
 */
 
 var cooldown = 0;
