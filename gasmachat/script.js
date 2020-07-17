@@ -293,6 +293,96 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 0, attribs
   }
 }
 
+function handleEmotes(channel, emotes, message) {
+  // let messageParts = message.split(' ');
+  let bttvEmotes = bttvEmoteCache.data.global.slice(0);
+  if (channel in bttvEmoteCache.data) {
+    bttvEmotes = bttvEmotes.concat(bttvEmoteCache.data[channel]);
+  }
+  let twitchEmoteKeys = Object.keys(emotes);
+  let allEmotes = twitchEmoteKeys.reduce((p, id) => {
+    let emoteData = emotes[id].map(n => {
+      let [a, b] = n.split('-');
+      let start = +a;
+      let end = +b + 1;
+      return {
+        start,
+        end,
+        id,
+        code: message.slice(start, end),
+        type: ['twitch', 'emote'] };
+
+    });
+    return p.concat(emoteData);
+  }, []);
+  bttvEmotes.forEach(({ code, id, type, imageType }) => {
+    let hasEmote = message.indexOf(code);
+    if (hasEmote === -1) {
+      return;
+    }
+    for (let start = message.indexOf(code); start > -1; start = message.indexOf(code, start + 1)) {if (window.CP.shouldStopExecution(0)) break;
+      let end = start + code.length;
+      allEmotes.push({ start, end, id, code, type });
+    }window.CP.exitedLoop(0);
+  });
+  let seen = [];
+  allEmotes = allEmotes.sort((a, b) => a.start - b.start).
+  filter(({ start, end }) => {
+    if (seen.length && !seen.every(n => start > n.end)) {
+      return false;
+    }
+    seen.push({ start, end });
+    return true;
+  });
+  if (allEmotes.length) {
+    let finalMessage = [message.slice(0, allEmotes[0].start)];
+    allEmotes.forEach((n, i) => {
+      let p = Object.assign({}, n, { i });
+      let { end } = p;
+      finalMessage.push(p);
+      if (i === allEmotes.length - 1) {
+        finalMessage.push(message.slice(end));
+      } else
+      {
+        finalMessage.push(message.slice(end, allEmotes[i + 1].start));
+      }
+      finalMessage = finalMessage.filter(n => n);
+    });
+    return finalMessage;
+  }
+  return [message];
+}
+
+function addEmoteDOM(ele, data) {
+  data.forEach(n => {
+    let out = null;
+    if (typeof n === 'string') {
+      out = document.createTextNode(n);
+    } else
+    {
+      let { type: [type, subtype], code } = n;
+      if (type === 'twitch') {
+        if (subtype === 'emote') {
+          out = document.createElement('img');
+          out.setAttribute('src', `https://static-cdn.jtvnw.net/emoticons/v1/${n.id}/1.0`);
+          out.setAttribute('alt', code);
+        }
+      } else
+      if (type === 'bttv') {
+        out = document.createElement('img');
+        let url = bttvEmoteCache.urlTemplate;
+        url = url.replace('{{id}}', n.id).replace('{{image}}', '1x');
+        out.setAttribute('src', 'https:' + url);
+      }
+    }
+
+    if (out) {
+      ele.appendChild(out);
+    }
+  });
+  twemoji.parse(ele);
+}
+
 function formQuerystring(qs = {}) {
   return Object.keys(qs).
   map(key => `${key}=${qs[key]}`).
