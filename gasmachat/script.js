@@ -443,7 +443,7 @@ function getBTTVEmotes(channel) {
     global = false;
   }
   return request({
-    base: 'https://api.betterttv.net/2/',
+    base: 'https://api.betterttv.net/3/',
     endpoint }).
 
   then(({ emotes, status, urlTemplate }) => {
