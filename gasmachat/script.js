@@ -119,9 +119,7 @@ function addListeners() {
     }
 
     const mark = /\d*[+-]?/g;
-    message = message.replace(mark, '');
-
-    if (message == '') return;
+    if (message.replace(mark, '') == '') return;
 
     let chan = getChan(channel);
     let name = userstate['display-name'] || userstate.username;
