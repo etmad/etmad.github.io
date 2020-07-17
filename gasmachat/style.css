@@ -5,6 +5,7 @@ body {
   font-family: sans-serif;
   font-size: 18px;
   overflow: hidden;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 #chat {
@@ -62,12 +63,14 @@ body {
   margin-top: 0px;
   -webkit-animation: ANIME 10s normal forwards ease-in-out;
           animation: ANIME 10s normal forwards ease-in-out;
+  text-align: center;
 }
 .chat-line.visible {
   margin-top: 0px;
   max-height: 0px;
   -webkit-animation: ANIME 10s normal forwards ease-in-out;
           animation: ANIME 10s normal forwards ease-in-out;
+  text-align: center;
 }
 .chat-line .chat-line-inner {
   background-color: rgba(31, 31, 31, 0);
