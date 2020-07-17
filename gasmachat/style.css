@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Ropa+Sans");
+body {
+  background: black;
+  color: white;
+  font-family: sans-serif;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+#chat {
+  position: absolute;
+  bottom: 10px;
+  width: 600px;
+}
+
+@-webkit-keyframes ANIME {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    max-height: 300px;
+  }
+  40% {
+    margin-top: 10px;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -100px;
+  }
+}
+
+@keyframes ANIME {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    max-height: 300px;
+  }
+  40% {
+    margin-top: 10px;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    margin-top: -100px;
+  }
+}
+.chat-line {
+  overflow: hidden;
+  max-height: 0px;
+  margin-top: 0px;
+  -webkit-animation: ANIME 10s normal forwards ease-in-out;
+          animation: ANIME 10s normal forwards ease-in-out;
+}
+.chat-line.visible {
+  margin-top: 0px;
+  max-height: 0px;
+  -webkit-animation: ANIME 10s normal forwards ease-in-out;
+          animation: ANIME 10s normal forwards ease-in-out;
+}
+.chat-line .chat-line-inner {
+  background-color: rgba(31, 31, 31, 0);
+  padding: 10px;
+  overflow-wrap: break-word;
+}
+.chat-line .chat-line-inner .badges img.badge {
+  margin-right: 6px;
+  vertical-align: text-bottom;
+  width: 18px;
+  height: 18px;
+}
+.chat-line .chat-line-inner.admin .message {
+  opacity: 0.4;
+}
+
+.user-name {
+  color: #ff6bb5;
+}
+
+.message img {
+  vertical-align: text-bottom;
+}
+.message img.emoji {
+  width: 20px;
+}
