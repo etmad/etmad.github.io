@@ -60,7 +60,7 @@ if (testing) {
         reconnect: true,
         secure: true },
 
-      channels: ['grigory_skovoroda'] });
+      channels: ['gasmanov_official'] });
 
     addListeners();
     client.connect();
@@ -73,7 +73,7 @@ if (testing) {
       reconnect: true,
       secure: true },
 
-    channels: ['alca'] });
+    channels: ['gasmanov_official'] });
 
   addListeners();
   client.connect();
