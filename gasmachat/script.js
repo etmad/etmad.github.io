@@ -60,7 +60,7 @@ if (testing) {
         reconnect: true,
         secure: true },
 
-      channels: ['gasmanov_official'] });
+      channels: ['grigory_skovoroda'] });
 
     addListeners();
     client.connect();
@@ -73,7 +73,7 @@ if (testing) {
       reconnect: true,
       secure: true },
 
-    channels: ['gasmanov_official'] });
+    channels: ['alca'] });
 
   addListeners();
   client.connect();
@@ -89,6 +89,7 @@ function addListeners() {
   });
 
   client.on('connected', () => {
+    getBTTVEmotes();
     getBadges().
     then(badges => twitchBadgeCache.data.global = badges);
     showAdminMessage({
@@ -102,6 +103,7 @@ function addListeners() {
 
   client.on('disconnected', () => {
     twitchBadgeCache.data = { global: {} };
+    bttvEmoteCache.data = { global: [] };
     showAdminMessage({
       message: 'Disconnected...',
       attribs: { subtype: 'disconnected' } });
@@ -138,6 +140,7 @@ function addListeners() {
       return;
     }
     let chan = getChan(channel);
+    getBTTVEmotes(chan);
     twitchNameToUser(chan).
     then(user => getBadges(user._id)).
     then(badges => twitchBadgeCache.data[chan] = badges);
@@ -252,7 +255,7 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 0, attribs
     let messageEle = document.createElement('span');
     messageEle.classList.add('message');
 
-    let finalMessage = message;
+    let finalMessage = handleEmotes(chan, data.emotes || {}, message);
     addEmoteDOM(messageEle, finalMessage);
 
     chatLine.appendChild(messageEle);
