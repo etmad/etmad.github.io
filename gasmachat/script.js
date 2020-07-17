@@ -436,6 +436,7 @@ function getClip(clipSlug) {
 }
 
 function getBTTVEmotes(channel) {
+  return;
   let endpoint = 'emotes';
   let global = true;
   if (channel) {
