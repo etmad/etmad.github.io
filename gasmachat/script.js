@@ -120,6 +120,7 @@ function addListeners() {
 
     const mark = /\d*[+-]?/g;
     if (message.replace(mark, '') == '') return;
+    if (message.length > 150) return;
 
     let chan = getChan(channel);
     let name = userstate['display-name'] || userstate.username;
