@@ -44,7 +44,7 @@ var len = [];
 var last = -1;
 
 window.onload = function() {
-  var args = decodeURI(window.location.hash.substr(1)).split(",");
+  var args = decodeURI(window.location.hash).substr(1).split(",");
   var html = '';
   var toadd = '';
   for(var i=0;i<args.length;i++){
